@@ -1,9 +1,8 @@
 package com.sebastienguillemin.stups.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,11 +11,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Scelle {
+public class Unite {
     @Id
-    private int id;
+    public int id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_saisine")
-    public Saisine saisine;
+    public String type;
+    public String libelle;
+
+    @Column(name = "lib_short")
+    public String libShort;
 }

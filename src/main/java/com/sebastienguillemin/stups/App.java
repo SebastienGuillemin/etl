@@ -1,9 +1,8 @@
 package com.sebastienguillemin.stups;
 
-import org.hibernate.Session;
+import org.apache.logging.log4j.Logger;
 
-import com.sebastienguillemin.stups.model.Echantillon;
-import com.sebastienguillemin.stups.session.SessionProvider;
+import com.sebastienguillemin.stups.repository.DataRepository;
 
 /**
  * Hello world!
@@ -12,16 +11,7 @@ import com.sebastienguillemin.stups.session.SessionProvider;
 public class App 
 {
     public static void main( String[] args ) {
-        Session session = SessionProvider.getSession();
-
-        if (session == null)
-            return;
-
-        session.beginTransaction();
-        Echantillon echantillon =  session.createQuery("FROM Echantillon WHERE id=1", Echantillon.class).getSingleResult();
-        session.getTransaction().commit();
-        session.close();
-
-        System.out.println(echantillon.getScelle().getId());
+        DataRepository repository = new DataRepository();
+        repository.loadData();
     }
 }
