@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>org.apache.jena</groupId>
-            <artifactId>jena</artifactId>
+            <artifactId>apache-jena-libs</artifactId>
             <version>4.8.0</version>
             <type>pom</type>
         </dependency>
