@@ -26,7 +26,7 @@ public class Substance extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         
         // TODO : faire comme dans le bd et supprimer le concept de molécule de l'ontologie ?
         Resource molecule = model.createResource(RDFRepository.PREFIX + this.libelle);

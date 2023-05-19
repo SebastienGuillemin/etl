@@ -60,7 +60,7 @@ public class PrincipeActif extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property aFormeChimique = model.createProperty(RDFRepository.PREFIX + "aFormeChimique");
 
         resource.addProperty(aFormeChimique, this.formeChimique.getResource(model));

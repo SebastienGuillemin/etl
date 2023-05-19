@@ -35,7 +35,7 @@ public class Echantillon extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aAspectInterne = model.createProperty(RDFRepository.PREFIX + "aAspectInterne");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
@@ -49,7 +49,7 @@ public class Echantillon extends BaseEntity {
 
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
 
-
+        System.out.println(RDFRepository.PREFIX + this.getResourceName() + " created.");
         return resource;
     }
 }

@@ -26,7 +26,7 @@ public class ServiceRequerant extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property nomService = model.createProperty(RDFRepository.PREFIX + "nomService");
 
         resource.addProperty(nomService, this.libelle);

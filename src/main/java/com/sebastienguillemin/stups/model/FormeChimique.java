@@ -26,7 +26,7 @@ public class FormeChimique extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property libelleFormeChimique = model.createProperty(RDFRepository.PREFIX + "libelleFormeChimique");
 
         resource.addProperty(libelleFormeChimique, this.libelle);
