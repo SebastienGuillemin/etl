@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
 
 import com.sebastienguillemin.stups.model.Echantillon;
 
 public class RDFRepository {
-    private static final String PREFIX = "http://www.stups.fr/ontologies/2023/stups/";
+    public static final String PREFIX = "http://www.stups.fr/ontologies/2023/stups/";
 
     private Model model;
     private String filename;
@@ -27,18 +29,19 @@ public class RDFRepository {
     }
 
     public void populate(List<Echantillon> echantillons) {
+        Resource echantillonResource;
+        Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "idEchantillon");
         for (Echantillon echantillon : echantillons) {
-            model.createResource(PREFIX + echantillon.getResourceName());
+            echantillonResource = echantillon.getResource(model);
+            model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }
-
-        System.out.println("Resource : " + model.getResource(PREFIX + echantillons.get(0).getResourceName()));
 
         this.writeFile();
     }
 
     private void writeFile() {
         try {
-            FileWriter out = new FileWriter(this.filename + "_new");
+            FileWriter out = new FileWriter("new_" + this.filename);
             this.model.write(out, "TTL");
 
             System.out.println("RDF graph saved.");

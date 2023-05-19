@@ -1,5 +1,11 @@
 package com.sebastienguillemin.stups.model;
 
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
+
+import com.sebastienguillemin.stups.repository.RDFRepository;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,11 +21,6 @@ import lombok.ToString;
 @Table(name = "echantillon")
 @ToString
 public class Echantillon extends BaseEntity {
-
-    public Echantillon() {
-        this.simpleName = "echantillon";
-    }
-
     @ManyToOne
     @JoinColumn(name = "id_scelle")
     private Scelle scelle;
@@ -27,4 +28,28 @@ public class Echantillon extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "id_composition")
     private Composition composition;
+
+    public Echantillon() {
+        this.simpleName = "echantillon";
+    }
+
+    @Override
+    public Resource getResource(Model model) {
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getSimpleName());
+        Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
+        Property aAspectInterne = model.createProperty(RDFRepository.PREFIX + "aAspectInterne");
+        Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
+
+        // TODO : que faire si plusieurs principes actifs ?
+        resource.addProperty(aPrincipeActif, this.composition.getPrincipeActifs().get(0).getResource(model));
+
+        Aspect aspectInterne = this.composition.getAspectInterne();
+        if (aspectInterne != null)
+            resource.addProperty(aAspectInterne, aspectInterne.getResource(model));
+
+        resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
+
+
+        return resource;
+    }
 }

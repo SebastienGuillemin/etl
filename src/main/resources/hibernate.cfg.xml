@@ -25,9 +25,12 @@
         <property name="show_sql">false</property>
 
         <mapping class="com.sebastienguillemin.stups.model.Echantillon"/>
+        <mapping class="com.sebastienguillemin.stups.model.PrincipeActif"/>
         <mapping class="com.sebastienguillemin.stups.model.Saisine"/>
         <mapping class="com.sebastienguillemin.stups.model.Scelle"/>
         <mapping class="com.sebastienguillemin.stups.model.Composition"/>
+        <mapping class="com.sebastienguillemin.stups.model.FormeChimique"/>
+        <mapping class="com.sebastienguillemin.stups.model.Substance"/>
         <mapping class="com.sebastienguillemin.stups.model.Aspect"/>
         <mapping class="com.sebastienguillemin.stups.model.Unite"/>
         <mapping class="com.sebastienguillemin.stups.model.Service"/>

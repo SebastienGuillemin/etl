@@ -1,9 +1,15 @@
 package com.sebastienguillemin.stups.model;
 
+import java.util.List;
+
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,10 +18,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Composition {
-    @Id
-    public int id;
-
+public class Composition extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_aspect")
     public Aspect aspect;
@@ -31,4 +34,16 @@ public class Composition {
 
     public Float quantite;
     public String commentaire;
+
+    @OneToMany(mappedBy = "composition")
+    private List<PrincipeActif> principeActifs;
+
+    public Composition() {
+        this.simpleName = "composition";
+    }
+
+    @Override
+    public Resource getResource(Model model) {
+        return null;
+    }    
 }

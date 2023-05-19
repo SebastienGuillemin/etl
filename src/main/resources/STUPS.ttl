@@ -385,11 +385,6 @@
                          ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/RIO
-:RIO rdf:type owl:DatatypeProperty ;
-     rdfs:range xsd:string .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/airPic
 :airPic rdf:type owl:DatatypeProperty ;
         rdfs:range xsd:decimal .

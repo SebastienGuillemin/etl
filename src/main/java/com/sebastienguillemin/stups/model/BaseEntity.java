@@ -1,5 +1,8 @@
 package com.sebastienguillemin.stups.model;
 
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
@@ -19,4 +22,6 @@ public abstract class BaseEntity {
     public String getResourceName() {
         return this.simpleName + "_" + this.id;
     }
+
+    public abstract Resource getResource(Model model);
 }
