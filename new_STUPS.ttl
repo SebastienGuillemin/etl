@@ -8,8 +8,6 @@
 :estDansLot  rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty .
 
-:p2     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
 :m2     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
 
 :estPicDe  rdf:type         owl:FunctionalProperty , owl:ObjectProperty ;
@@ -30,9 +28,6 @@
 
 :d2     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
 
-:estDansScelle  rdf:type    owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
 :libelleService  rdf:type  owl:DatatypeProperty ;
         rdfs:range  xsd:string .
 
@@ -49,32 +44,6 @@
 
 :estAspectExterneDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty .
-
-:typeFormeChimique  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  [ rdf:type   rdfs:Datatype ;
-                      owl:oneOf  [ rdf:type   rdf:List ;
-                                   rdf:first  "Base" ;
-                                   rdf:rest   [ rdf:type   rdf:List ;
-                                                rdf:first  "Base et HCL" ;
-                                                rdf:rest   [ rdf:type   rdf:List ;
-                                                             rdf:first  "Chlorhydrate" ;
-                                                             rdf:rest   [ rdf:type   rdf:List ;
-                                                                          rdf:first  "HCL" ;
-                                                                          rdf:rest   [ rdf:type   rdf:List ;
-                                                                                       rdf:first  "Indéterminée" ;
-                                                                                       rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                    rdf:first  "Phosphate" ;
-                                                                                                    rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                 rdf:first  "Sulfate" ;
-                                                                                                                 rdf:rest   ()
-                                                                                                               ]
-                                                                                                  ]
-                                                                                     ]
-                                                                        ]
-                                                           ]
-                                              ]
-                                 ]
-                    ] .
 
 :aServiceCapteur  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty ;
@@ -119,20 +88,8 @@
         rdfs:subClassOf   :ProfilChimique ;
         owl:disjointWith  :ProfilChimiqueHeroine .
 
-:Prelevement  rdf:type       owl:Class ;
-        rdfs:comment         "Un prélèvement fait partie d’un scellé à partir duquel, un ou plusieurs échantillons sont extraits pour effectuer des analyses." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aEchantillon ;
-                                                       owl:someValuesFrom  :Echantillon
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Scelle ;
-                                                       owl:onProperty            :estDansScelle ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
+:Prelevement  rdf:type  owl:Class ;
+        rdfs:comment  "Un prélèvement fait partie d’un scellé à partir duquel, un ou plusieurs échantillons sont extraits pour effectuer des analyses." .
 
 :Pic    rdf:type             owl:Class ;
         rdfs:comment         "Un pic d’un profil chimique caractérise un composé chimique (molécule) présent dans l’échantillon. Chaque pic est caractérisé par un temps de rétention et une aire, correspondant à la quantité du composé cible dans l’échantillon." ;
@@ -150,182 +107,8 @@
                                                    )
                              ] .
 
-:sc1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
 :estLieA  rdf:type          owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty .
-
-[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
-  rdfs:comment  "" ;
-  rdfs:label    "Check principes actifs" ;
-  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
-          true ;
-  <http://www.w3.org/2003/11/swrl#body>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#classPredicate>
-                                 :Echantillon
-                       ] ;
-            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                      <http://www.w3.org/2003/11/swrl#argument1>
-                                              :y ;
-                                      <http://www.w3.org/2003/11/swrl#classPredicate>
-                                              :Echantillon
-                                    ] ;
-                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                   <http://www.w3.org/2003/11/swrl#argument1>
-                                                           :x ;
-                                                   <http://www.w3.org/2003/11/swrl#argument2>
-                                                           :l ;
-                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                           :estDansLot
-                                                 ] ;
-                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                <http://www.w3.org/2003/11/swrl#argument1>
-                                                                        :y ;
-                                                                <http://www.w3.org/2003/11/swrl#argument2>
-                                                                        :l ;
-                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                        :estDansLot
-                                                              ] ;
-                                                   rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                     :x ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                     :pa1 ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                     :aPrincipeActif
-                                                                           ] ;
-                                                                rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                             rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                  :y ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                  :pa2 ;
-                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                  :aPrincipeActif
-                                                                                        ] ;
-                                                                             rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                          rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                               :pa1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                               :m1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                               :aMolecule
-                                                                                                     ] ;
-                                                                                          rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                       rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                            :pa2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                            :m2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                            :aMolecule
-                                                                                                                  ] ;
-                                                                                                       rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                    rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                         :m1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                         :nm1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                         :nomMolecule
-                                                                                                                               ] ;
-                                                                                                                    rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                 rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                                      :m2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                                      :nm2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                                      :nomMolecule
-                                                                                                                                            ] ;
-                                                                                                                                 rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                              rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#arguments>
-                                                                                                                                                                   ( :nm1 :nm2 ) ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#builtin>
-                                                                                                                                                                   <http://www.w3.org/2003/11/swrlb#notEqual>
-                                                                                                                                                         ] ;
-                                                                                                                                              rdf:rest   ()
-                                                                                                                                            ]
-                                                                                                                               ]
-                                                                                                                  ]
-                                                                                                     ]
-                                                                                        ]
-                                                                           ]
-                                                              ]
-                                                 ]
-                                    ]
-                       ]
-          ] ;
-  <http://www.w3.org/2003/11/swrl#head>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#argument2>
-                                 :y ;
-                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                 :estEloigneDe
-                       ] ;
-            rdf:rest   ()
-          ]
-] .
-
-:typeAspect  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  [ rdf:type   rdfs:Datatype ;
-                      owl:oneOf  [ rdf:type   rdf:List ;
-                                   rdf:first  "Billes" ;
-                                   rdf:rest   [ rdf:type   rdf:List ;
-                                                rdf:first  "Cailloux" ;
-                                                rdf:rest   [ rdf:type   rdf:List ;
-                                                             rdf:first  "Comprimés" ;
-                                                             rdf:rest   [ rdf:type   rdf:List ;
-                                                                          rdf:first  "Cristaux" ;
-                                                                          rdf:rest   [ rdf:type   rdf:List ;
-                                                                                       rdf:first  "Gélules" ;
-                                                                                       rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                    rdf:first  "Huiles" ;
-                                                                                                    rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                 rdf:first  "Liquides" ;
-                                                                                                                 rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                              rdf:first  "Non renseignés" ;
-                                                                                                                              rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                           rdf:first  "Poudres" ;
-                                                                                                                                           rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                        rdf:first  "Pâtes" ;
-                                                                                                                                                        rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                     rdf:first  "Résines" ;
-                                                                                                                                                                     rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                  rdf:first  "Substances Dissimulées" ;
-                                                                                                                                                                                  rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                               rdf:first  "Timbres" ;
-                                                                                                                                                                                               rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                                            rdf:first  "Végétaux" ;
-                                                                                                                                                                                                            rdf:rest   ()
-                                                                                                                                                                                                          ]
-                                                                                                                                                                                             ]
-                                                                                                                                                                                ]
-                                                                                                                                                                   ]
-                                                                                                                                                      ]
-                                                                                                                                         ]
-                                                                                                                            ]
-                                                                                                               ]
-                                                                                                  ]
-                                                                                     ]
-                                                                        ]
-                                                           ]
-                                              ]
-                                 ]
-                    ] .
 
 :Molecule  rdf:type          owl:Class ;
         rdfs:comment         "Le concept de molécule est le même que celui de la chimie. Ici, il est utilisé pour représenter la molécule à laquelle sont reliés les substaces d’un échantillon ainsi que les pics d’un profil. Une molécule à un nom." ;
@@ -344,77 +127,6 @@
 :aAspectExterne  rdf:type   owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty ;
         owl:inverseOf       :estAspectExterneDe .
-
-:FormeChimique  rdf:type     owl:Class ;
-        rdfs:comment         "Une forme chimique (Base, HCL, Base et HCL, Sulfate, Chlorhydrate, Phosphate ou Indéterminée) est associée à un principe actif pour décrire sa forme chimique." ;
-        owl:equivalentClass  [ rdf:type            owl:Restriction ;
-                               owl:onProperty      :estFormeChimiqueDe ;
-                               owl:someValuesFrom  :PrincipeActif
-                             ] .
-
-:ProfilChimique  rdf:type    owl:Class ;
-        rdfs:comment         "Un profil chimique est associé à un échantillon dans le but de faire du profilage (i.e. rapprocher automatique des échantillons selon leur profil et leurs caractéristiques). Un profil chimique représente chromatogramme constitué d’un ensemble de pics  permettent d’identifier la présence ou composés chimiques cible." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aPic ;
-                                                       owl:someValuesFrom  :Pic
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Echantillon ;
-                                                       owl:onProperty            :estProfilChimiqueDe ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
-
-:Region  rdf:type            owl:Class ;
-        rdfs:comment         "Une région a un ou plusieurs département est dans un un pays." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aDepartement ;
-                                                       owl:someValuesFrom  :Departement
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Pays ;
-                                                       owl:onProperty            :estDansPays ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
-
-:commentaire  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  xsd:string .
-
-:forme_chimique_3  :libelleFormeChimique
-                "Chlorhydrate" .
-
-:tfc1   rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:estUniteDe  rdf:type  owl:ObjectProperty .
-
-:Scelle  rdf:type            owl:Class ;
-        rdfs:comment         "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs prélèvements des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice.  Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aPrelevement ;
-                                                       owl:someValuesFrom  :Prelevement
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Saisine ;
-                                                       owl:onProperty            :estDansSaisine ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
-
-:aMolecule  rdf:type        owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estMoleculeDe .
-
-:pa2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:estDansPays  rdf:type      owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
 
 [ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
   rdfs:comment  "" ;
@@ -501,10 +213,129 @@
           ]
 ] .
 
-:aspect_3  :libelleAspect  "Poudres" .
+:FormeChimique  rdf:type     owl:Class ;
+        rdfs:comment         "Une forme chimique (Base, HCL, Base et HCL, Sulfate, Chlorhydrate, Phosphate ou Indéterminée) est associée à un principe actif pour décrire sa forme chimique." ;
+        owl:equivalentClass  [ rdf:type            owl:Restriction ;
+                               owl:onProperty      :estFormeChimiqueDe ;
+                               owl:someValuesFrom  :PrincipeActif
+                             ] .
+
+:ProfilChimique  rdf:type    owl:Class ;
+        rdfs:comment         "Un profil chimique est associé à un échantillon dans le but de faire du profilage (i.e. rapprocher automatique des échantillons selon leur profil et leurs caractéristiques). Un profil chimique représente chromatogramme constitué d’un ensemble de pics  permettent d’identifier la présence ou composés chimiques cible." ;
+        owl:equivalentClass  [ rdf:type            owl:Class ;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
+                                                       owl:onProperty      :aPic ;
+                                                       owl:someValuesFrom  :Pic
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Echantillon ;
+                                                       owl:onProperty            :estProfilChimiqueDe ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Region  rdf:type            owl:Class ;
+        rdfs:comment         "Une région a un ou plusieurs département est dans un un pays." ;
+        owl:equivalentClass  [ rdf:type            owl:Class ;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
+                                                       owl:onProperty      :aDepartement ;
+                                                       owl:someValuesFrom  :Departement
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Pays ;
+                                                       owl:onProperty            :estDansPays ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:commentaire  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  xsd:string .
+
+:forme_chimique_3  :libelleFormeChimique
+                "Chlorhydrate" .
+
+:estUniteDe  rdf:type  owl:ObjectProperty .
+
+:Scelle  rdf:type            owl:Class ;
+        rdfs:comment         "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs prélèvements des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice.  Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." ;
+        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
+                               owl:onClass               :Saisine ;
+                               owl:onProperty            :estDansSaisine ;
+                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                             ] .
+
+[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
+  rdfs:comment  "" ;
+  rdfs:label    "Check caracteristiques macroscopiques" ;
+  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
+          true ;
+  <http://www.w3.org/2003/11/swrl#body>
+          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                         <http://www.w3.org/2003/11/swrl#argument1>
+                                 :x ;
+                         <http://www.w3.org/2003/11/swrl#classPredicate>
+                                 :Echantillon
+                       ] ;
+            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                      <http://www.w3.org/2003/11/swrl#argument1>
+                                              :y ;
+                                      <http://www.w3.org/2003/11/swrl#classPredicate>
+                                              :Echantillon
+                                    ] ;
+                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                   <http://www.w3.org/2003/11/swrl#argument1>
+                                                           :x ;
+                                                   <http://www.w3.org/2003/11/swrl#argument2>
+                                                           :l ;
+                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                           :estDansLot
+                                                 ] ;
+                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                <http://www.w3.org/2003/11/swrl#argument1>
+                                                                        :y ;
+                                                                <http://www.w3.org/2003/11/swrl#argument2>
+                                                                        :l ;
+                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                        :estDansLot
+                                                              ] ;
+                                                   rdf:rest   ()
+                                                 ]
+                                    ]
+                       ]
+          ] ;
+  <http://www.w3.org/2003/11/swrl#head>
+          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                         <http://www.w3.org/2003/11/swrl#argument1>
+                                 :x ;
+                         <http://www.w3.org/2003/11/swrl#argument2>
+                                 :y ;
+                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                 :estEloigneDe
+                       ] ;
+            rdf:rest   ()
+          ]
+] .
+
+:aMolecule  rdf:type        owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estMoleculeDe .
+
+:pa2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:estDansPays  rdf:type      owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
 
 :caracteristiqueMacroscopique
         rdf:type  owl:DatatypeProperty .
+
+:aspect_3  :libelleAspect  "Poudres" .
 
 :Aspect  rdf:type            owl:Class ;
         rdfs:comment         "Un aspect permet de d’écrire l’aspect interne ou l’aspect externe d’un échantillon." ;
@@ -524,9 +355,6 @@
         rdfs:range  xsd:string .
 
 :diff   rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:numeroScelle  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  xsd:string .
 
 [ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
   rdfs:comment  "" ;
@@ -655,417 +483,8 @@
           ]
 ] .
 
-:estRepresenteePar  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :representeMolecule .
-
-:aProduitCoupage  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estProduitCoupageDe .
-
-:sc2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:PrincipeActif  rdf:type     owl:Class ;
-        rdfs:comment         "Un principe actif est la principale substance d’un échantillon. Tout principe actif a une forme chimique." ;
-        rdfs:subClassOf      :Substance ;
-        owl:disjointWith     :ProduitCoupage ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :FormeChimique ;
-                                                       owl:onProperty            :aFormeChimique ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Echantillon ;
-                                                       owl:onProperty            :estPrincipeActifDe ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
-
-:aPrelevement  rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estDansScelle .
-
-:representeMolecule  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:aFormeChimique  rdf:type   owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estFormeChimiqueDe .
-
-:td1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:ServiceCapteur  rdf:type    owl:Class ;
-        rdfs:comment         "Un service capteur est le service qui réalise la saisie de drogue." ;
-        rdfs:subClassOf      :Service ;
-        owl:disjointWith     :ServiceRequerant ;
-        owl:equivalentClass  [ rdf:type            owl:Restriction ;
-                               owl:onProperty      :estServiceCapteurDe ;
-                               owl:someValuesFrom  :Saisine
-                             ] .
-
-:quantite  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  xsd:float .
-
-:ProduitCoupage  rdf:type    owl:Class ;
-        rdfs:comment         "Un produit de coupage est une substance composant un échantillon. Ce produit de coupage est en plus petite quantité que le principe actif." ;
-        rdfs:subClassOf      :Substance ;
-        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
-                               owl:onClass               :Echantillon ;
-                               owl:onProperty            :estProduitCoupageDe ;
-                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                             ] .
-
-:pc1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:tfc2   rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:diffAbs  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:date1  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:Echantillon  rdf:type       owl:Class ;
-        rdfs:comment         "Un échantillon de drogue est extrait à partir d’un prélèvement d’un scellé. Un échantillon est caractérisé par un numéro d’échantillon et son type de drogue ('cannabis', 'cocaïne', 'divers' ou 'amphétamine et dérivés'). Un échantillon a des caractéristiques macroscopiques (aspect internes et externes, couleurs etc.), un principe actif et des produits de coupage. Les experts peuvent aussi donner des commentaires sur l’échantillon. De plus, un échantillon peut être regroupé avec d’autres échantillon dans un lot.\nDans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aProduitCoupage ;
-                                                       owl:someValuesFrom  :ProduitCoupage
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Aspect ;
-                                                       owl:onProperty            :aAspectExterne ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :PrincipeActif ;
-                                                       owl:onProperty            :aPrincipeActif ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :ProfilChimique ;
-                                                       owl:onProperty            :aProfilChimique ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Prelevement ;
-                                                       owl:onProperty            :provientDe ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                     owl:Restriction ;
-                                                       owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass                  :Aspect ;
-                                                       owl:onProperty               :aAspectInterne
-                                                     ]
-                                                     [ rdf:type                     owl:Restriction ;
-                                                       owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass                  :Lot ;
-                                                       owl:onProperty               :estDansLot
-                                                     ]
-                                                   )
-                             ] .
-
-:ProfilChimiqueHeroine
-        rdf:type         owl:Class ;
-        rdfs:comment     "Pour l’héroïne, 6 pics correspondant à des impuretés   et dépendent du procédé de fabrication (synthèse). Elles sont toujours présentes mais les quantités peuvent être différentes." ;
-        rdfs:subClassOf  :ProfilChimique .
-
-:aAspectInterne  rdf:type   owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estAspectInterneDe .
-
-:aPrincipeActif  rdf:type   owl:InverseFunctionalProperty , owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estPrincipeActifDe .
-
-:l      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:pic    rdf:type  owl:AnnotationProperty .
-
-:typeDrogue  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  [ rdf:type   rdfs:Datatype ;
-                      owl:oneOf  [ rdf:type   rdf:List ;
-                                   rdf:first  "Amphétamine et dérivés" ;
-                                   rdf:rest   [ rdf:type   rdf:List ;
-                                                rdf:first  "Cannabis" ;
-                                                rdf:rest   [ rdf:type   rdf:List ;
-                                                             rdf:first  "Cocaïne" ;
-                                                             rdf:rest   [ rdf:type   rdf:List ;
-                                                                          rdf:first  "Divers" ;
-                                                                          rdf:rest   ()
-                                                                        ]
-                                                           ]
-                                              ]
-                                 ]
-                    ] .
-
-:estServiceCapteurDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:hauteur  rdf:type          owl:DatatypeProperty ;
-        rdfs:range          xsd:decimal ;
-        rdfs:subPropertyOf  :caracteristiqueMacroscopiqueNumerique .
-
-:absValue  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:td2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:tempsRetention  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  xsd:decimal .
-
-:Service  rdf:type           owl:Class ;
-        rdfs:comment         "Il existe deux types de services?: les services requérants et les services capteurs. Tous les services sont identifiés par un nom, un RIO et un libellé. De plus un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone etc.)." ;
-        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
-                               owl:onClass               :Ville ;
-                               owl:onProperty            :estSitueA ;
-                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                             ] .
-
-:estLotInterneDe  rdf:type  owl:IrreflexiveProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
-  rdfs:comment  "" ;
-  rdfs:label    "Check dates" ;
-  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
-          true ;
-  <http://www.w3.org/2003/11/swrl#body>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#classPredicate>
-                                 :Echantillon
-                       ] ;
-            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                      <http://www.w3.org/2003/11/swrl#argument1>
-                                              :y ;
-                                      <http://www.w3.org/2003/11/swrl#classPredicate>
-                                              :Echantillon
-                                    ] ;
-                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                   <http://www.w3.org/2003/11/swrl#argument1>
-                                                           :x ;
-                                                   <http://www.w3.org/2003/11/swrl#argument2>
-                                                           :l ;
-                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                           :estDansLot
-                                                 ] ;
-                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                <http://www.w3.org/2003/11/swrl#argument1>
-                                                                        :y ;
-                                                                <http://www.w3.org/2003/11/swrl#argument2>
-                                                                        :l ;
-                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                        :estDansLot
-                                                              ] ;
-                                                   rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                     :x ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                     :p1 ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                     :provientDe
-                                                                           ] ;
-                                                                rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                             rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                  :y ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                  :p2 ;
-                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                  :provientDe
-                                                                                        ] ;
-                                                                             rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                          rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                               :p1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                               :sc1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                               :estDansScelle
-                                                                                                     ] ;
-                                                                                          rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                       rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                            :p2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                            :sc2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                            :estDansScelle
-                                                                                                                  ] ;
-                                                                                                       rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                    rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                         :sc1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                         :s1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                         :estDansSaisine
-                                                                                                                               ] ;
-                                                                                                                    rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                 rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                                      :sc2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                                      :s2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                                      :estDansSaisine
-                                                                                                                                            ] ;
-                                                                                                                                 rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                              rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                                                   :s1 ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                                                   :date1 ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                                                   :date
-                                                                                                                                                         ] ;
-                                                                                                                                              rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                           rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                                                        <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                                                                :s2 ;
-                                                                                                                                                                        <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                                                                :date2 ;
-                                                                                                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                                                                :date
-                                                                                                                                                                      ] ;
-                                                                                                                                                           rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                                        rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#arguments>
-                                                                                                                                                                                             ( :diff :date1 :date2 ) ;
-                                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#builtin>
-                                                                                                                                                                                             <http://www.w3.org/2003/11/swrlb#subtract>
-                                                                                                                                                                                   ] ;
-                                                                                                                                                                        rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                                                     rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                                                                                  <http://www.w3.org/2003/11/swrl#arguments>
-                                                                                                                                                                                                          ( :diffAbs :diff ) ;
-                                                                                                                                                                                                  <http://www.w3.org/2003/11/swrl#builtin>
-                                                                                                                                                                                                          <http://www.w3.org/2003/11/swrlb#abs>
-                                                                                                                                                                                                ] ;
-                                                                                                                                                                                     rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                                                                  rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments>
-                                                                                                                                                                                                                       [ rdf:type   rdf:List ;
-                                                                                                                                                                                                                         rdf:first  :diffAbs ;
-                                                                                                                                                                                                                         rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                                                                      rdf:first  2592000 ;
-                                                                                                                                                                                                                                      rdf:rest   ()
-                                                                                                                                                                                                                                    ]
-                                                                                                                                                                                                                       ] ;
-                                                                                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin>
-                                                                                                                                                                                                                       <http://www.w3.org/2003/11/swrlb#greaterThanOrEqual>
-                                                                                                                                                                                                             ] ;
-                                                                                                                                                                                                  rdf:rest   ()
-                                                                                                                                                                                                ]
-                                                                                                                                                                                   ]
-                                                                                                                                                                      ]
-                                                                                                                                                         ]
-                                                                                                                                            ]
-                                                                                                                               ]
-                                                                                                                  ]
-                                                                                                     ]
-                                                                                        ]
-                                                                           ]
-                                                              ]
-                                                 ]
-                                    ]
-                       ]
-          ] ;
-  <http://www.w3.org/2003/11/swrl#head>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#argument2>
-                                 :y ;
-                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                 :estEloigneDe
-                       ] ;
-            rdf:rest   ()
-          ]
-] .
-
-:estAspectInterneDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:estProfilChimiqueDe  rdf:type  owl:InverseFunctionalProperty , owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:pc2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
-  rdfs:comment  "" ;
-  rdfs:label    "Check caracteristiques macroscopiques" ;
-  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
-          true ;
-  <http://www.w3.org/2003/11/swrl#body>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#classPredicate>
-                                 :Echantillon
-                       ] ;
-            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                      <http://www.w3.org/2003/11/swrl#argument1>
-                                              :y ;
-                                      <http://www.w3.org/2003/11/swrl#classPredicate>
-                                              :Echantillon
-                                    ] ;
-                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                   <http://www.w3.org/2003/11/swrl#argument1>
-                                                           :x ;
-                                                   <http://www.w3.org/2003/11/swrl#argument2>
-                                                           :l ;
-                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                           :estDansLot
-                                                 ] ;
-                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                <http://www.w3.org/2003/11/swrl#argument1>
-                                                                        :y ;
-                                                                <http://www.w3.org/2003/11/swrl#argument2>
-                                                                        :l ;
-                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                        :estDansLot
-                                                              ] ;
-                                                   rdf:rest   ()
-                                                 ]
-                                    ]
-                       ]
-          ] ;
-  <http://www.w3.org/2003/11/swrl#head>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#argument2>
-                                 :y ;
-                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                 :estEloigneDe
-                       ] ;
-            rdf:rest   ()
-          ]
-] .
-
-:provientDe  rdf:type       owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:nomMolecule  rdf:type  owl:DatatypeProperty ;
+:numeroScelle  rdf:type  owl:DatatypeProperty ;
         rdfs:range  xsd:string .
-
-:date2  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:principe_actif_46407
-        :aFormeChimique  :forme_chimique_3 .
 
 [ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
   rdfs:comment  "" ;
@@ -1152,326 +571,31 @@
           ]
 ] .
 
-:aRegion  rdf:type          owl:InverseFunctionalProperty , owl:ObjectProperty ;
+:estRepresenteePar  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estDansPays .
+        owl:inverseOf       :representeMolecule .
 
-:estDansDepartement  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
+:aProduitCoupage  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estProduitCoupageDe .
 
-:estMoleculeDe  rdf:type    owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:logo1  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:fc1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:Saisine  rdf:type           owl:Class ;
-        rdfs:comment         "La saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de drogue. La fiche (i.e l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés" ;
+:PrincipeActif  rdf:type     owl:Class ;
+        rdfs:comment         "Un principe actif est la principale substance d’un échantillon. Tout principe actif a une forme chimique." ;
+        rdfs:subClassOf      :Substance ;
+        owl:disjointWith     :ProduitCoupage ;
         owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aScelle ;
-                                                       owl:someValuesFrom  :Scelle
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Pays ;
-                                                       owl:onProperty            :aPaysDestination ;
+                               owl:intersectionOf  ( [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :FormeChimique ;
+                                                       owl:onProperty            :aFormeChimique ;
                                                        owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
                                                      ]
                                                      [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :ServiceCapteur ;
-                                                       owl:onProperty            :aServiceCapteur ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :ServiceRequerant ;
-                                                       owl:onProperty            :aServiceRequerant ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Ville ;
-                                                       owl:onProperty            :estFaitA ;
+                                                       owl:onClass               :Echantillon ;
+                                                       owl:onProperty            :estPrincipeActifDe ;
                                                        owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
                                                      ]
                                                    )
                              ] .
-
-:dosage  rdf:type   owl:DatatypeProperty ;
-        rdfs:range  xsd:decimal .
-
-:aEchantillon  rdf:type     owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :provientDe .
-
-:x      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:aScelle  rdf:type          owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estDansSaisine .
-
-:estProduitCoupageDe  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:       rdf:type  owl:Ontology .
-
-:airPic  rdf:type   owl:DatatypeProperty ;
-        rdfs:range  xsd:decimal .
-
-:estLieuSaisineDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:Presentation  rdf:type     owl:DatatypeProperty ;
-        rdfs:range          [ rdf:type   rdfs:Datatype ;
-                              owl:oneOf  [ rdf:type   rdf:List ;
-                                           rdf:first  "Autre" ;
-                                           rdf:rest   [ rdf:type   rdf:List ;
-                                                        rdf:first  "Cactus" ;
-                                                        rdf:rest   [ rdf:type   rdf:List ;
-                                                                     rdf:first  "Champignons" ;
-                                                                     rdf:rest   [ rdf:type   rdf:List ;
-                                                                                  rdf:first  "Débris végétaux" ;
-                                                                                  rdf:rest   [ rdf:type   rdf:List ;
-                                                                                               rdf:first  "Graines" ;
-                                                                                               rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                            rdf:first  "Liquide" ;
-                                                                                                            rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                         rdf:first  "Morceaux" ;
-                                                                                                                         rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                      rdf:first  "Objet" ;
-                                                                                                                                      rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                   rdf:first  "Ovule" ;
-                                                                                                                                                   rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                rdf:first  "Plantes" ;
-                                                                                                                                                                rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                             rdf:first  "Plaquette" ;
-                                                                                                                                                                             rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                          rdf:first  "Pâte" ;
-                                                                                                                                                                                          rdf:rest   [ rdf:type   rdf:List ;
-                                                                                                                                                                                                       rdf:first  "Sommités" ;
-                                                                                                                                                                                                       rdf:rest   ()
-                                                                                                                                                                                                     ]
-                                                                                                                                                                                        ]
-                                                                                                                                                                           ]
-                                                                                                                                                              ]
-                                                                                                                                                 ]
-                                                                                                                                    ]
-                                                                                                                       ]
-                                                                                                          ]
-                                                                                             ]
-                                                                                ]
-                                                                   ]
-                                                      ]
-                                         ]
-                            ] ;
-        rdfs:subPropertyOf  :caracteristiqueMacroscopique .
-
-:aLotInterne  rdf:type      owl:IrreflexiveProperty , owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estLotInterneDe .
-
-:aServiceRequerant  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty ;
-        owl:inverseOf       :estServiceRequerantDe .
-
-:Substance  rdf:type         owl:Class ;
-        rdfs:comment         "Une substance est utilisée pour décrire ce qui compose un échantillon. Il en existe deux types : les principes actifs et les produits de coupages. Une substance est toujours liée à une molécule et a une quantité (exprimé en pourcentage massique)." ;
-        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
-                               owl:onClass               :Molecule ;
-                               owl:onProperty            :aMolecule ;
-                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                             ] .
-
-:s1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:Indetermine  rdf:type  owl:Class .
-
-:p1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:m1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:estPaysDestinationDe
-        rdf:type            owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:Ville  rdf:type             owl:Class ;
-        rdfs:comment         "Un ville est dans un département." ;
-        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
-                               owl:onClass               :Departement ;
-                               owl:onProperty            :estDansDepartement ;
-                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                             ] .
-
-[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
-  rdfs:comment  "" ;
-  rdfs:label    "Check formes chimiques" ;
-  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
-          true ;
-  <http://www.w3.org/2003/11/swrl#body>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#classPredicate>
-                                 :Echantillon
-                       ] ;
-            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                      <http://www.w3.org/2003/11/swrl#argument1>
-                                              :y ;
-                                      <http://www.w3.org/2003/11/swrl#classPredicate>
-                                              :Echantillon
-                                    ] ;
-                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                   <http://www.w3.org/2003/11/swrl#argument1>
-                                                           :x ;
-                                                   <http://www.w3.org/2003/11/swrl#argument2>
-                                                           :l ;
-                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                           :estDansLot
-                                                 ] ;
-                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                <http://www.w3.org/2003/11/swrl#argument1>
-                                                                        :y ;
-                                                                <http://www.w3.org/2003/11/swrl#argument2>
-                                                                        :l ;
-                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                        :estDansLot
-                                                              ] ;
-                                                   rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                     :x ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                     :pa1 ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                     :aPrincipeActif
-                                                                           ] ;
-                                                                rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                             rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                  :y ;
-                                                                                          <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                  :pa2 ;
-                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                  :aPrincipeActif
-                                                                                        ] ;
-                                                                             rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                          rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                               :pa1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                               :fc1 ;
-                                                                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                               :aFormeChimique
-                                                                                                     ] ;
-                                                                                          rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                       rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                            :pa2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                            :fc2 ;
-                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                            :aFormeChimique
-                                                                                                                  ] ;
-                                                                                                       rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                    rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                         :fc1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                         :tfc1 ;
-                                                                                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                         :typeFormeChimique
-                                                                                                                               ] ;
-                                                                                                                    rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                 rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument1>
-                                                                                                                                                      :fc2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument2>
-                                                                                                                                                      :tfc2 ;
-                                                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                                                                                                                                      :typeFormeChimique
-                                                                                                                                            ] ;
-                                                                                                                                 rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                              rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#arguments>
-                                                                                                                                                                   ( :tfc1 :tfc2 ) ;
-                                                                                                                                                           <http://www.w3.org/2003/11/swrl#builtin>
-                                                                                                                                                                   <http://www.w3.org/2003/11/swrlb#notEqual>
-                                                                                                                                                         ] ;
-                                                                                                                                              rdf:rest   ()
-                                                                                                                                            ]
-                                                                                                                               ]
-                                                                                                                  ]
-                                                                                                     ]
-                                                                                        ]
-                                                                           ]
-                                                              ]
-                                                 ]
-                                    ]
-                       ]
-          ] ;
-  <http://www.w3.org/2003/11/swrl#head>
-          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
-            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                         <http://www.w3.org/2003/11/swrl#argument1>
-                                 :x ;
-                         <http://www.w3.org/2003/11/swrl#argument2>
-                                 :y ;
-                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
-                                 :estEloigneDe
-                       ] ;
-            rdf:rest   ()
-          ]
-] .
-
-:idEchantillon  rdf:type  owl:DatatypeProperty ;
-        rdfs:range  xsd:string .
-
-:d1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:estServiceRequerantDe
-        rdf:type            owl:InverseFunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:date   rdf:type    owl:DatatypeProperty ;
-        rdfs:range  xsd:integer .
-
-:logo2  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:estEloigneDe  rdf:type     owl:SymmetricProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:fc2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
-
-:logo   rdf:type    owl:DatatypeProperty ;
-        rdfs:range  xsd:string .
-
-:Unite  rdf:type  owl:Class .
-
-:aUnite  rdf:type      owl:ObjectProperty ;
-        owl:inverseOf  :estUniteDe .
-
-:estSitueA  rdf:type        owl:FunctionalProperty , owl:ObjectProperty ;
-        rdfs:subPropertyOf  owl:topObjectProperty .
-
-:Departement  rdf:type       owl:Class ;
-        rdfs:comment         "Un département est dans une région et a une ou plusieurs villes." ;
-        owl:equivalentClass  [ rdf:type            owl:Class ;
-                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
-                                                       owl:onProperty      :aVille ;
-                                                       owl:someValuesFrom  :Ville
-                                                     ]
-                                                     [ rdf:type                  owl:Restriction ;
-                                                       owl:onClass               :Region ;
-                                                       owl:onProperty            :estDansRegion ;
-                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
-                                                     ]
-                                                   )
-                             ] .
-
-:y      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
 
 [ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
   rdfs:comment  "" ;
@@ -1648,6 +772,529 @@
           ]
 ] .
 
+:representeMolecule  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:aFormeChimique  rdf:type   owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estFormeChimiqueDe .
+
+:td1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:ServiceCapteur  rdf:type    owl:Class ;
+        rdfs:comment         "Un service capteur est le service qui réalise la saisie de drogue." ;
+        rdfs:subClassOf      :Service ;
+        owl:disjointWith     :ServiceRequerant ;
+        owl:equivalentClass  [ rdf:type            owl:Restriction ;
+                               owl:onProperty      :estServiceCapteurDe ;
+                               owl:someValuesFrom  :Saisine
+                             ] .
+
+:quantite  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  xsd:float .
+
+:ProduitCoupage  rdf:type    owl:Class ;
+        rdfs:comment         "Un produit de coupage est une substance composant un échantillon. Ce produit de coupage est en plus petite quantité que le principe actif." ;
+        rdfs:subClassOf      :Substance ;
+        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
+                               owl:onClass               :Echantillon ;
+                               owl:onProperty            :estProduitCoupageDe ;
+                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                             ] .
+
+:libelleAspect  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  [ rdf:type   rdfs:Datatype ;
+                      owl:oneOf  [ rdf:type   rdf:List ;
+                                   rdf:first  "Billes" ;
+                                   rdf:rest   [ rdf:type   rdf:List ;
+                                                rdf:first  "Cailloux" ;
+                                                rdf:rest   [ rdf:type   rdf:List ;
+                                                             rdf:first  "Comprimés" ;
+                                                             rdf:rest   [ rdf:type   rdf:List ;
+                                                                          rdf:first  "Cristaux" ;
+                                                                          rdf:rest   [ rdf:type   rdf:List ;
+                                                                                       rdf:first  "Gélules" ;
+                                                                                       rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                    rdf:first  "Huiles" ;
+                                                                                                    rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                 rdf:first  "Liquides" ;
+                                                                                                                 rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                              rdf:first  "Non renseignés" ;
+                                                                                                                              rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                           rdf:first  "Poudres" ;
+                                                                                                                                           rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                        rdf:first  "Pâtes" ;
+                                                                                                                                                        rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                     rdf:first  "Résines" ;
+                                                                                                                                                                     rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                                  rdf:first  "Substances Dissimulées" ;
+                                                                                                                                                                                  rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                                               rdf:first  "Timbres" ;
+                                                                                                                                                                                               rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                                                            rdf:first  "Végétaux" ;
+                                                                                                                                                                                                            rdf:rest   ()
+                                                                                                                                                                                                          ]
+                                                                                                                                                                                             ]
+                                                                                                                                                                                ]
+                                                                                                                                                                   ]
+                                                                                                                                                      ]
+                                                                                                                                         ]
+                                                                                                                            ]
+                                                                                                               ]
+                                                                                                  ]
+                                                                                     ]
+                                                                        ]
+                                                           ]
+                                              ]
+                                 ]
+                    ] .
+
+:pc1    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:Echantillon  rdf:type       owl:Class ;
+        rdfs:comment         "Un échantillon de drogue est extrait à partir d’un prélèvement d’un scellé. Un échantillon est caractérisé par un numéro d’échantillon et son type de drogue ('cannabis', 'cocaïne', 'divers' ou 'amphétamine et dérivés'). Un échantillon a des caractéristiques macroscopiques (aspect internes et externes, couleurs etc.), un principe actif et des produits de coupage. Les experts peuvent aussi donner des commentaires sur l’échantillon. De plus, un échantillon peut être regroupé avec d’autres échantillon dans un lot.\nDans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique." ;
+        owl:equivalentClass  [ rdf:type            owl:Class ;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
+                                                       owl:onProperty      :aProduitCoupage ;
+                                                       owl:someValuesFrom  :ProduitCoupage
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Aspect ;
+                                                       owl:onProperty            :aAspectExterne ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :PrincipeActif ;
+                                                       owl:onProperty            :aPrincipeActif ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :ProfilChimique ;
+                                                       owl:onProperty            :aProfilChimique ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                     owl:Restriction ;
+                                                       owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
+                                                       owl:onClass                  :Aspect ;
+                                                       owl:onProperty               :aAspectInterne
+                                                     ]
+                                                     [ rdf:type                     owl:Restriction ;
+                                                       owl:maxQualifiedCardinality  "1"^^xsd:nonNegativeInteger ;
+                                                       owl:onClass                  :Lot ;
+                                                       owl:onProperty               :estDansLot
+                                                     ]
+                                                   )
+                             ] .
+
+:ProfilChimiqueHeroine
+        rdf:type         owl:Class ;
+        rdfs:comment     "Pour l’héroïne, 6 pics correspondant à des impuretés   et dépendent du procédé de fabrication (synthèse). Elles sont toujours présentes mais les quantités peuvent être différentes." ;
+        rdfs:subClassOf  :ProfilChimique .
+
+:aAspectInterne  rdf:type   owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estAspectInterneDe .
+
+:aPrincipeActif  rdf:type   owl:InverseFunctionalProperty , owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estPrincipeActifDe .
+
+:l      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ rdf:type      <http://www.w3.org/2003/11/swrl#Imp> ;
+  rdfs:comment  "" ;
+  rdfs:label    "Check principes actifs" ;
+  <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
+          true ;
+  <http://www.w3.org/2003/11/swrl#body>
+          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                         <http://www.w3.org/2003/11/swrl#argument1>
+                                 :x ;
+                         <http://www.w3.org/2003/11/swrl#classPredicate>
+                                 :Echantillon
+                       ] ;
+            rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                         rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                      <http://www.w3.org/2003/11/swrl#argument1>
+                                              :y ;
+                                      <http://www.w3.org/2003/11/swrl#classPredicate>
+                                              :Echantillon
+                                    ] ;
+                         rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                      rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                   <http://www.w3.org/2003/11/swrl#argument1>
+                                                           :x ;
+                                                   <http://www.w3.org/2003/11/swrl#argument2>
+                                                           :l ;
+                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                           :estDansLot
+                                                 ] ;
+                                      rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                   rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                <http://www.w3.org/2003/11/swrl#argument1>
+                                                                        :y ;
+                                                                <http://www.w3.org/2003/11/swrl#argument2>
+                                                                        :l ;
+                                                                <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                        :estDansLot
+                                                              ] ;
+                                                   rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                     :x ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                     :pa1 ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                     :aPrincipeActif
+                                                                           ] ;
+                                                                rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                             rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                          <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                                  :y ;
+                                                                                          <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                                  :pa2 ;
+                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                                  :aPrincipeActif
+                                                                                        ] ;
+                                                                             rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                          rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                       <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                                               :pa1 ;
+                                                                                                       <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                                               :m1 ;
+                                                                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                                               :aMolecule
+                                                                                                     ] ;
+                                                                                          rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                       rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                                                            :pa2 ;
+                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                                                            :m2 ;
+                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                                                            :aMolecule
+                                                                                                                  ] ;
+                                                                                                       rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                    rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                                                                         :m1 ;
+                                                                                                                                 <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                                                                         :nm1 ;
+                                                                                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                                                                         :nomMolecule
+                                                                                                                               ] ;
+                                                                                                                    rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                 rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument1>
+                                                                                                                                                      :m2 ;
+                                                                                                                                              <http://www.w3.org/2003/11/swrl#argument2>
+                                                                                                                                                      :nm2 ;
+                                                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                                                                                                                                      :nomMolecule
+                                                                                                                                            ] ;
+                                                                                                                                 rdf:rest   [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                           <http://www.w3.org/2003/11/swrl#arguments>
+                                                                                                                                                                   ( :nm1 :nm2 ) ;
+                                                                                                                                                           <http://www.w3.org/2003/11/swrl#builtin>
+                                                                                                                                                                   <http://www.w3.org/2003/11/swrlb#notEqual>
+                                                                                                                                                         ] ;
+                                                                                                                                              rdf:rest   ()
+                                                                                                                                            ]
+                                                                                                                               ]
+                                                                                                                  ]
+                                                                                                     ]
+                                                                                        ]
+                                                                           ]
+                                                              ]
+                                                 ]
+                                    ]
+                       ]
+          ] ;
+  <http://www.w3.org/2003/11/swrl#head>
+          [ rdf:type   <http://www.w3.org/2003/11/swrl#AtomList> ;
+            rdf:first  [ rdf:type  <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                         <http://www.w3.org/2003/11/swrl#argument1>
+                                 :x ;
+                         <http://www.w3.org/2003/11/swrl#argument2>
+                                 :y ;
+                         <http://www.w3.org/2003/11/swrl#propertyPredicate>
+                                 :estEloigneDe
+                       ] ;
+            rdf:rest   ()
+          ]
+] .
+
+:pic    rdf:type  owl:AnnotationProperty .
+
+:typeDrogue  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  [ rdf:type   rdfs:Datatype ;
+                      owl:oneOf  [ rdf:type   rdf:List ;
+                                   rdf:first  "Amphétamine et dérivés" ;
+                                   rdf:rest   [ rdf:type   rdf:List ;
+                                                rdf:first  "Cannabis" ;
+                                                rdf:rest   [ rdf:type   rdf:List ;
+                                                             rdf:first  "Cocaïne" ;
+                                                             rdf:rest   [ rdf:type   rdf:List ;
+                                                                          rdf:first  "Divers" ;
+                                                                          rdf:rest   ()
+                                                                        ]
+                                                           ]
+                                              ]
+                                 ]
+                    ] .
+
+:estServiceCapteurDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:hauteur  rdf:type          owl:DatatypeProperty ;
+        rdfs:range          xsd:decimal ;
+        rdfs:subPropertyOf  :caracteristiqueMacroscopiqueNumerique .
+
+:absValue  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:td2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:tempsRetention  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  xsd:decimal .
+
+:Service  rdf:type           owl:Class ;
+        rdfs:comment         "Il existe deux types de services?: les services requérants et les services capteurs. Tous les services sont identifiés par un nom, un RIO et un libellé. De plus un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone etc.)." ;
+        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
+                               owl:onClass               :Ville ;
+                               owl:onProperty            :estSitueA ;
+                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                             ] .
+
+:estLotInterneDe  rdf:type  owl:IrreflexiveProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:estAspectInterneDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:estProfilChimiqueDe  rdf:type  owl:InverseFunctionalProperty , owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:pc2    rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:nomMolecule  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  xsd:string .
+
+:principe_actif_46407
+        :aFormeChimique  :forme_chimique_3 .
+
+:libelleFormeChimique
+        rdf:type    owl:DatatypeProperty ;
+        rdfs:range  [ rdf:type   rdfs:Datatype ;
+                      owl:oneOf  [ rdf:type   rdf:List ;
+                                   rdf:first  "Base" ;
+                                   rdf:rest   [ rdf:type   rdf:List ;
+                                                rdf:first  "Base et HCL" ;
+                                                rdf:rest   [ rdf:type   rdf:List ;
+                                                             rdf:first  "Chlorhydrate" ;
+                                                             rdf:rest   [ rdf:type   rdf:List ;
+                                                                          rdf:first  "HCL" ;
+                                                                          rdf:rest   [ rdf:type   rdf:List ;
+                                                                                       rdf:first  "Indéterminée" ;
+                                                                                       rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                    rdf:first  "Phosphate" ;
+                                                                                                    rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                 rdf:first  "Sulfate" ;
+                                                                                                                 rdf:rest   ()
+                                                                                                               ]
+                                                                                                  ]
+                                                                                     ]
+                                                                        ]
+                                                           ]
+                                              ]
+                                 ]
+                    ] .
+
+:aRegion  rdf:type          owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estDansPays .
+
+:estDansDepartement  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:estMoleculeDe  rdf:type    owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:logo1  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:Saisine  rdf:type           owl:Class ;
+        rdfs:comment         "La saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de drogue. La fiche (i.e l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés" ;
+        owl:equivalentClass  [ rdf:type            owl:Class ;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
+                                                       owl:onProperty      :aScelle ;
+                                                       owl:someValuesFrom  :Scelle
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Pays ;
+                                                       owl:onProperty            :aPaysDestination ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :ServiceCapteur ;
+                                                       owl:onProperty            :aServiceCapteur ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :ServiceRequerant ;
+                                                       owl:onProperty            :aServiceRequerant ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Ville ;
+                                                       owl:onProperty            :estFaitA ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:dosage  rdf:type   owl:DatatypeProperty ;
+        rdfs:range  xsd:decimal .
+
+:x      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:aScelle  rdf:type          owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estDansSaisine .
+
+:estProduitCoupageDe  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:       rdf:type  owl:Ontology .
+
+:airPic  rdf:type   owl:DatatypeProperty ;
+        rdfs:range  xsd:decimal .
+
+:estLieuSaisineDe  rdf:type  owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:Presentation  rdf:type     owl:DatatypeProperty ;
+        rdfs:range          [ rdf:type   rdfs:Datatype ;
+                              owl:oneOf  [ rdf:type   rdf:List ;
+                                           rdf:first  "Autre" ;
+                                           rdf:rest   [ rdf:type   rdf:List ;
+                                                        rdf:first  "Cactus" ;
+                                                        rdf:rest   [ rdf:type   rdf:List ;
+                                                                     rdf:first  "Champignons" ;
+                                                                     rdf:rest   [ rdf:type   rdf:List ;
+                                                                                  rdf:first  "Débris végétaux" ;
+                                                                                  rdf:rest   [ rdf:type   rdf:List ;
+                                                                                               rdf:first  "Graines" ;
+                                                                                               rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                            rdf:first  "Liquide" ;
+                                                                                                            rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                         rdf:first  "Morceaux" ;
+                                                                                                                         rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                      rdf:first  "Objet" ;
+                                                                                                                                      rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                   rdf:first  "Ovule" ;
+                                                                                                                                                   rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                rdf:first  "Plantes" ;
+                                                                                                                                                                rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                             rdf:first  "Plaquette" ;
+                                                                                                                                                                             rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                                          rdf:first  "Pâte" ;
+                                                                                                                                                                                          rdf:rest   [ rdf:type   rdf:List ;
+                                                                                                                                                                                                       rdf:first  "Sommités" ;
+                                                                                                                                                                                                       rdf:rest   ()
+                                                                                                                                                                                                     ]
+                                                                                                                                                                                        ]
+                                                                                                                                                                           ]
+                                                                                                                                                              ]
+                                                                                                                                                 ]
+                                                                                                                                    ]
+                                                                                                                       ]
+                                                                                                          ]
+                                                                                             ]
+                                                                                ]
+                                                                   ]
+                                                      ]
+                                         ]
+                            ] ;
+        rdfs:subPropertyOf  :caracteristiqueMacroscopique .
+
+:aLotInterne  rdf:type      owl:IrreflexiveProperty , owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estLotInterneDe .
+
+:aServiceRequerant  rdf:type  owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty ;
+        owl:inverseOf       :estServiceRequerantDe .
+
+:Substance  rdf:type         owl:Class ;
+        rdfs:comment         "Une substance est utilisée pour décrire ce qui compose un échantillon. Il en existe deux types : les principes actifs et les produits de coupages. Une substance est toujours liée à une molécule et a une quantité (exprimé en pourcentage massique)." ;
+        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
+                               owl:onClass               :Molecule ;
+                               owl:onProperty            :aMolecule ;
+                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                             ] .
+
+:Indetermine  rdf:type  owl:Class .
+
+:m1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:estPaysDestinationDe
+        rdf:type            owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:Ville  rdf:type             owl:Class ;
+        rdfs:comment         "Un ville est dans un département." ;
+        owl:equivalentClass  [ rdf:type                  owl:Restriction ;
+                               owl:onClass               :Departement ;
+                               owl:onProperty            :estDansDepartement ;
+                               owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                             ] .
+
+:idEchantillon  rdf:type  owl:DatatypeProperty ;
+        rdfs:range  xsd:string .
+
+:d1     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:estServiceRequerantDe
+        rdf:type            owl:InverseFunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:date   rdf:type    owl:DatatypeProperty ;
+        rdfs:range  xsd:integer .
+
+:logo2  rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
+:estEloigneDe  rdf:type     owl:SymmetricProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:logo   rdf:type    owl:DatatypeProperty ;
+        rdfs:range  xsd:string .
+
+:Unite  rdf:type  owl:Class .
+
+:aUnite  rdf:type      owl:ObjectProperty ;
+        owl:inverseOf  :estUniteDe .
+
+:estSitueA  rdf:type        owl:FunctionalProperty , owl:ObjectProperty ;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:Departement  rdf:type       owl:Class ;
+        rdfs:comment         "Un département est dans une région et a une ou plusieurs villes." ;
+        owl:equivalentClass  [ rdf:type            owl:Class ;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction ;
+                                                       owl:onProperty      :aVille ;
+                                                       owl:someValuesFrom  :Ville
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction ;
+                                                       owl:onClass               :Region ;
+                                                       owl:onProperty            :estDansRegion ;
+                                                       owl:qualifiedCardinality  "1"^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:y      rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .
+
 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled>
         rdf:type  owl:AnnotationProperty .
 
@@ -1694,5 +1341,3 @@
 
 :estDansRegion  rdf:type    owl:FunctionalProperty , owl:ObjectProperty ;
         rdfs:subPropertyOf  owl:topObjectProperty .
-
-:s2     rdf:type  <http://www.w3.org/2003/11/swrl#Variable> .

@@ -29,6 +29,7 @@ public class FormeChimique extends BaseEntity {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property libelleFormeChimique = model.createProperty(RDFRepository.PREFIX + "libelleFormeChimique");
 
+        System.out.println(RDFRepository.PREFIX + "libelleFormeChimique");
         resource.addProperty(libelleFormeChimique, this.libelle);
                 
         return resource;
