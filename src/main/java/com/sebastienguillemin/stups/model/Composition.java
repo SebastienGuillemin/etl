@@ -26,7 +26,6 @@ public class Composition extends BaseEntity {
     @JoinColumn(name = "id_aspect_interne")
     public Aspect aspectInterne;
 
-
     @ManyToOne
     @JoinColumn(name = "id_unite")
     public Unite unite;
@@ -37,9 +36,8 @@ public class Composition extends BaseEntity {
     @OneToMany(mappedBy = "composition")
     private List<PrincipeActif> principeActifs;
 
-    public Composition() {
-        this.simpleName = "composition";
-    }
+    @OneToMany(mappedBy = "composition")
+    private List<ProduitCoupage> produitCoupages;
 
     @Override
     public Resource getResource(Model model) {

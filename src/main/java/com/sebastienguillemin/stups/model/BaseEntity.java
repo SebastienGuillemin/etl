@@ -3,6 +3,8 @@ package com.sebastienguillemin.stups.model;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.util.StringConverter;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
@@ -18,6 +20,10 @@ public abstract class BaseEntity {
 
     @Id
     protected int id;
+
+    public BaseEntity() {
+        this.simpleName = StringConverter.toSnakeCase(this.getClass().getSimpleName());
+    }
 
     public String getResourceName() {
         return this.simpleName + "_" + this.id;

@@ -26,6 +26,7 @@
 
         <mapping class="com.sebastienguillemin.stups.model.Echantillon"/>
         <mapping class="com.sebastienguillemin.stups.model.PrincipeActif"/>
+        <mapping class="com.sebastienguillemin.stups.model.ProduitCoupage"/>
         <mapping class="com.sebastienguillemin.stups.model.Saisine"/>
         <mapping class="com.sebastienguillemin.stups.model.Scelle"/>
         <mapping class="com.sebastienguillemin.stups.model.Composition"/>

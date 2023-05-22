@@ -20,21 +20,12 @@ import lombok.ToString;
 public class Substance extends BaseEntity {
     private String libelle;
 
-    public Substance() {
-        this.simpleName = "substance";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        
-        // TODO : faire comme dans le bd et supprimer le concept de molécule de l'ontologie ?
-        Resource molecule = model.createResource(RDFRepository.PREFIX + this.libelle);
-        Property nomMolecule = model.createProperty(RDFRepository.PREFIX + "nomMolecule");
-        Property aMolecule = model.createProperty(RDFRepository.PREFIX + "aMolecule");
+        Property nomSubstance = model.createProperty(RDFRepository.PREFIX + "nomSubstance");
 
-        molecule.addProperty(nomMolecule, this.libelle);
-        resource.addProperty(aMolecule, molecule);
+        resource.addProperty(nomSubstance, this.libelle);
                 
         return resource;
     }

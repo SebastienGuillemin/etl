@@ -20,10 +20,6 @@ public class Unite extends BaseEntity {
     @Column(name = "lib_short")
     public String libShort;
 
-    public Unite() {
-        this.simpleName = "unite";
-    }
-
     @Override
     public Resource getResource(Model model) {
         // TODO Auto-generated method stub

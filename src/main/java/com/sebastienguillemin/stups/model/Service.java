@@ -18,10 +18,6 @@ import lombok.ToString;
 public class Service extends BaseEntity {
     public String nom;
 
-    public Service() {
-        this.simpleName = "service";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());

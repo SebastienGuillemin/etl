@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -53,16 +54,14 @@ public class PrincipeActif extends BaseEntity {
     // @Column(name = "trace_cbn")
     // private String traceCbn;
 
-    public PrincipeActif() {
-        this.simpleName = "principe_actif";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property aFormeChimique = model.createProperty(RDFRepository.PREFIX + "aFormeChimique");
+        Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
 
         resource.addProperty(aFormeChimique, this.formeChimique.getResource(model));
+        resource.addProperty(aSubstance, this.substance.getResource(model));
                 
         return resource;
     }

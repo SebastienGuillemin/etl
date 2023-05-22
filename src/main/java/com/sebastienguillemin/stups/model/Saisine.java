@@ -30,10 +30,6 @@ public class Saisine extends BaseEntity {
     @JoinColumn(name = "id_service_capteur")
     public ServiceRequerant serviceCapteur;
 
-    public Saisine() {
-        this.simpleName = "saisine";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());

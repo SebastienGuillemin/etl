@@ -21,10 +21,6 @@ import lombok.ToString;
 public class FormeChimique extends BaseEntity {
     private String libelle;
 
-    public FormeChimique() {
-        this.simpleName = "forme_chimique";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());

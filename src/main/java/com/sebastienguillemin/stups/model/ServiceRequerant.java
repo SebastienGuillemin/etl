@@ -20,10 +20,6 @@ import lombok.ToString;
 public class ServiceRequerant extends BaseEntity {
     public String libelle;
 
-    public ServiceRequerant() {
-        this.simpleName = "service_requerant";
-    }
-
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
