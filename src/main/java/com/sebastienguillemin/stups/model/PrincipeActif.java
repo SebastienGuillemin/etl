@@ -6,7 +6,6 @@ import org.apache.jena.rdf.model.Resource;
 
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -33,26 +32,26 @@ public class PrincipeActif extends BaseEntity {
     @JoinColumn(name = "id_forme_chimique")
     private FormeChimique formeChimique;
 
-    private String taux;
-    private boolean trace;
+    // private String taux;
+    // private boolean trace;
 
-    @Column(name = "is_cbd")
-    private boolean isCbd;
+    // @Column(name = "is_cbd")
+    // private boolean isCbd;
 
-    @Column(name = "is_cbn")
-    private boolean isCbn;
+    // @Column(name = "is_cbn")
+    // private boolean isCbn;
 
-    @Column(name = "taux_cbd")
-    private String tauxCbd;
+    // @Column(name = "taux_cbd")
+    // private String tauxCbd;
 
-    @Column(name = "trace_cbd")
-    private String traceCbd;
+    // @Column(name = "trace_cbd")
+    // private String traceCbd;
 
-    @Column(name = "taux_cbn")
-    private String tauxCbn;
+    // @Column(name = "taux_cbn")
+    // private String tauxCbn;
 
-    @Column(name = "trace_cbn")
-    private String traceCbn;
+    // @Column(name = "trace_cbn")
+    // private String traceCbn;
 
     public PrincipeActif() {
         this.simpleName = "principe_actif";

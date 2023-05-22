@@ -1,5 +1,6 @@
 package com.sebastienguillemin.stups.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -29,9 +30,13 @@ public class FormeChimique extends BaseEntity {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property libelleFormeChimique = model.createProperty(RDFRepository.PREFIX + "libelleFormeChimique");
 
-        System.out.println(RDFRepository.PREFIX + "libelleFormeChimique");
         resource.addProperty(libelleFormeChimique, this.libelle);
                 
         return resource;
     }
+
+    @Override
+    public String getResourceName() {
+        return StringUtils.stripAccents(this.simpleName + "_" + this.libelle).toLowerCase().replace(' ', '_');
+    } 
 }

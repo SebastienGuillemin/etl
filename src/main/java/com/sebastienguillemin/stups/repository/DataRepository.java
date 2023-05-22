@@ -21,7 +21,7 @@ public class DataRepository {
         session.beginTransaction();
         System.out.println("Loading data from PostgreSQL.");
 
-        Query<Echantillon> query = session.createQuery("FROM Echantillon WHERE composition IS NOT NULL", Echantillon.class);
+        Query<Echantillon> query = session.createQuery("FROM Echantillon WHERE composition IS NOT NULL ORDER BY id", Echantillon.class);
         
         if (limit > 0)
             query.setMaxResults(limit);

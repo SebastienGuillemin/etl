@@ -48,8 +48,6 @@ public class Echantillon extends BaseEntity {
             resource.addProperty(aAspectInterne, aspectInterne.getResource(model));
 
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
-
-        System.out.println(RDFRepository.PREFIX + this.getResourceName() + " created.");
         return resource;
     }
 }

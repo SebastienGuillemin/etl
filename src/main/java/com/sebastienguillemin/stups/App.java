@@ -16,12 +16,16 @@ import com.sebastienguillemin.stups.session.SessionProvider;
 public class App 
 {
     public static void main( String[] args ) {
+        int batchSize = -1;
+        if (args.length > 0)
+            batchSize = Integer.parseInt(args[0]);
+
         DataRepository repository = new DataRepository();
         RDFRepository rdfRepository = new RDFRepository("STUPS.ttl");
 
         Session session = SessionProvider.getSession();
 
-        List<Echantillon> echantillons = repository.loadData(session, 1);
+        List<Echantillon> echantillons = repository.loadData(session, batchSize);
         rdfRepository.populate(echantillons);
 
         session.getTransaction().commit();
