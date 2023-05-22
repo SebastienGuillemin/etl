@@ -6,6 +6,7 @@ import org.apache.jena.rdf.model.Resource;
 
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,6 +22,9 @@ import lombok.ToString;
 @Table(name = "echantillon")
 @ToString
 public class Echantillon extends BaseEntity {
+    @Column(name = "num_echantillon")
+    private String num;
+
     @ManyToOne
     @JoinColumn(name = "id_scelle")
     private Scelle scelle;
@@ -36,9 +40,14 @@ public class Echantillon extends BaseEntity {
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
         Property aAspectInterne = model.createProperty(RDFRepository.PREFIX + "aAspectInterne");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
+        Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
+        Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
+        Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
 
+        
         // TODO : que faire si plusieurs principes actifs ?
-        resource.addProperty(aPrincipeActif, this.composition.getPrincipeActifs().get(0).getResource(model));
+        PrincipeActif principeActif = this.composition.getPrincipeActifs().get(0);
+        resource.addProperty(aPrincipeActif, principeActif.getResource(model));
 
         for (ProduitCoupage produitCoupage : this.composition.getProduitCoupages())
             resource.addProperty(aProduitCoupage, produitCoupage.getResource(model));
@@ -48,6 +57,9 @@ public class Echantillon extends BaseEntity {
             resource.addProperty(aAspectInterne, aspectInterne.getResource(model));
 
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
+        resource.addProperty(numeroEchantillon, this.num);
+        resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
+        resource.addProperty(provientDe, this.scelle.getResource(model));
         return resource;
     }
 }

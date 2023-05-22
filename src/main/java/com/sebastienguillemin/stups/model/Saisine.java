@@ -33,11 +33,16 @@ public class Saisine extends BaseEntity {
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property aServiceCapteur = model.createProperty(RDFRepository.PREFIX + "aServiceCapteur");
-        Property aServiceRequerant = model.createProperty(RDFRepository.PREFIX + "aServiceRequerant");
+        
+        // if (this.serviceCapteur != null) {
+        //     Property aServiceCapteur = model.createProperty(RDFRepository.PREFIX + "aServiceCapteur");
+        //     resource.addProperty(aServiceCapteur, this.serviceCapteur.getResource(model));
+        // }
 
-        resource.addProperty(aServiceCapteur, this.serviceCapteur.getResource(model));
-        resource.addProperty(aServiceRequerant, this.serviceRequerant.getResource(model));
+        // if (this.serviceRequerant != null) {
+        //     Property aServiceRequerant = model.createProperty(RDFRepository.PREFIX + "aServiceRequerant");
+        //     resource.addProperty(aServiceRequerant, this.serviceRequerant.getResource(model));
+        // }
                 
         return resource;
     }

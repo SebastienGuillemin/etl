@@ -7,6 +7,8 @@ import org.apache.jena.rdf.model.Resource;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,10 @@ import lombok.ToString;
 @ToString
 public class Substance extends BaseEntity {
     private String libelle;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categorie")
+    private Type type;
 
     @Override
     public Resource getResource(Model model) {

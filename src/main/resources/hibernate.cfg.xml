@@ -36,5 +36,6 @@
         <mapping class="com.sebastienguillemin.stups.model.Unite"/>
         <mapping class="com.sebastienguillemin.stups.model.Service"/>
         <mapping class="com.sebastienguillemin.stups.model.ServiceRequerant"/>
+        <mapping class="com.sebastienguillemin.stups.model.Type"/>
     </session-factory>
 </hibernate-configuration>

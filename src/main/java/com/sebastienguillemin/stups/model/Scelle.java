@@ -21,6 +21,9 @@ public class Scelle extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_saisine")
     public Saisine saisine;
+
+    
+
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
