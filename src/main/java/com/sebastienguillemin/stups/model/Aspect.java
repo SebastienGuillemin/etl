@@ -21,7 +21,7 @@ public class Aspect extends BaseEntity {
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property libelleAspect = model.createProperty(RDFRepository.PREFIX + "typeAspect");
+        Property libelleAspect = model.createProperty(RDFRepository.PREFIX + "libelleAspect");
 
         resource.addProperty(libelleAspect, this.libelle);
                 

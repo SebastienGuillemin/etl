@@ -43,6 +43,7 @@ public class Echantillon extends BaseEntity {
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
         Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
+        Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
 
         
         // TODO : que faire si plusieurs principes actifs ?
@@ -60,6 +61,11 @@ public class Echantillon extends BaseEntity {
         resource.addProperty(numeroEchantillon, this.num);
         resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
         resource.addProperty(provientDe, this.scelle.getResource(model));
+
+        String commentaire = this.composition.getCommentaire();
+        if (commentaire != null)
+            resource.addProperty(commmentaire, commentaire);
+
         return resource;
     }
 }

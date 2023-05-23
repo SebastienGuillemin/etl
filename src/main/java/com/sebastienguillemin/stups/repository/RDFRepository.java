@@ -30,7 +30,7 @@ public class RDFRepository {
 
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
-        Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "idEchantillon");
+        Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "id");
         for (Echantillon echantillon : echantillons) {
             echantillonResource = echantillon.getResource(model);
             model.add(echantillonResource, idEchantillon, echantillon.getId() + "");

@@ -15,11 +15,11 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public abstract class BaseEntity {
-    @Transient
-    protected String simpleName;
-
     @Id
     protected int id;
+    
+    @Transient
+    protected String simpleName;
 
     public BaseEntity() {
         this.simpleName = StringConverter.toSnakeCase(this.getClass().getSimpleName());

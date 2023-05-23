@@ -27,8 +27,11 @@ public class Scelle extends BaseEntity {
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property estDansSaisine = model.createProperty(RDFRepository.PREFIX + "estDansSaisine");
 
+        Property property = model.createProperty(RDFRepository.PREFIX + "id");
+        resource.addProperty(property, this.id + "");
+
+        Property estDansSaisine = model.createProperty(RDFRepository.PREFIX + "estDansSaisine");
         resource.addProperty(estDansSaisine, this.saisine.getResource(model));
                 
         return resource;

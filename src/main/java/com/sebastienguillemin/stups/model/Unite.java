@@ -22,7 +22,6 @@ public class Unite extends BaseEntity {
 
     @Override
     public Resource getResource(Model model) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getResource'");
     }
 }
