@@ -37,5 +37,6 @@
         <mapping class="com.sebastienguillemin.stups.model.Service"/>
         <mapping class="com.sebastienguillemin.stups.model.ServiceRequerant"/>
         <mapping class="com.sebastienguillemin.stups.model.Type"/>
+        <mapping class="com.sebastienguillemin.stups.model.LotEchantillon"/>
     </session-factory>
 </hibernate-configuration>

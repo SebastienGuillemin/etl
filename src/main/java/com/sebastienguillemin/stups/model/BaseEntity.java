@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Comparable<BaseEntity> {
     @Id
     protected int id;
     
@@ -27,6 +27,11 @@ public abstract class BaseEntity {
 
     public String getResourceName() {
         return this.simpleName + "_" + this.id;
+    }
+
+    @Override
+    public int compareTo(BaseEntity entity) {
+        return Integer.compare(this.id, entity.getId());
     }
 
     public abstract Resource getResource(Model model);

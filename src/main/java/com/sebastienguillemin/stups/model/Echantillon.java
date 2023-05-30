@@ -1,5 +1,7 @@
 package com.sebastienguillemin.stups.model;
 
+import java.util.List;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -10,7 +12,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class Echantillon extends BaseEntity {
     @JoinColumn(name = "id_scelle")
     private Scelle scelle;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_composition")
     private Composition composition;
 
@@ -38,13 +39,10 @@ public class Echantillon extends BaseEntity {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
-        Property aAspectInterne = model.createProperty(RDFRepository.PREFIX + "aAspectInterne");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
         Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
-        Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
-
         
         // TODO : que faire si plusieurs principes actifs ?
         PrincipeActif principeActif = this.composition.getPrincipeActifs().get(0);
@@ -54,8 +52,10 @@ public class Echantillon extends BaseEntity {
             resource.addProperty(aProduitCoupage, produitCoupage.getResource(model));
 
         Aspect aspectInterne = this.composition.getAspectInterne();
-        if (aspectInterne != null)
+        if (aspectInterne != null) {
+            Property aAspectInterne = model.createProperty(RDFRepository.PREFIX + "aAspectInterne");
             resource.addProperty(aAspectInterne, aspectInterne.getResource(model));
+        }
 
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
         resource.addProperty(numeroEchantillon, this.num);
@@ -63,9 +63,25 @@ public class Echantillon extends BaseEntity {
         resource.addProperty(provientDe, this.scelle.getResource(model));
 
         String commentaire = this.composition.getCommentaire();
-        if (commentaire != null)
+        if (commentaire != null) {
+            Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
             resource.addProperty(commmentaire, commentaire);
+        }
 
+        List<LotEchantillon> lotEntrants = this.composition.getLotEntrants();
+        List<LotEchantillon> lotSortants = this.composition.getLotEntrants();
+        Lot lot = new Lot();
+
+        if (lotEntrants != null) {
+        }
+        
+        if (lot.size() > 0) {
+            for(LotEchantillon lot : lots) {
+                resource.addProperty(estDansLot, lot.getResource(model));
+            }
+            Property estDansLot = model.createProperty(RDFRepository.PREFIX + "estDansLot");
+
+        }
         return resource;
     }
 }
