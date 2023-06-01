@@ -6,7 +6,6 @@ import org.apache.jena.rdf.model.Resource;
 
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

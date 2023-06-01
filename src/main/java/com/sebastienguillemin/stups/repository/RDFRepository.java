@@ -33,11 +33,12 @@ public class RDFRepository {
         List<Resource> neighbors;
         Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "id");
         Property estProcheDe = model.createProperty(RDFRepository.PREFIX + "estProcheDe");
+        
         for (Echantillon echantillon : echantillons) {
             echantillonResource = echantillon.getResource(model);
             neighbors = echantillon.getNeighbors(model);
-            for (Resource resource : neighbors)
-                echantillonResource.addProperty(estProcheDe, resource);
+            for (Resource neighbor : neighbors)
+                echantillonResource.addProperty(estProcheDe, neighbor);
             
             model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }
