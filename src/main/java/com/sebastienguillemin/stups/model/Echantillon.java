@@ -1,5 +1,6 @@
 package com.sebastienguillemin.stups.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.jena.rdf.model.Model;
@@ -34,15 +35,32 @@ public class Echantillon extends BaseEntity {
     @JoinColumn(name = "id_composition")
     private Composition composition;
 
+    public List<Resource> getNeighbors(Model model) {
+        List<Resource> resources = new ArrayList<>();
+
+        List<LotEchantillon> lotsTete = this.composition.getLotsTete();
+
+        for (LotEchantillon lot : lotsTete) {
+            List<Echantillon> echantillons = lot.getComposition2().getEchantillons();
+            for (Echantillon echantillon : echantillons)
+                resources.add(echantillon.getResource(model));
+        }
+
+        return resources;
+    }
+
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Property property = model.createProperty(RDFRepository.PREFIX + "id");
         Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
         Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
+        
+        resource.addProperty(property, this.id + "");
         
         // TODO : que faire si plusieurs principes actifs ?
         PrincipeActif principeActif = this.composition.getPrincipeActifs().get(0);
@@ -67,21 +85,7 @@ public class Echantillon extends BaseEntity {
             Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
             resource.addProperty(commmentaire, commentaire);
         }
-
-        List<LotEchantillon> lotEntrants = this.composition.getLotEntrants();
-        List<LotEchantillon> lotSortants = this.composition.getLotEntrants();
-        Lot lot = new Lot();
-
-        if (lotEntrants != null) {
-        }
         
-        if (lot.size() > 0) {
-            for(LotEchantillon lot : lots) {
-                resource.addProperty(estDansLot, lot.getResource(model));
-            }
-            Property estDansLot = model.createProperty(RDFRepository.PREFIX + "estDansLot");
-
-        }
         return resource;
     }
 }

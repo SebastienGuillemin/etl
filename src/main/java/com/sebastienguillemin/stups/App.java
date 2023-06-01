@@ -13,9 +13,8 @@ import com.sebastienguillemin.stups.session.SessionProvider;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args ) {
+public class App {
+    public static void main(String[] args) {
         int batchSize = -1;
         if (args.length > 0)
             batchSize = Integer.parseInt(args[0]);

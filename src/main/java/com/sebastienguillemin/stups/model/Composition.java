@@ -42,11 +42,11 @@ public class Composition extends BaseEntity {
     @OneToMany(mappedBy = "composition")
     private List<ProduitCoupage> produitCoupages;
 
-    @OneToMany(mappedBy = "composition")
-    public List<LotEchantillon> lotEntrants;
+    @OneToMany(mappedBy = "composition1")
+    public List<LotEchantillon> lotsTete;
 
-    @OneToMany(mappedBy = "composition_lien")
-    public List<LotEchantillon> lotSortants;
+    @OneToMany(mappedBy = "composition2")
+    public List<LotEchantillon> lotsQueue;
 
     @Override
     public Resource getResource(Model model) {
