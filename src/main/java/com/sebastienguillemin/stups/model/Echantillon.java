@@ -62,9 +62,10 @@ public class Echantillon extends BaseEntity {
         
         resource.addProperty(property, this.id + "");
         
-        // TODO : que faire si plusieurs principes actifs ?
-        PrincipeActif principeActif = this.composition.getPrincipeActifs().get(0);
-        resource.addProperty(aPrincipeActif, principeActif.getResource(model));
+        for (PrincipeActif principeActif : this.composition.getPrincipeActifs()) {
+            resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
+            resource.addProperty(aPrincipeActif, principeActif.getResource(model));
+        }
 
         for (ProduitCoupage produitCoupage : this.composition.getProduitCoupages())
             resource.addProperty(aProduitCoupage, produitCoupage.getResource(model));
@@ -77,7 +78,6 @@ public class Echantillon extends BaseEntity {
 
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
         resource.addProperty(numeroEchantillon, this.num);
-        resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
         resource.addProperty(provientDe, this.scelle.getResource(model));
 
         String commentaire = this.composition.getCommentaire();

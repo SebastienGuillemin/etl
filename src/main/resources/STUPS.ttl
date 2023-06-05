@@ -28,14 +28,18 @@
 :aAspectExterne rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estAspectExterneDe ;
-                rdf:type owl:FunctionalProperty .
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :Echantillon ;
+                rdfs:range :Aspect .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aAspectInterne
 :aAspectInterne rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estAspectInterneDe ;
-                rdf:type owl:FunctionalProperty .
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :Echantillon ;
+                rdfs:range :Aspect .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aDepartement
@@ -49,36 +53,36 @@
 :aEchantillon rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               owl:inverseOf :provientDe ;
-              rdf:type owl:InverseFunctionalProperty .
+              rdf:type owl:InverseFunctionalProperty ;
+              rdfs:domain :Scelle ;
+              rdfs:range :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aFormeChimique
 :aFormeChimique rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estFormeChimiqueDe ;
-                rdf:type owl:FunctionalProperty .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/aLotInterne
-:aLotInterne rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf owl:topObjectProperty ;
-             owl:inverseOf :estLotInterneDe ;
-             rdf:type owl:InverseFunctionalProperty ,
-                      owl:IrreflexiveProperty .
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :PrincipeActif ;
+                rdfs:range :FormeChimique .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aPaysDestination
 :aPaysDestination rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   owl:inverseOf :estPaysDestinationDe ;
-                  rdf:type owl:FunctionalProperty .
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Saisine ;
+                  rdfs:range :Pays .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aPic
 :aPic rdf:type owl:ObjectProperty ;
       rdfs:subPropertyOf owl:topObjectProperty ;
       owl:inverseOf :estPicDe ;
-      rdf:type owl:InverseFunctionalProperty .
+      rdf:type owl:InverseFunctionalProperty ;
+      rdfs:domain :ProfilChimique ;
+      rdfs:range :Pic .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aPrincipeActif
@@ -86,14 +90,18 @@
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estPrincipeActifDe ;
                 rdf:type owl:FunctionalProperty ,
-                         owl:InverseFunctionalProperty .
+                         owl:InverseFunctionalProperty ;
+                rdfs:domain :Echantillon ;
+                rdfs:range :PrincipeActif .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aProduitCoupage
 :aProduitCoupage rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estProduitCoupageDe ;
-                 rdf:type owl:InverseFunctionalProperty .
+                 rdf:type owl:InverseFunctionalProperty ;
+                 rdfs:domain :Echantillon ;
+                 rdfs:range :ProduitCoupage .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aProfilChimique
@@ -101,7 +109,9 @@
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estProfilChimiqueDe ;
                  rdf:type owl:FunctionalProperty ,
-                          owl:InverseFunctionalProperty .
+                          owl:InverseFunctionalProperty ;
+                 rdfs:domain :Echantillon ;
+                 rdfs:range :ProfilChimique .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aRegion
@@ -115,27 +125,35 @@
 :aScelle rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf owl:topObjectProperty ;
          owl:inverseOf :estDansSaisine ;
-         rdf:type owl:InverseFunctionalProperty .
+         rdf:type owl:InverseFunctionalProperty ;
+         rdfs:domain :Saisine ;
+         rdfs:range :Scelle .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aServiceCapteur
 :aServiceCapteur rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estServiceCapteurDe ;
-                 rdf:type owl:FunctionalProperty .
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Saisine ;
+                 rdfs:range :ServiceCapteur .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aServiceRequerant
 :aServiceRequerant rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    owl:inverseOf :estServiceRequerantDe ;
-                   rdf:type owl:FunctionalProperty .
+                   rdf:type owl:FunctionalProperty ;
+                   rdfs:domain :Saisine ;
+                   rdfs:range :ServiceRequerant .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aSubstance
 :aSubstance rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
-            owl:inverseOf :estSubstanceDe .
+            owl:inverseOf :estSubstanceDe ;
+            rdfs:domain :Composant ;
+            rdfs:range :Substance .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/aUnite
@@ -190,7 +208,9 @@
 ###  http://www.stups.fr/ontologies/2023/stups/estEloigneDe
 :estEloigneDe rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
-              rdf:type owl:SymmetricProperty .
+              rdf:type owl:SymmetricProperty ;
+              rdfs:domain :Echantillon ;
+              rdfs:range :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/estFaitA
@@ -243,9 +263,12 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/estProcheDe
-:estProcheDe rdf:type owl:ObjectProperty ,
-                      owl:SymmetricProperty ,
-                      owl:TransitiveProperty .
+:estProcheDe rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:SymmetricProperty ,
+                      owl:TransitiveProperty ;
+             rdfs:domain :Echantillon ;
+             rdfs:range :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/estProduitCoupageDe

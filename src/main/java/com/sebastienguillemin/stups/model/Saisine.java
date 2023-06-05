@@ -28,16 +28,8 @@ public class Saisine extends BaseEntity {
     private String dateReception;
 
     @ManyToOne
-    @JoinColumn(name = "id_service_requerant")
-    public ServiceRequerant serviceRequerant;
-
-    @ManyToOne
     @JoinColumn(name = "id_service")
     public Service service;
-
-    @ManyToOne
-    @JoinColumn(name = "id_service_capteur")
-    public ServiceRequerant serviceCapteur;
 
     @Override
     public Resource getResource(Model model) {
@@ -58,17 +50,6 @@ public class Saisine extends BaseEntity {
                 e.printStackTrace();
             }
         }
-
-        
-        // if (this.serviceCapteur != null) {
-        //     Property aServiceCapteur = model.createProperty(RDFRepository.PREFIX + "aServiceCapteur");
-        //     resource.addProperty(aServiceCapteur, this.serviceCapteur.getResource(model));
-        // }
-
-        // if (this.serviceRequerant != null) {
-        //     Property aServiceRequerant = model.createProperty(RDFRepository.PREFIX + "aServiceRequerant");
-        //     resource.addProperty(aServiceRequerant, this.serviceRequerant.getResource(model));
-        // }
                 
         return resource;
     }
