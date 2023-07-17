@@ -30,15 +30,19 @@ public class RDFRepository {
 
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
-        List<Resource> neighbors;
         Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "id");
         Property estProcheDe = model.createProperty(RDFRepository.PREFIX + "estProcheDe");
+        Property estProcheChimiquementDe = model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
+
         
         for (Echantillon echantillon : echantillons) {
             echantillonResource = echantillon.getResource(model);
-            neighbors = echantillon.getNeighbors(model);
-            for (Resource neighbor : neighbors)
+
+            for (Resource neighbor : echantillon.getNeighbors(model))
                 echantillonResource.addProperty(estProcheDe, neighbor);
+
+            for (Resource neighbor : echantillon.getChemicalNeighbors(model))
+                echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
             
             model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }

@@ -25,4 +25,8 @@ public class LotEchantillon {
     @ManyToOne
     @JoinColumn(name = "id_composition_lien")
     private Composition composition2;
+
+    @ManyToOne
+    @JoinColumn(name = "id_type_lien")
+    private Type typeLien;
 }

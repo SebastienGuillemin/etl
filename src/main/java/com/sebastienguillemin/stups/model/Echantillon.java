@@ -38,12 +38,26 @@ public class Echantillon extends BaseEntity {
     public List<Resource> getNeighbors(Model model) {
         List<Resource> resources = new ArrayList<>();
 
-        List<LotEchantillon> lotsTete = this.composition.getLotsTete();
+        for (LotEchantillon lot : this.composition.getLotsTete()) {
+            if (lot.getTypeLien().getLibelle().equals("Macroscopique") || lot.getTypeLien().getLibelle().equals("Composition atypique")) {
+                
+                for (Echantillon echantillon : lot.getComposition2().getEchantillons())
+                    resources.add(echantillon.getResource(model));
+            }
+        }
 
-        for (LotEchantillon lot : lotsTete) {
-            List<Echantillon> echantillons = lot.getComposition2().getEchantillons();
-            for (Echantillon echantillon : echantillons)
-                resources.add(echantillon.getResource(model));
+        return resources;
+    }
+
+    public List<Resource> getChemicalNeighbors(Model model) {
+        List<Resource> resources = new ArrayList<>();
+
+        for (LotEchantillon lot : this.composition.getLotsTete()) {
+            if (lot.getTypeLien().getLibelle().equals("Profilage")) {
+                
+                for (Echantillon echantillon : lot.getComposition2().getEchantillons())
+                    resources.add(echantillon.getResource(model));
+            }
         }
 
         return resources;
