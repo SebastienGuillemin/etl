@@ -341,22 +341,26 @@
 #################################################################
 
 ###  http://www.stups.fr/ontologies/2023/stups/abime
-:abime rdf:type owl:DatatypeProperty ;
+:abime rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/airPic
-:airPic rdf:type owl:DatatypeProperty ;
+:airPic rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
         rdfs:range xsd:decimal .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/commentaire
-:commentaire rdf:type owl:DatatypeProperty ;
+:commentaire rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
              rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/couleur
-:couleur rdf:type owl:DatatypeProperty ;
+:couleur rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
          rdfs:range [ rdf:type rdfs:Datatype ;
                       owl:oneOf [ rdf:type rdf:List ;
                                   rdf:first "Autre" ;
@@ -410,118 +414,9 @@
                     ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/couleur1
-:couleur1 rdf:type owl:DatatypeProperty ;
-          rdfs:range [ rdf:type rdfs:Datatype ;
-                       owl:oneOf [ rdf:type rdf:List ;
-                                   rdf:first "Autre" ;
-                                   rdf:rest [ rdf:type rdf:List ;
-                                              rdf:first "Beige" ;
-                                              rdf:rest [ rdf:type rdf:List ;
-                                                         rdf:first "Blanc Cassé" ;
-                                                         rdf:rest [ rdf:type rdf:List ;
-                                                                    rdf:first "Blanche" ;
-                                                                    rdf:rest [ rdf:type rdf:List ;
-                                                                               rdf:first "Bleue" ;
-                                                                               rdf:rest [ rdf:type rdf:List ;
-                                                                                          rdf:first "Grise" ;
-                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                     rdf:first "Jaune" ;
-                                                                                                     rdf:rest [ rdf:type rdf:List ;
-                                                                                                                rdf:first "Marron" ;
-                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                           rdf:first "Multicolore" ;
-                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                      rdf:first "Noir" ;
-                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                 rdf:first "Orange" ;
-                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                            rdf:first "Rose" ;
-                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                       rdf:first "Rouge" ;
-                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                  rdf:first "Translucide" ;
-                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                             rdf:first "Vert" ;
-                                                                                                                                                                                             rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                        rdf:first "Violet" ;
-                                                                                                                                                                                                        rdf:rest rdf:nil
-                                                                                                                                                                                                      ]
-                                                                                                                                                                                           ]
-                                                                                                                                                                                ]
-                                                                                                                                                                     ]
-                                                                                                                                                          ]
-                                                                                                                                               ]
-                                                                                                                                    ]
-                                                                                                                         ]
-                                                                                                              ]
-                                                                                                   ]
-                                                                                        ]
-                                                                             ]
-                                                                  ]
-                                                       ]
-                                            ]
-                                 ]
-                     ] .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/couleur2
-:couleur2 rdf:type owl:DatatypeProperty ;
-          rdfs:range [ rdf:type rdfs:Datatype ;
-                       owl:oneOf [ rdf:type rdf:List ;
-                                   rdf:first "Autre" ;
-                                   rdf:rest [ rdf:type rdf:List ;
-                                              rdf:first "Beige" ;
-                                              rdf:rest [ rdf:type rdf:List ;
-                                                         rdf:first "Blanc Cassé" ;
-                                                         rdf:rest [ rdf:type rdf:List ;
-                                                                    rdf:first "Blanche" ;
-                                                                    rdf:rest [ rdf:type rdf:List ;
-                                                                               rdf:first "Bleue" ;
-                                                                               rdf:rest [ rdf:type rdf:List ;
-                                                                                          rdf:first "Grise" ;
-                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                     rdf:first "Jaune" ;
-                                                                                                     rdf:rest [ rdf:type rdf:List ;
-                                                                                                                rdf:first "Marron" ;
-                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                           rdf:first "Multicolore" ;
-                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                      rdf:first "Noir" ;
-                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                 rdf:first "Orange" ;
-                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                            rdf:first "Rose" ;
-                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                       rdf:first "Rouge" ;
-                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                  rdf:first "Translucide" ;
-                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                             rdf:first "Vert" ;
-                                                                                                                                                                                             rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                        rdf:first "Violet" ;
-                                                                                                                                                                                                        rdf:rest rdf:nil
-                                                                                                                                                                                                      ]
-                                                                                                                                                                                           ]
-                                                                                                                                                                                ]
-                                                                                                                                                                     ]
-                                                                                                                                                          ]
-                                                                                                                                               ]
-                                                                                                                                    ]
-                                                                                                                         ]
-                                                                                                              ]
-                                                                                                   ]
-                                                                                        ]
-                                                                             ]
-                                                                  ]
-                                                       ]
-                                            ]
-                                 ]
-                     ] .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/couleurInterieure
-:couleurInterieure rdf:type owl:DatatypeProperty ;
+:couleurInterieure rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
                    rdfs:range [ rdf:type rdfs:Datatype ;
                                 owl:oneOf [ rdf:type rdf:List ;
                                             rdf:first "Autre" ;
@@ -575,93 +470,45 @@
                               ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/couleurInterieure1
-:couleurInterieure1 rdf:type owl:DatatypeProperty ;
-                    rdfs:range [ rdf:type rdfs:Datatype ;
-                                 owl:oneOf [ rdf:type rdf:List ;
-                                             rdf:first "Autre" ;
-                                             rdf:rest [ rdf:type rdf:List ;
-                                                        rdf:first "Beige" ;
-                                                        rdf:rest [ rdf:type rdf:List ;
-                                                                   rdf:first "Blanc Cassé" ;
-                                                                   rdf:rest [ rdf:type rdf:List ;
-                                                                              rdf:first "Blanche" ;
-                                                                              rdf:rest [ rdf:type rdf:List ;
-                                                                                         rdf:first "Bleue" ;
-                                                                                         rdf:rest [ rdf:type rdf:List ;
-                                                                                                    rdf:first "Grise" ;
-                                                                                                    rdf:rest [ rdf:type rdf:List ;
-                                                                                                               rdf:first "Jaune" ;
-                                                                                                               rdf:rest [ rdf:type rdf:List ;
-                                                                                                                          rdf:first "Marron" ;
-                                                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                     rdf:first "Multicolore" ;
-                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                rdf:first "Noir" ;
-                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first "Orange" ;
-                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                      rdf:first "Rose" ;
-                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                 rdf:first "Rouge" ;
-                                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                            rdf:first "Translucide" ;
-                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                       rdf:first "Vert" ;
-                                                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                                  rdf:first "Violet" ;
-                                                                                                                                                                                                                  rdf:rest rdf:nil
-                                                                                                                                                                                                                ]
-                                                                                                                                                                                                     ]
-                                                                                                                                                                                          ]
-                                                                                                                                                                               ]
-                                                                                                                                                                    ]
-                                                                                                                                                         ]
-                                                                                                                                              ]
-                                                                                                                                   ]
-                                                                                                                        ]
-                                                                                                             ]
-                                                                                                  ]
-                                                                                       ]
-                                                                            ]
-                                                                 ]
-                                                      ]
-                                           ]
-                               ] .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/date
-:date rdf:type owl:DatatypeProperty ;
+:date rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
       rdfs:range xsd:dateTime .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/description
-:description rdf:type owl:DatatypeProperty ;
+:description rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
              rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/diametre
-:diametre rdf:type owl:DatatypeProperty ;
+:diametre rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/dosage
-:dosage rdf:type owl:DatatypeProperty ;
+:dosage rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
         rdfs:range xsd:decimal .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/empreinte
-:empreinte rdf:type owl:DatatypeProperty ;
+:empreinte rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/epaisseur
-:epaisseur rdf:type owl:DatatypeProperty ;
+:epaisseur rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
            rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/forme
-:forme rdf:type owl:DatatypeProperty ;
+:forme rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
        rdfs:range [ rdf:type rdfs:Datatype ;
                     owl:oneOf [ rdf:type rdf:List ;
                                 rdf:first "Autre" ;
@@ -686,22 +533,26 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/hauteur
-:hauteur rdf:type owl:DatatypeProperty ;
+:hauteur rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/id
-:id rdf:type owl:DatatypeProperty ;
+:id rdf:type owl:DatatypeProperty ,
+             owl:FunctionalProperty ;
     rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/largeur
-:largeur rdf:type owl:DatatypeProperty ;
+:largeur rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/libelleAspect
-:libelleAspect rdf:type owl:DatatypeProperty ;
+:libelleAspect rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
                rdfs:range [ rdf:type rdfs:Datatype ;
                             owl:oneOf [ rdf:type rdf:List ;
                                         rdf:first "Billes" ;
@@ -750,7 +601,8 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/libelleFormeChimique
-:libelleFormeChimique rdf:type owl:DatatypeProperty ;
+:libelleFormeChimique rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
                       rdfs:range [ rdf:type rdfs:Datatype ;
                                    owl:oneOf [ rdf:type rdf:List ;
                                                rdf:first "Base" ;
@@ -778,63 +630,76 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/libelleService
-:libelleService rdf:type owl:DatatypeProperty ;
+:libelleService rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
                 rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/logo
-:logo rdf:type owl:DatatypeProperty ;
+:logo rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
       rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/longueur
-:longueur rdf:type owl:DatatypeProperty ;
+:longueur rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/masse
 :masse rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf owl:topDataProperty ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/nomLogo
-:nomLogo rdf:type owl:DatatypeProperty ;
+:nomLogo rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
          rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/nomService
-:nomService rdf:type owl:DatatypeProperty ;
+:nomService rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
             rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/nomSubstance
-:nomSubstance rdf:type owl:DatatypeProperty ;
+:nomSubstance rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
               rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/numeroEchantillon
-:numeroEchantillon rdf:type owl:DatatypeProperty ;
+:numeroEchantillon rdf:type owl:DatatypeProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain :Echantillon ;
                    rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/numeroLot
-:numeroLot rdf:type owl:DatatypeProperty ;
+:numeroLot rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/numeroScelle
-:numeroScelle rdf:type owl:DatatypeProperty ;
+:numeroScelle rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
               rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/ovule
-:ovule rdf:type owl:DatatypeProperty ;
+:ovule rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/presentation
-:presentation rdf:type owl:DatatypeProperty ;
+:presentation rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
               rdfs:range [ rdf:type rdfs:Datatype ;
                            owl:oneOf [ rdf:type rdf:List ;
                                        rdf:first "Autre" ;
@@ -880,12 +745,14 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/quantite
-:quantite rdf:type owl:DatatypeProperty ;
+:quantite rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteRecto
-:secabiliteRecto rdf:type owl:DatatypeProperty ;
+:secabiliteRecto rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -904,7 +771,8 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteVerso
-:secabiliteVerso rdf:type owl:DatatypeProperty ;
+:secabiliteVerso rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -923,22 +791,26 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/taux
-:taux rdf:type owl:DatatypeProperty ;
+:taux rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
       rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/tempsRetention
-:tempsRetention rdf:type owl:DatatypeProperty ;
+:tempsRetention rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
                 rdfs:range xsd:decimal .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/trace
-:trace rdf:type owl:DatatypeProperty ;
+:trace rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/typeDrogue
-:typeDrogue rdf:type owl:DatatypeProperty ;
+:typeDrogue rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
             rdfs:range [ rdf:type rdfs:Datatype ;
                          owl:oneOf [ rdf:type rdf:List ;
                                      rdf:first "Amphétamine et dérivés" ;
@@ -960,7 +832,8 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/unite
-:unite rdf:type owl:DatatypeProperty ;
+:unite rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
        rdfs:range [ rdf:type rdfs:Datatype ;
                     owl:oneOf [ rdf:type rdf:List ;
                                 rdf:first "%" ;
@@ -985,12 +858,14 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/visqueux
-:visqueux rdf:type owl:DatatypeProperty ;
+:visqueux rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
           rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/volume
-:volume rdf:type owl:DatatypeProperty ;
+:volume rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
         rdfs:range xsd:float .
 
 
