@@ -810,7 +810,6 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/nomSubstance
 :nomSubstance rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf owl:topDataProperty ;
               rdfs:range xsd:string .
 
 
