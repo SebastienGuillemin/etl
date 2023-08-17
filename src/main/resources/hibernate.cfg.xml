@@ -24,19 +24,22 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">false</property>
 
-        <mapping class="com.sebastienguillemin.stups.model.Echantillon"/>
-        <mapping class="com.sebastienguillemin.stups.model.PrincipeActif"/>
-        <mapping class="com.sebastienguillemin.stups.model.ProduitCoupage"/>
-        <mapping class="com.sebastienguillemin.stups.model.Saisine"/>
-        <mapping class="com.sebastienguillemin.stups.model.Scelle"/>
-        <mapping class="com.sebastienguillemin.stups.model.Composition"/>
-        <mapping class="com.sebastienguillemin.stups.model.FormeChimique"/>
-        <mapping class="com.sebastienguillemin.stups.model.Substance"/>
-        <mapping class="com.sebastienguillemin.stups.model.Aspect"/>
-        <mapping class="com.sebastienguillemin.stups.model.Unite"/>
-        <mapping class="com.sebastienguillemin.stups.model.Service"/>
-        <mapping class="com.sebastienguillemin.stups.model.ServiceRequerant"/>
-        <mapping class="com.sebastienguillemin.stups.model.Type"/>
-        <mapping class="com.sebastienguillemin.stups.model.LotEchantillon"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Echantillon"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.PrincipeActif"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.ProduitCoupage"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Saisine"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Scelle"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.Composition"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.FormeChimique"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Substance"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Aspect"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.Unite"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.Service"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.resource.ServiceRequerant"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.Type"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.LotEchantillon"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.Description"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.Propriete"/>
+        <mapping class="com.sebastienguillemin.stups.model.entity.base.ValeurPropriete"/>
     </session-factory>
 </hibernate-configuration>

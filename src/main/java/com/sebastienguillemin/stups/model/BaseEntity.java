@@ -1,8 +1,5 @@
 package com.sebastienguillemin.stups.model;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
-
 import com.sebastienguillemin.stups.util.StringConverter;
 
 import jakarta.persistence.Id;
@@ -33,6 +30,4 @@ public abstract class BaseEntity implements Comparable<BaseEntity> {
     public int compareTo(BaseEntity entity) {
         return Integer.compare(this.id, entity.getId());
     }
-
-    public abstract Resource getResource(Model model);
 }

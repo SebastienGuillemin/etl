@@ -1,4 +1,4 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +9,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Saisine extends BaseEntity {
+public class Saisine extends ResourceEntity {
     @Column(name = "date_reception")
     private String dateReception;
 

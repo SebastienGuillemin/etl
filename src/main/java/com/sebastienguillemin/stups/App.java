@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import com.sebastienguillemin.stups.model.Echantillon;
+import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
 import com.sebastienguillemin.stups.repository.DataRepository;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 import com.sebastienguillemin.stups.session.SessionProvider;

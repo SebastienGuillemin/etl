@@ -1,7 +1,6 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.base;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
+import com.sebastienguillemin.stups.model.BaseEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -18,11 +17,5 @@ public class Type extends BaseEntity {
     private String code;
     private String categorie;
     private String libelle;
-    private int rang;
-
-    @Override
-    public Resource getResource(Model model) {
-        return null;
-    }
-    
+    private int rang;    
 }

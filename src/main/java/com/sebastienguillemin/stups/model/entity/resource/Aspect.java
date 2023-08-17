@@ -1,10 +1,11 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -16,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Aspect extends BaseEntity {
+public class Aspect extends ResourceEntity {
     public String libelle;
     @Override
     public Resource getResource(Model model) {

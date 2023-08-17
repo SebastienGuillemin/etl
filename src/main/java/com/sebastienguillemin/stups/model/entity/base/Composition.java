@@ -1,9 +1,12 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.base;
 
 import java.util.List;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
+import com.sebastienguillemin.stups.model.BaseEntity;
+import com.sebastienguillemin.stups.model.entity.resource.Aspect;
+import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
+import com.sebastienguillemin.stups.model.entity.resource.PrincipeActif;
+import com.sebastienguillemin.stups.model.entity.resource.ProduitCoupage;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -48,8 +51,6 @@ public class Composition extends BaseEntity {
     @OneToMany(mappedBy = "composition2")
     public List<LotEchantillon> lotsQueue;
 
-    @Override
-    public Resource getResource(Model model) {
-        return null;
-    }    
+    @OneToMany(mappedBy = "composition")
+    public List<Description> descriptions;  
 }

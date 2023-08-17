@@ -1,9 +1,11 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -17,22 +19,24 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
-@Table(name = "substance")
+@Table(name = "constituant")
 @ToString
-public class Substance extends BaseEntity {
-    private String libelle;
+public class ProduitCoupage extends ResourceEntity {
+    @ManyToOne
+    @JoinColumn(name = "id_composition")
+    private Composition composition;
 
     @ManyToOne
-    @JoinColumn(name = "id_categorie")
-    private Type type;
+    @JoinColumn(name = "id_substance")
+    private Substance substance;
 
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property nomSubstance = model.createProperty(RDFRepository.PREFIX + "nomSubstance");
+        Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
 
-        resource.addProperty(nomSubstance, this.libelle);
+        resource.addProperty(aSubstance, this.substance.getResource(model));
                 
         return resource;
-    }
+    }    
 }

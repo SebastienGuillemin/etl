@@ -1,7 +1,8 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.base;
+
+import com.sebastienguillemin.stups.model.BaseEntity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -14,10 +15,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "lot_echantillon")
 @ToString
-public class LotEchantillon {
-    @Id
-    private int id;
-    
+public class LotEchantillon extends BaseEntity {    
     @ManyToOne
     @JoinColumn(name = "id_composition")
     private Composition composition1;

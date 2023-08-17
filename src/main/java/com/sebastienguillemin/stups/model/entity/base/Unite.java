@@ -1,7 +1,6 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.base;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Resource;
+import com.sebastienguillemin.stups.model.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,9 +18,4 @@ public class Unite extends BaseEntity {
 
     @Column(name = "lib_short")
     public String libShort;
-
-    @Override
-    public Resource getResource(Model model) {
-        throw new UnsupportedOperationException("Unimplemented method 'getResource'");
-    }
 }

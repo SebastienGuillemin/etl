@@ -1,14 +1,17 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.entity.base.Type;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,21 +19,21 @@ import lombok.ToString;
 @Entity
 @Getter
 @Setter
+@Table(name = "substance")
 @ToString
-public class Scelle extends BaseEntity {
+public class Substance extends ResourceEntity {
+    private String libelle;
+
     @ManyToOne
-    @JoinColumn(name = "id_saisine")
-    public Saisine saisine;
+    @JoinColumn(name = "id_categorie")
+    private Type type;
 
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Property nomSubstance = model.createProperty(RDFRepository.PREFIX + "nomSubstance");
 
-        Property property = model.createProperty(RDFRepository.PREFIX + "id");
-        resource.addProperty(property, this.id + "");
-
-        Property estDansSaisine = model.createProperty(RDFRepository.PREFIX + "estDansSaisine");
-        resource.addProperty(estDansSaisine, this.saisine.getResource(model));
+        resource.addProperty(nomSubstance, this.libelle);
                 
         return resource;
     }

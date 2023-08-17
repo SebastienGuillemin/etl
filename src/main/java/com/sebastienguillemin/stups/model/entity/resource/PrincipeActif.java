@@ -1,9 +1,11 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -19,7 +21,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "principe_actif")
 @ToString
-public class PrincipeActif extends BaseEntity {
+public class PrincipeActif extends ResourceEntity {
     @ManyToOne
     @JoinColumn(name = "id_composition")
     private Composition composition;

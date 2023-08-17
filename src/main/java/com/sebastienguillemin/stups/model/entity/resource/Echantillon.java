@@ -1,4 +1,4 @@
-package com.sebastienguillemin.stups.model;
+package com.sebastienguillemin.stups.model.entity.resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,10 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
+import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.entity.base.Composition;
+import com.sebastienguillemin.stups.model.entity.base.Description;
+import com.sebastienguillemin.stups.model.entity.base.LotEchantillon;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Column;
@@ -23,7 +27,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "echantillon")
 @ToString
-public class Echantillon extends BaseEntity {
+public class Echantillon extends ResourceEntity {
     @Column(name = "num_echantillon")
     private String num;
 
@@ -66,7 +70,7 @@ public class Echantillon extends BaseEntity {
     @Override
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property property = model.createProperty(RDFRepository.PREFIX + "id");
+        Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
         Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
@@ -74,7 +78,7 @@ public class Echantillon extends BaseEntity {
         Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
         
-        resource.addProperty(property, this.id + "");
+        resource.addLiteral(idProperty, this.id + "");
         
         for (PrincipeActif principeActif : this.composition.getPrincipeActifs()) {
             resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
@@ -98,6 +102,17 @@ public class Echantillon extends BaseEntity {
         if (commentaire != null) {
             Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
             resource.addProperty(commmentaire, commentaire);
+        }
+
+        for (Description description : this.composition.getDescriptions()) {
+            Property descriptionProperty = model.createProperty(RDFRepository.PREFIX + description.getPropriete().getLibelle());
+            
+            String valeur;
+            if ((valeur = description.getValeur()) == null && description.getValeurPropriete() != null)
+                valeur = description.getValeurPropriete().getLibelle();
+
+            if (valeur != null)
+                resource.addLiteral(descriptionProperty, valeur);
         }
         
         return resource;

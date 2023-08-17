@@ -9,7 +9,7 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.Echantillon;
+import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
 
 public class RDFRepository {
     public static final String PREFIX = "http://www.stups.fr/ontologies/2023/stups/";
