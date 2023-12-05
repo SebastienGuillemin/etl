@@ -352,8 +352,9 @@
 #################################################################
 
 ###  http://www.stups.fr/ontologies/2023/stups/abime
-:abime rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:abime rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
@@ -361,6 +362,10 @@
 :airPic rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:range xsd:decimal .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/caracteristiqueMacroscopique
+:caracteristiqueMacroscopique rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/commentaire
@@ -371,6 +376,7 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/couleur
 :couleur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
          rdfs:range [ rdf:type rdfs:Datatype ;
                       owl:oneOf [ rdf:type rdf:List ;
                                   rdf:first "Autre" ;
@@ -426,6 +432,7 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/couleurInterieure
 :couleurInterieure rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :caracteristiqueMacroscopique ;
                    rdfs:range [ rdf:type rdfs:Datatype ;
                                 owl:oneOf [ rdf:type rdf:List ;
                                             rdf:first "Autre" ;
@@ -492,8 +499,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/diametre
-:diametre rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:diametre rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
@@ -504,20 +512,23 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/empreinte
-:empreinte rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
+:empreinte rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/epaisseur
-:epaisseur rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
+:epaisseur rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/forme
-:forme rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:forme rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range [ rdf:type rdfs:Datatype ;
                     owl:oneOf [ rdf:type rdf:List ;
                                 rdf:first "Autre" ;
@@ -542,8 +553,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/hauteur
-:hauteur rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
+:hauteur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+         rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
@@ -554,8 +566,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/largeur
-:largeur rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
+:largeur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+         rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
@@ -645,20 +658,23 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/logo
-:logo rdf:type owl:DatatypeProperty ,
-               owl:FunctionalProperty ;
+:logo rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/longueur
-:longueur rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:longueur rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/masse
-:masse rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:masse rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:float .
 
 
@@ -700,14 +716,16 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/ovule
-:ovule rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:ovule rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/presentation
-:presentation rdf:type owl:DatatypeProperty ,
-                       owl:FunctionalProperty ;
+:presentation rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+              rdf:type owl:FunctionalProperty ;
               rdfs:range [ rdf:type rdfs:Datatype ;
                            owl:oneOf [ rdf:type rdf:List ;
                                        rdf:first "Autre" ;
@@ -759,8 +777,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteRecto
-:secabiliteRecto rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
+:secabiliteRecto rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -779,8 +798,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteVerso
-:secabiliteVerso rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
+:secabiliteVerso rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -799,8 +819,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/taux
-:taux rdf:type owl:DatatypeProperty ,
-               owl:FunctionalProperty ;
+:taux rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+      rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:float .
 
 
@@ -866,14 +887,16 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/visqueux
-:visqueux rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:visqueux rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/volume
-:volume rdf:type owl:DatatypeProperty ,
-                 owl:FunctionalProperty ;
+:volume rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+        rdf:type owl:FunctionalProperty ;
         rdfs:range xsd:float .
 
 
