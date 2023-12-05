@@ -4,8 +4,6 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
-import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -21,21 +19,12 @@ import lombok.ToString;
 @Setter
 @Table(name = "principe_actif")
 @ToString
-public class PrincipeActif extends ResourceEntity {
-    @ManyToOne
-    @JoinColumn(name = "id_composition")
-    private Composition composition;
-
-    @ManyToOne
-    @JoinColumn(name = "id_substance")
-    private Substance substance;
-
+public class PrincipeActif extends Constituant {
+    
     @ManyToOne
     @JoinColumn(name = "id_forme_chimique")
     private FormeChimique formeChimique;
 
-    // private String taux;
-    // private boolean trace;
 
     // @Column(name = "is_cbd")
     // private boolean isCbd;
@@ -57,12 +46,10 @@ public class PrincipeActif extends ResourceEntity {
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Resource resource = super.getPartielResource(model);
         Property aFormeChimique = model.createProperty(RDFRepository.PREFIX + "aFormeChimique");
-        Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
 
         resource.addProperty(aFormeChimique, this.formeChimique.getResource(model));
-        resource.addProperty(aSubstance, this.substance.getResource(model));
                 
         return resource;
     }
