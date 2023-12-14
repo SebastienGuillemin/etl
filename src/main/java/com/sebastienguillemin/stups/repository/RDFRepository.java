@@ -41,7 +41,7 @@ public class RDFRepository {
             for (Resource neighbor : echantillon.getNeighbors(model))
                 echantillonResource.addProperty(estProcheDe, neighbor);
 
-            for (Resource neighbor : echantillon.getChemicalNeighbors(model))
+            for (Resource neighbor : echantillon.getChemicalNeighborsResources(model))
                 echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
             
             model.add(echantillonResource, idEchantillon, echantillon.getId() + "");

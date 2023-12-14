@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Scelle extends ResourceEntity {
+public class Scelle extends BaseEntity implements ResourceEntity {
     @ManyToOne
     @JoinColumn(name = "id_saisine")
     public Saisine saisine;

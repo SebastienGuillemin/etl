@@ -7,7 +7,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.model.entity.base.Description;
 import com.sebastienguillemin.stups.model.entity.base.LotEchantillon;
@@ -27,7 +27,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "echantillon")
 @ToString
-public class Echantillon extends ResourceEntity {
+public class Echantillon extends BaseEntity implements ResourceEntity {
     @Column(name = "num_echantillon")
     private String num;
 
@@ -52,8 +52,23 @@ public class Echantillon extends ResourceEntity {
 
         return resources;
     }
+    
+    public List<Echantillon> getChemicalNeighbors(Model model) {
+        List<Echantillon> neighbors = new ArrayList<>();
 
-    public List<Resource> getChemicalNeighbors(Model model) {
+        for (LotEchantillon lot : this.composition.getLotsTete()) {
+            if (lot.getTypeLien().getLibelle().equals("Profilage")) {
+                
+                for (Echantillon echantillon : lot.getComposition2().getEchantillons())
+                    neighbors.add(echantillon);
+            }
+        }
+
+        return neighbors;
+    }
+
+
+    public List<Resource> getChemicalNeighborsResources(Model model) {
         List<Resource> resources = new ArrayList<>();
 
         for (LotEchantillon lot : this.composition.getLotsTete()) {

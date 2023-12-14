@@ -4,7 +4,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Type;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "substance")
 @ToString
-public class Substance extends ResourceEntity {
+public class Substance extends BaseEntity implements ResourceEntity {
     private String libelle;
 
     @ManyToOne

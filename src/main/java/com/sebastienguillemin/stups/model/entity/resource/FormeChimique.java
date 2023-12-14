@@ -5,7 +5,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "forme_chimique")
 @ToString
-public class FormeChimique extends ResourceEntity {
+public class FormeChimique extends BaseEntity implements ResourceEntity {
     private String libelle;
 
     @Override

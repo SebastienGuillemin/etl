@@ -9,7 +9,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 
-import com.sebastienguillemin.stups.model.ResourceEntity;
+import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Column;
@@ -24,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Saisine extends ResourceEntity {
+public class Saisine extends BaseEntity implements ResourceEntity {
     @Column(name = "date_reception")
     private String dateReception;
 
