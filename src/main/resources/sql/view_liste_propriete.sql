@@ -1,4 +1,4 @@
-create view echantillon_unifie as (
+CREATE OR REPLACE MATERIALIZED VIEW liste_propriete as (
     select
         e.id,
         c.id as id_composition,
@@ -52,4 +52,17 @@ UNION
         and pa.id_composition = c.id
         and pa.id_substance = s.id
         and t.id = s.id_categorie
+)
+UNION
+(
+    select
+        e.id,
+        c.id as id_composition,
+        'Numero echantillon' as propriete,
+        e.num_echantillon as valeur
+    from
+        echantillon e,
+        composition c
+    where
+        e.id_composition = c.id
 )
