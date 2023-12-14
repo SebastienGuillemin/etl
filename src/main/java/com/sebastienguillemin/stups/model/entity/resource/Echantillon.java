@@ -11,6 +11,7 @@ import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.model.entity.base.Description;
 import com.sebastienguillemin.stups.model.entity.base.LotEchantillon;
+import com.sebastienguillemin.stups.model.entity.base.Propriete;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Column;
@@ -80,6 +81,23 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         }
 
         return resources;
+    }
+
+    public Object getProperty(String propertyName) {
+        Propriete property = null;
+        
+        for (Description description  : this.composition.getDescriptions()) {
+            property = description.getPropriete();
+
+            if (property.getLibelle().equals(propertyName))
+                if (description.getValeur() != null)
+                    return description.getValeur();
+                else if (description.getValeurPropriete() != null)
+                    return description.getValeurPropriete();
+                else return null;
+        }
+
+        return null;
     }
 
     @Override
