@@ -1,18 +1,18 @@
-CREATE MATERIALIZED VIEW echantillon_propriete as (
+CREATE MATERIALIZED VIEW echantillon_propriete AS (
     SELECT
         *
     FROM
         crosstab(
             $$
-            select
+            SELECT
                 id,
                 propriete,
                 valeur
-            from
+            FROM
                 liste_propriete
             $$,
             $$
-            values
+            VALUES
                 ('Numero echantillon'),
                 ('Etiquette'),
                 ('Secabilite verso'),
@@ -41,34 +41,34 @@ CREATE MATERIALIZED VIEW echantillon_propriete as (
                 ('Hauteur'),
                 ('Type drogue')
             $$
-        ) as res (
+        ) AS res (
             id int4,
-            num_echantillon varchar(255),
-            etiquette varchar(255),
-            secabilite_verso varchar(255),
-            secabilite_recto varchar(255),
-            diametre varchar(255),
-            epaisseur varchar(255),
-            description_de_objet varchar(255),
-            couleur_exterieur_1 varchar(255),
-            couleur_exterieur_2 varchar(255),
-            logo varchar(255),
-            longueur varchar(255),
-            largeur varchar(255),
-            couleur_interieur_comprime varchar(255),
-            forme varchar(255),
-            visqueux varchar(255),
-            presentation varchar(255),
-            couleur varchar(255),
-            couleur_exterieur_comprime varchar(255),
-            masse_resine varchar(255),
-            nom_de_logo varchar(255),
-            masse_comprime varchar(255),
-            autre_resine varchar(255),
-            unite_taux varchar(255),
-            ovule varchar(255),
-            abime varchar(255),
-            hauteur varchar(255),
-            type_drogue varchar (255)
+            num_echantillon VARCHAR(255),
+            etiquette VARCHAR(255),
+            secabilite_verso VARCHAR(255),
+            secabilite_recto VARCHAR(255),
+            diametre VARCHAR(255),
+            epaisseur VARCHAR(255),
+            description_de_objet VARCHAR(255),
+            couleur_exterieur_1 VARCHAR(255),
+            couleur_exterieur_2 VARCHAR(255),
+            logo VARCHAR(255),
+            longueur VARCHAR(255),
+            largeur VARCHAR(255),
+            couleur_interieur_comprime VARCHAR(255),
+            forme VARCHAR(255),
+            visqueux VARCHAR(255),
+            presentation VARCHAR(255),
+            couleur VARCHAR(255),
+            couleur_exterieur_comprime VARCHAR(255),
+            masse_resine VARCHAR(255),
+            nom_de_logo VARCHAR(255),
+            masse_comprime VARCHAR(255),
+            autre_resine VARCHAR(255),
+            unite_taux VARCHAR(255),
+            ovule VARCHAR(255),
+            abime VARCHAR(255),
+            hauteur VARCHAR(255),
+            type_drogue VARCHAR (255)
         )
 );
