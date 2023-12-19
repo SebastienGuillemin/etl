@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
-import com.sebastienguillemin.stups.repository.DataRepository;
+import com.sebastienguillemin.stups.repository.EchantillonRepository;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 import com.sebastienguillemin.stups.session.SessionProvider;
 
@@ -19,7 +19,7 @@ public class App {
         if (args.length > 0)
             batchSize = Integer.parseInt(args[0]);
 
-        DataRepository repository = new DataRepository();
+        EchantillonRepository repository = new EchantillonRepository();
         RDFRepository rdfRepository = new RDFRepository("STUPS.ttl");
 
         Session session = SessionProvider.getSession();
