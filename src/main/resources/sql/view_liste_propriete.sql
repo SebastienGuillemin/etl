@@ -1,14 +1,15 @@
 CREATE MATERIALIZED VIEW liste_propriete AS (
     (
         SELECT
-            -- Valeur de la propriété dans la table "valeur_propriete".
+            -- Valeur de la propriété dans la table "valeur_propriete" ('Unité taux' n'est pas sélectionnée).
             e.id,
             CASE p.libelle
                 WHEN 'Couleur extérieur (comprimé)' THEN 'Couleur extérieur'
                 WHEN 'Couleur intérieur (comprimé)' THEN 'Couleur intérieur'
                 ELSE p.libelle
             END AS propriete,
-            vp.libelle AS valeur
+            vp.libelle AS valeur,
+            0 as valeur_num
         FROM
             echantillon e,
             composition c,
@@ -20,11 +21,12 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             AND c.id = d.id_composition
             AND p.id = d.id_propriete
             AND d.id_valeur_propriete = vp.id
+            AND p.libelle != 'Unité taux'
     )
     UNION
     (
         SELECT
-            -- Valeur de la propriété dans la table "description".
+            -- Valeur de la propriété dans la table "description" (Autre (résine) n'est pas sélectionnée).
             e.id,
             CASE p.libelle
                 WHEN 'Masse (résine)' THEN 'Masse'
@@ -34,7 +36,8 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
                 WHEN 'Couleur intérieur (comprimé)' THEN 'Couleur intérieur'
                 ELSE p.libelle
             END AS propriete,
-            d.valeur AS valeur
+            d.valeur AS valeur,
+            0 as valeur_num
         FROM
             echantillon e,
             composition c,
@@ -45,6 +48,31 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             AND c.id = d.id_composition
             AND p.id = d.id_propriete
             AND d.valeur IS NOT NULL
+            AND p.libelle NOT IN ('Largeur', 'Longueur', 'Diamètre', 'Hauteur', 'Epaisseur', 'Masse', 'Masse (résine)', 'Masse (comprimé)', 'Autre (résine)')
+    )
+    UNION
+    (
+        SELECT
+            -- Valeur de la propriété dans la table "description".
+            e.id,
+            CASE p.libelle
+                WHEN 'Masse (résine)' THEN 'Masse'
+                WHEN 'Masse (comprimé)' THEN 'Masse'
+                ELSE p.libelle
+            END AS propriete,
+            null AS valeur,
+            cast (replace (d.valeur, ',', '.') as DECIMAL) as valeur_num
+        FROM
+            echantillon e,
+            composition c,
+            description d,
+            propriete p
+        WHERE
+            e.id_composition = c.id
+            AND c.id = d.id_composition
+            AND p.id = d.id_propriete
+            AND d.valeur IS NOT NULL
+            AND p.libelle IN ('Largeur', 'Longueur', 'Diamètre', 'Hauteur', 'Epaisseur', 'Masse', 'Masse (résine)', 'Masse (comprimé)')
     )
     UNION
     (
@@ -52,7 +80,8 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             -- Récupération du type de drogue.
             e.id,
             'Type drogue' AS propriete,
-            t.libelle AS valeur
+            t.libelle AS valeur,
+            0 as valeur_num
         FROM
             echantillon e,
             principe_actif pa,
@@ -71,7 +100,8 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             -- Récupération du numéro d'échantillon.
             e.id,
             'Numero echantillon' AS propriete,
-            e.num_echantillon AS valeur
+            e.num_echantillon AS valeur,
+            0 as valeur_num
         FROM
             echantillon e,
             composition c
@@ -84,7 +114,8 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             -- Récupération constituants à taux non nuls
             e.id,
             s.libelle AS "Propriete",
-            CAST(pa.taux as varchar) AS "Valeur"
+            null AS "Valeur",
+            pa.taux as valeur_num
         FROM
             echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
@@ -99,7 +130,8 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             -- Récupération constituants présents en trace (i.e. avec un taux nul)
             e.id,
             s.libelle AS "Propriete",
-            '0' AS "Valeur"
+            null AS "Valeur",
+            0.0 as valeur_num
         FROM
             echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
