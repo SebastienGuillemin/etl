@@ -5,7 +5,7 @@ CREATE MATERIALIZED VIEW echantillon_propriete AS (
         crosstab(
             $$
                 SELECT
-                    id,
+                    CAST (id AS INTEGER),
                     propriete,
                     COALESCE(valeur, cast(valeur_num as varchar))
                 FROM
@@ -19,7 +19,7 @@ CREATE MATERIALIZED VIEW echantillon_propriete AS (
                 ORDER BY lp.propriete
             $$
         ) AS res (
-            id varchar(255),
+            id int4,
             _3_4_methylenedioxyethylamphetamine decimal,
             _3_4_methylene_dioxy_methylamphetamine decimal,
             _5F_ADB decimal,
