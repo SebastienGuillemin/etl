@@ -9,7 +9,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
                 ELSE p.libelle
             END AS propriete,
             vp.libelle AS valeur,
-            0 as "Valeur num"
+            0 as valeur_num
         FROM echantillon e,
             composition c,
             description d,
@@ -35,7 +35,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
                 ELSE p.libelle
             END AS propriete,
             d.valeur AS valeur,
-            0 as "Valeur num"
+            0 as valeur_num
         FROM echantillon e,
             composition c,
             description d,
@@ -67,7 +67,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
                 ELSE p.libelle
             END AS propriete,
             null AS valeur,
-            cast (replace (d.valeur, ',', '.') as DECIMAL) as "Valeur num"
+            cast (replace (d.valeur, ',', '.') as DECIMAL) as valeur_num
         FROM echantillon e,
             composition c,
             description d,
@@ -93,7 +93,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             'Type drogue' AS propriete,
             t.libelle AS valeur,
-            0 as "Valeur num"
+            0 as valeur_num
         FROM echantillon e,
             principe_actif pa,
             composition c,
@@ -110,7 +110,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             'Numero echantillon' AS propriete,
             e.num_echantillon AS valeur,
-            0 as "Valeur num"
+            0 as valeur_num
         FROM echantillon e,
             composition c
         WHERE e.id_composition = c.id
@@ -121,7 +121,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             s.libelle AS "Propriete",
             null AS "Valeur",
-            pa.taux as "Valeur num"
+            pa.taux as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa ON pa.id_composition = c.id
@@ -134,7 +134,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             s.libelle AS "Propriete",
             null AS "Valeur",
-            0.0 as "Valeur num"
+            0.0 as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa ON pa.id_composition = c.id
@@ -151,7 +151,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             s.libelle AS "Propriete",
             null AS "Valeur",
-            co.taux as "Valeur num"
+            co.taux as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN constituant co ON co.id_composition = c.id
@@ -164,7 +164,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             s.libelle AS "Propriete",
             null AS "Valeur",
-            0.0 as "Valeur num"
+            0.0 as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN constituant co ON co.id_composition = c.id
@@ -181,7 +181,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             'CBD' AS "Propriete",
             '1' AS "Valeur",
-            0.0 as "Valeur num"
+            0.0 as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa on c.id = pa.id_composition
@@ -193,7 +193,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             e.id,
             'CBN' AS "Propriete",
             '1' AS "Valeur",
-            0.0 as "Valeur num"
+            0.0 as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa on c.id = pa.id_composition
@@ -208,7 +208,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             CASE
                 WHEN pa.taux_cbd IS NOT NULL THEN pa.taux_cbd
                 ELSE 0.0
-            END as "Valeur num"
+            END as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa on c.id = pa.id_composition
@@ -223,7 +223,7 @@ CREATE MATERIALIZED VIEW liste_propriete AS (
             CASE
                 WHEN pa.taux_cbn IS NOT NULL THEN pa.taux_cbn
                 ELSE 0.0
-            END as "Valeur num"
+            END as valeur_num
         FROM echantillon e
             INNER JOIN composition c ON c.id = e.id_composition
             INNER JOIN principe_actif pa on c.id = pa.id_composition
