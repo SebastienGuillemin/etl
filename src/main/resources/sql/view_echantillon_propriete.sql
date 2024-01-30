@@ -99,7 +99,7 @@ CREATE MATERIALIZED VIEW echantillon_propriete AS (
             Norcocaine decimal,
             Noscapine decimal,
             Numero_echantillon varchar(255),
-            O3_Monoacetylmorphine_ decimal,
+            O3_Monoacetylmorphine decimal,
             O6_Monoacetylmorphine decimal,
             Ovule varchar(255),
             Oxycodone decimal,
