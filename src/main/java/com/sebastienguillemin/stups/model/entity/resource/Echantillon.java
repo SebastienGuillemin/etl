@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Composition;
@@ -148,6 +150,8 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
                 resource.addLiteral(descriptionProperty, valeur);
         }
         
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Echantillon"));
+
         return resource;
     }
 }
