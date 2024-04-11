@@ -26,6 +26,7 @@ public class App {
 
         List<Echantillon> echantillons = repository.loadData(session, batchSize);
         rdfRepository.populate(echantillons);
+        rdfRepository.saveOntology("ontology" + ((batchSize != -1) ? "_" + batchSize : "") + ".ttl");
 
         session.getTransaction().commit();
         session.close();

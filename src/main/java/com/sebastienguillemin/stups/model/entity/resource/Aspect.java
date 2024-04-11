@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
@@ -25,6 +26,7 @@ public class Aspect extends BaseEntity implements ResourceEntity {
         Property libelleAspect = model.createProperty(RDFRepository.PREFIX + "libelleAspect");
 
         resource.addProperty(libelleAspect, this.libelle);
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Aspect"));
                 
         return resource;
     }

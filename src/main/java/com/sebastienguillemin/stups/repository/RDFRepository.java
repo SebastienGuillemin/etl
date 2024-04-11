@@ -15,44 +15,39 @@ public class RDFRepository {
     public static final String PREFIX = "http://www.stups.fr/ontologies/2023/stups/";
 
     private Model model;
-    private String filename;
 
-    public RDFRepository(String filename) {
+    public RDFRepository(String baseOntologyFile) {
         this.model = ModelFactory.createDefaultModel();
-        this.filename = filename;
-
-        this.readFile();
+        this.readFile(baseOntologyFile);
     }
     
-    private void readFile() {        
-        this.model.read(this.filename, "TTL");
+    private void readFile(String filename) {        
+        this.model.read(filename, "TTL");
     }
 
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
-        Property idEchantillon = model.createProperty(RDFRepository.PREFIX + "id");
-        Property estProcheDe = model.createProperty(RDFRepository.PREFIX + "estProcheDe");
-        Property estProcheChimiquementDe = model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
+        Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
+        Property estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
+        Property estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
 
         
         for (Echantillon echantillon : echantillons) {
-            echantillonResource = echantillon.getResource(model);
+            echantillonResource = echantillon.getResource(this.model);
 
-            for (Resource neighbor : echantillon.getNeighbors(model))
+            for (Resource neighbor : echantillon.getNeighbors(this.model))
                 echantillonResource.addProperty(estProcheDe, neighbor);
 
-            for (Resource neighbor : echantillon.getChemicalNeighborsResources(model))
+            for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model))
                 echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
             
-            model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
+                this.model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }
-
-        this.writeFile();
     }
 
-    private void writeFile() {
+    public void saveOntology(String filename) {
         try {
-            FileWriter out = new FileWriter("new_" + this.filename);
+            FileWriter out = new FileWriter(filename);
             this.model.write(out, "TTL");
 
             System.out.println("RDF graph saved.");

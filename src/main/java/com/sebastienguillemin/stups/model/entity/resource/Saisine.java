@@ -8,6 +8,7 @@ import org.apache.jena.datatypes.xsd.XSDDateTime;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
@@ -51,6 +52,8 @@ public class Saisine extends BaseEntity implements ResourceEntity {
                 e.printStackTrace();
             }
         }
+
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Saisine"));
                 
         return resource;
     }

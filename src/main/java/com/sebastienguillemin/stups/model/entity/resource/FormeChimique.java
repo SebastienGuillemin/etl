@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
@@ -28,6 +29,7 @@ public class FormeChimique extends BaseEntity implements ResourceEntity {
         Property libelleFormeChimique = model.createProperty(RDFRepository.PREFIX + "libelleFormeChimique");
 
         resource.addProperty(libelleFormeChimique, this.libelle);
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "FormeChimique"));
                 
         return resource;
     }

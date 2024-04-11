@@ -1,4 +1,4 @@
 .vscode/
 target/
 src/main/resources/STUPS.properties
-# /new_STUPS.ttl
+*.ttl

@@ -3,6 +3,7 @@ package com.sebastienguillemin.stups.model.entity.resource;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.repository.RDFRepository;
 
@@ -19,7 +20,7 @@ import lombok.ToString;
 @Setter
 @Table(name = "principe_actif")
 @ToString
-public class PrincipeActif extends Constituant {
+public class PrincipeActif extends Composant {
     
     @ManyToOne
     @JoinColumn(name = "id_forme_chimique")
@@ -50,6 +51,7 @@ public class PrincipeActif extends Constituant {
         Property aFormeChimique = model.createProperty(RDFRepository.PREFIX + "aFormeChimique");
 
         resource.addProperty(aFormeChimique, this.formeChimique.getResource(model));
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "PrincipeActif"));
                 
         return resource;
     }

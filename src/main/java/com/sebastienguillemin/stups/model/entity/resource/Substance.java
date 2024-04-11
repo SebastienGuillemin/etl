@@ -3,6 +3,7 @@ package com.sebastienguillemin.stups.model.entity.resource;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Type;
@@ -34,7 +35,9 @@ public class Substance extends BaseEntity implements ResourceEntity {
         Property nomSubstance = model.createProperty(RDFRepository.PREFIX + "nomSubstance");
 
         resource.addProperty(nomSubstance, this.libelle);
-                
+
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Substance"));
+
         return resource;
     }
 }

@@ -3,6 +3,7 @@ package com.sebastienguillemin.stups.model.entity.resource;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.model.entity.base.Composition;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
-public abstract class Constituant extends BaseEntity implements ResourceEntity {
+public abstract class Composant extends BaseEntity implements ResourceEntity {
     @ManyToOne
     @JoinColumn(name = "id_composition")
     protected Composition composition;
@@ -44,6 +45,8 @@ public abstract class Constituant extends BaseEntity implements ResourceEntity {
 
         resource.addProperty(aSubstance, this.substance.getResource(model));
         resource.addLiteral(dosage, this.getDosage());
+
+        resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Composant"));
 
         return resource;
     }
