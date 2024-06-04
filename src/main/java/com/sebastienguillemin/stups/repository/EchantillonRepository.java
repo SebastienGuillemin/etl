@@ -13,18 +13,19 @@ public class EchantillonRepository {
         return this.loadData(session, -1);
     }
 
-    public List<Echantillon> loadData(Session session, int limit) {
+    public List<Echantillon> loadData(Session session, int dayCount) {
 
         if (session == null)
             return null;
 
         session.beginTransaction();
         System.out.println("Loading data from PostgreSQL.");
+        String queryString = String.format(
+            "SELECT e.* FROM echantillon e LEFT JOIN scelle sc on e.id_scelle  = sc.id LEFT JOIN saisine s  on s.id = sc.id_saisine WHERE extract('days' FROM to_timestamp('2020-12-31', 'YYYY-MM-DD') - s.date_saisie) <= %s and extract('days' FROM to_timestamp('2020-12-31', 'YYYY-MM-DD') - s.date_saisie) > 0 and e.id_composition  is not null", dayCount);
 
-        Query<Echantillon> query = session.createQuery("FROM Echantillon WHERE composition IS NOT NULL ORDER BY id", Echantillon.class);
-        
-        if (limit > 0)
-            query.setMaxResults(limit);
+        System.out.println(queryString);
+
+        Query<Echantillon> query = session.createNativeQuery(queryString, Echantillon.class);
 
         List<Echantillon> echantillons =  query.list();
         System.out.println(echantillons.size() + " echantillon(s) loaded.");

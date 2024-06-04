@@ -29,6 +29,9 @@ public class Saisine extends BaseEntity implements ResourceEntity {
     @Column(name = "date_reception")
     private String dateReception;
 
+    @Column(name = "date_saisie")
+    private String dateSaisine;
+
     @ManyToOne
     @JoinColumn(name = "id_service")
     public Service service;
@@ -46,8 +49,21 @@ public class Saisine extends BaseEntity implements ResourceEntity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
                 cal.setTime(sdf.parse(this.dateReception));
     
-                Property date = model.createProperty(RDFRepository.PREFIX + "date");
-                resource.addLiteral(date, new XSDDateTime(cal));
+                Property dateReception = model.createProperty(RDFRepository.PREFIX + "date");
+                resource.addLiteral(dateReception, new XSDDateTime(cal));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (this.dateSaisine != null) {
+            try {
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+                cal.setTime(sdf.parse(this.dateSaisine));
+    
+                Property dateSaisine = model.createProperty(RDFRepository.PREFIX + "date");
+                resource.addLiteral(dateSaisine, new XSDDateTime(cal));
             } catch (Exception e) {
                 e.printStackTrace();
             }

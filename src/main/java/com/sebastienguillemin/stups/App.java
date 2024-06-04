@@ -15,18 +15,18 @@ import com.sebastienguillemin.stups.session.SessionProvider;
  */
 public class App {
     public static void main(String[] args) {
-        int batchSize = -1;
+        int dayCount = 1000;
         if (args.length > 0)
-            batchSize = Integer.parseInt(args[0]);
+            dayCount = Integer.parseInt(args[0]);
 
         EchantillonRepository repository = new EchantillonRepository();
         RDFRepository rdfRepository = new RDFRepository("STUPS.ttl");
 
         Session session = SessionProvider.getSession();
 
-        List<Echantillon> echantillons = repository.loadData(session, batchSize);
+        List<Echantillon> echantillons = repository.loadData(session, dayCount);
         rdfRepository.populate(echantillons);
-        rdfRepository.saveOntology("ontology" + ((batchSize != -1) ? "_" + batchSize : "") + ".ttl");
+        rdfRepository.saveOntology("ontology" + ((dayCount != -1) ? "_" + dayCount : "") + ".ttl");
 
         session.getTransaction().commit();
         session.close();
