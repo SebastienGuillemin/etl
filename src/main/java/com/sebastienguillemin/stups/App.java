@@ -26,7 +26,8 @@ public class App {
 
         List<Echantillon> echantillons = repository.loadData(session, dayCount);
         rdfRepository.populate(echantillons);
-        rdfRepository.saveOntology("ontology" + ((dayCount != -1) ? "_" + dayCount : "") + ".ttl");
+        // rdfRepository.saveOntology("kb" + "_" + dayCount + ".ttl");
+        rdfRepository.saveOntology("STUPS.ttl");
 
         session.getTransaction().commit();
         session.close();

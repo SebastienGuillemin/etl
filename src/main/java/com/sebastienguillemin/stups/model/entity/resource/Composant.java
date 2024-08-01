@@ -1,5 +1,7 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import java.math.BigDecimal;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -33,9 +35,10 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
 
     protected boolean trace;
 
-    public float getDosage() {
+    public BigDecimal getDosage() {
         // TODO : que faire si pas de dosage et pas de en trace ?
-        return (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0 : 0;
+        float dosageFloat = (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0.0f : 0.0f;
+        return BigDecimal.valueOf(dosageFloat);
     }
 
     protected Resource getPartielResource(Model model) {
@@ -45,7 +48,7 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
 
         resource.addProperty(aSubstance, this.substance.getResource(model));
         resource.addLiteral(dosage, this.getDosage());
-
+        
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Composant"));
 
         return resource;

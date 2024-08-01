@@ -103,22 +103,28 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
 
     @Override
     public Resource getResource(Model model) {
+        // Creating sample resource
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+
+        // Creating (or retrieving if alrezady created) properties
         Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
+        Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
-        Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
         
+        // Add ID
         resource.addLiteral(idProperty, this.id + "");
         
+        // Add drug type and active principal resources
         for (PrincipeActif principeActif : this.composition.getPrincipeActifs()) {
             resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
             resource.addProperty(aPrincipeActif, principeActif.getResource(model));
         }
 
+        // Add cutting product resources
         for (ProduitCoupage produitCoupage : this.composition.getProduitCoupages())
             resource.addProperty(aProduitCoupage, produitCoupage.getResource(model));
 
@@ -128,25 +134,47 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
             resource.addProperty(aAspectInterne, aspectInterne.getResource(model));
         }
 
+        // Add external aspect resource
         resource.addProperty(aAspectExterne, this.composition.getAspect().getResource(model));
+
+        // Add sample number
         resource.addProperty(numeroEchantillon, this.num);
+
+        // Add scelle resource
         resource.addProperty(provientDe, this.scelle.getResource(model));
 
+        // Add comment
         String commentaire = this.composition.getCommentaire();
         if (commentaire != null) {
             Property commmentaire = model.createProperty(RDFRepository.PREFIX + "commentaire");
             resource.addProperty(commmentaire, commentaire);
         }
 
+        // Add description properties
+        Property descriptionProperty;
+        String propertyName, value;
         for (Description description : this.composition.getDescriptions()) {
-            Property descriptionProperty = model.createProperty(RDFRepository.PREFIX + description.getPropriete().getLibelle());
-            
-            String valeur;
-            if ((valeur = description.getValeur()) == null && description.getValeurPropriete() != null)
-                valeur = description.getValeurPropriete().getLibelle();
+            propertyName = description.getPropriete().getLibelle();
+            descriptionProperty = model.createProperty(RDFRepository.PREFIX + description.getPropriete().getLibelle());
 
-            if (valeur != null)
-                resource.addLiteral(descriptionProperty, valeur);
+            if ((value = description.getValeur()) == null && description.getValeurPropriete() != null)
+                value = description.getValeurPropriete().getLibelle();
+                
+            if (value != null) {
+                if (Propriete.BOOLEAN_PROPERTIES.contains(propertyName))
+                    if (value.equalsIgnoreCase("non") || value.equalsIgnoreCase("false") || value.equalsIgnoreCase("0"))
+                        resource.addLiteral(descriptionProperty, false);
+
+                    else if (value.equalsIgnoreCase("oui") || value.equalsIgnoreCase("true") || value.equalsIgnoreCase("1"))
+                        resource.addLiteral(descriptionProperty, true);
+                
+                else if (Propriete.FLOAT_PROPERTIES.contains(propertyName))
+                    resource.addLiteral(descriptionProperty, value.replace(',', '.'));
+                
+                else
+                    resource.addLiteral(descriptionProperty, value);
+
+            }
         }
         
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Echantillon"));
