@@ -352,8 +352,9 @@
 #################################################################
 
 ###  http://www.stups.fr/ontologies/2023/stups/abime
-:abime rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:abime rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
@@ -361,6 +362,10 @@
 :airPic rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:range xsd:decimal .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/caracteristiqueMacroscopique
+:caracteristiqueMacroscopique rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/commentaire
@@ -371,6 +376,7 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/couleur
 :couleur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
          rdfs:range [ rdf:type rdfs:Datatype ;
                       owl:oneOf [ rdf:type rdf:List ;
                                   rdf:first "Autre" ;
@@ -426,6 +432,7 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/couleurInterieure
 :couleurInterieure rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :caracteristiqueMacroscopique ;
                    rdfs:range [ rdf:type rdfs:Datatype ;
                                 owl:oneOf [ rdf:type rdf:List ;
                                             rdf:first "Autre" ;
@@ -492,8 +499,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/diametre
-:diametre rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:diametre rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
@@ -504,20 +512,23 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/empreinte
-:empreinte rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
+:empreinte rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/epaisseur
-:epaisseur rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
+:epaisseur rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/forme
-:forme rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:forme rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range [ rdf:type rdfs:Datatype ;
                     owl:oneOf [ rdf:type rdf:List ;
                                 rdf:first "Autre" ;
@@ -542,8 +553,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/hauteur
-:hauteur rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
+:hauteur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+         rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
@@ -554,8 +566,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/largeur
-:largeur rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
+:largeur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+         rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
@@ -645,20 +658,23 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/logo
-:logo rdf:type owl:DatatypeProperty ,
-               owl:FunctionalProperty ;
+:logo rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/longueur
-:longueur rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:longueur rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/masse
-:masse rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:masse rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:float .
 
 
@@ -700,14 +716,16 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/ovule
-:ovule rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
+:ovule rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+       rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/presentation
-:presentation rdf:type owl:DatatypeProperty ,
-                       owl:FunctionalProperty ;
+:presentation rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+              rdf:type owl:FunctionalProperty ;
               rdfs:range [ rdf:type rdfs:Datatype ;
                            owl:oneOf [ rdf:type rdf:List ;
                                        rdf:first "Autre" ;
@@ -759,8 +777,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteRecto
-:secabiliteRecto rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
+:secabiliteRecto rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -779,8 +798,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/secabiliteVerso
-:secabiliteVerso rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
+:secabiliteVerso rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+                 rdf:type owl:FunctionalProperty ;
                  rdfs:range [ rdf:type rdfs:Datatype ;
                               owl:oneOf [ rdf:type rdf:List ;
                                           rdf:first "Aucune" ;
@@ -799,8 +819,9 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/taux
-:taux rdf:type owl:DatatypeProperty ,
-               owl:FunctionalProperty ;
+:taux rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+      rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:float .
 
 
@@ -866,14 +887,16 @@
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/visqueux
-:visqueux rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:visqueux rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/volume
-:volume rdf:type owl:DatatypeProperty ,
-                 owl:FunctionalProperty ;
+:volume rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
+        rdf:type owl:FunctionalProperty ;
         rdfs:range xsd:float .
 
 
@@ -926,55 +949,60 @@
 
 ###  http://www.stups.fr/ontologies/2023/stups/Echantillon
 :Echantillon rdf:type owl:Class ;
-             rdfs:subClassOf [ rdf:type owl:Restriction ;
-                               owl:onProperty :aProduitCoupage ;
-                               owl:someValuesFrom :ProduitCoupage
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :estProcheDe ;
-                               owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                               owl:onClass :Echantillon
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :aAspectExterne ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :Aspect
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :aPrincipeActif ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :PrincipeActif
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :provientDe ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :Scelle
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :aAspectInterne ;
-                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :Aspect
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :aProfilChimique ;
-                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :ProfilChimique
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :id ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onDataRange xsd:string
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :numeroEchantillon ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onDataRange xsd:string
-                             ] ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :typeDrogue ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onDataRange xsd:string
-                             ] ;
+             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aProduitCoupage ;
+                                                          owl:someValuesFrom :ProduitCoupage
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :estProcheDe ;
+                                                          owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :Echantillon
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aAspectExterne ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :Aspect
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aPrincipeActif ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :PrincipeActif
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :provientDe ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :Scelle
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aAspectInterne ;
+                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :Aspect
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :aProfilChimique ;
+                                                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass :ProfilChimique
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :id ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onDataRange xsd:string
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :numeroEchantillon ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onDataRange xsd:string
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :typeDrogue ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onDataRange xsd:string
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+             owl:hasKey ( :id
+                        ) ;
              rdfs:comment """Un échantillon de drogue est extrait à partir d’un prélèvement d’un scellé. Un échantillon est caractérisé par un numéro d’échantillon et son type de drogue ('cannabis', 'cocaïne', 'divers' ou 'amphétamine et dérivés'). Un échantillon a des caractéristiques macroscopiques (aspect internes et externes, couleurs etc.), un principe actif et des produits de coupage. Les experts peuvent aussi donner des commentaires sur l’échantillon. De plus, un échantillon peut être regroupé avec d’autres échantillon dans un lot.
 Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique.""" .
 
@@ -1114,6 +1142,8 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                                   ) ;
                                rdf:type owl:Class
                              ] ;
+         owl:hasKey ( :id
+                    ) ;
          rdfs:comment "La saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de drogue. La fiche (i.e. l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés" .
 
 
@@ -1131,6 +1161,8 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                                  ) ;
                               rdf:type owl:Class
                             ] ;
+        owl:hasKey ( :id
+                   ) ;
         rdfs:comment "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs échantillons des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice.  Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." .
 
 
@@ -1191,4 +1223,4 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
        rdfs:comment "Un ville est dans un département." .
 
 
-###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi

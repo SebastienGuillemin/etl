@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
 
 public class EchantillonRepository {
-    private static final String END_DATE = "2022-02-28";
+    // private static final String END_DATE = "2022-02-28";
 
     public List<Echantillon> loadData(Session session) {
         return this.loadData(session, -1);
@@ -21,16 +21,23 @@ public class EchantillonRepository {
 
         session.beginTransaction();
         System.out.println("Loading data from PostgreSQL.");
+        // String queryString = String.format(
+        // "SELECT e.* FROM echantillon e LEFT JOIN scelle sc on e.id_scelle = sc.id
+        // LEFT JOIN saisine s on s.id = sc.id_saisine WHERE extract('days' FROM
+        // to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) <= %s and extract('days'
+        // FROM to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) > 0 and
+        // e.id_composition is not null", END_DATE, dayCount, END_DATE);
+
         String queryString = String.format(
-            "SELECT e.* FROM echantillon e LEFT JOIN scelle sc on e.id_scelle  = sc.id LEFT JOIN saisine s  on s.id = sc.id_saisine WHERE extract('days' FROM to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) <= %s and extract('days' FROM to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) > 0 and e.id_composition  is not null", END_DATE, dayCount, END_DATE);
+                "SELECT e.* FROM echantillon e LEFT JOIN scelle sc on e.id_scelle = sc.id LEFT JOIN saisine s on s.id = sc.id_saisine WHERE e.id_composition is not null");
 
         System.out.println(queryString);
 
         Query<Echantillon> query = session.createNativeQuery(queryString, Echantillon.class);
 
-        List<Echantillon> echantillons =  query.list();
+        List<Echantillon> echantillons = query.list();
         System.out.println(echantillons.size() + " echantillon(s) loaded.");
 
         return echantillons;
-    }    
+    }
 }

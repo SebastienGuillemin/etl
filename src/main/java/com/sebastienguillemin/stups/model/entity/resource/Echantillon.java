@@ -176,7 +176,7 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
 
             }
         }
-        
+
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Echantillon"));
 
         return resource;
