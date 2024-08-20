@@ -41,32 +41,20 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
     @JoinColumn(name = "id_composition")
     private Composition composition;
 
-    public List<Resource> getNeighbors(Model model) {
+    public List<Resource> getNeighborsResources(Model model) {
         List<Resource> resources = new ArrayList<>();
 
         for (LotEchantillon lot : this.composition.getLotsTete()) {
             if (lot.getTypeLien().getLibelle().equals("Macroscopique") || lot.getTypeLien().getLibelle().equals("Composition atypique")) {
-                
+                for (Echantillon echantillon : lot.getComposition1().getEchantillons())
+                resources.add(echantillon.getResource(model));
+
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                    resources.add(echantillon.getResource(model));
+                resources.add(echantillon.getResource(model));
             }
         }
 
         return resources;
-    }
-    
-    public List<Echantillon> getChemicalNeighbors(Model model) {
-        List<Echantillon> neighbors = new ArrayList<>();
-
-        for (LotEchantillon lot : this.composition.getLotsTete()) {
-            if (lot.getTypeLien().getLibelle().equals("Profilage")) {
-                
-                for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                    neighbors.add(echantillon);
-            }
-        }
-
-        return neighbors;
     }
 
 
@@ -76,6 +64,9 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         for (LotEchantillon lot : this.composition.getLotsTete()) {
             if (lot.getTypeLien().getLibelle().equals("Profilage")) {
                 
+                for (Echantillon echantillon : lot.getComposition1().getEchantillons())
+                    resources.add(echantillon.getResource(model));
+
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
                     resources.add(echantillon.getResource(model));
             }
