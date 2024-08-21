@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-import org.apache.jena.ontapi.OntModelFactory;
-import org.apache.jena.ontapi.OntSpecification;
-import org.apache.jena.ontapi.model.OntModel;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
@@ -25,11 +24,11 @@ public class RDFRepository {
         PREFIX = propertiesReader.getPropertyValue("ontology.base.prefix");
     }
 
-    private OntModel model;
+    private Model model;
     private PropertiesReader propertiesReader;
 
     public RDFRepository(String baseOntologyFile) {
-        this.model = OntModelFactory.createModel( OntSpecification.OWL2_DL_MEM );
+        this.model = ModelFactory.createDefaultModel();
         this.propertiesReader = PropertiesReader.getInstance();
 
         this.readFile(baseOntologyFile);

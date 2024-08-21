@@ -505,7 +505,7 @@
 ###  http://www.stups.fr/ontologies/2023/stups/dosage
 :dosage rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
-        rdfs:range xsd:decimal .
+        rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/empreinte
