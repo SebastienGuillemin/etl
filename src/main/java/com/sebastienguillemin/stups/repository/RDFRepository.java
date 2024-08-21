@@ -5,30 +5,37 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.ontapi.OntModelFactory;
+import org.apache.jena.ontapi.OntSpecification;
+import org.apache.jena.ontapi.model.OntModel;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.Lang;
-import org.apache.jena.riot.RDFDataMgr;
+import org.apache.jena.riot.RDFWriter;
+import org.apache.jena.riot.RIOT;
 
 import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
 import com.sebastienguillemin.stups.util.PropertiesReader;
 
 public class RDFRepository {
-    public static final String PREFIX = "http://www.stups.fr/ontologies/2023/stups/";
+    public static final String PREFIX;
 
-    private Model model;
+    static {
+        PropertiesReader propertiesReader = PropertiesReader.getInstance();
+        PREFIX = propertiesReader.getPropertyValue("ontology.base.prefix");
+    }
+
+    private OntModel model;
     private PropertiesReader propertiesReader;
 
     public RDFRepository(String baseOntologyFile) {
-        this.model = ModelFactory.createDefaultModel();
+        this.model = OntModelFactory.createModel( OntSpecification.OWL2_DL_MEM );
         this.propertiesReader = PropertiesReader.getInstance();
 
         this.readFile(baseOntologyFile);
     }
-    
-    private void readFile(String filename) {        
+
+    private void readFile(String filename) {
         this.model.read(filename, "TTL");
     }
 
@@ -36,9 +43,10 @@ public class RDFRepository {
         Resource echantillonResource;
         Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
         Property estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
-        Property estProcheChimiquementDe = null; 
-        
-        boolean loadEstProcheChimiquementDe = this.propertiesReader.getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
+        Property estProcheChimiquementDe = null;
+
+        boolean loadEstProcheChimiquementDe = this.propertiesReader
+                .getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
         System.out.println("Load estProcheChimiquementDe : " + loadEstProcheChimiquementDe);
 
         if (loadEstProcheChimiquementDe)
@@ -62,7 +70,14 @@ public class RDFRepository {
     public void saveOntology(String filename) {
         try {
             OutputStream out = new FileOutputStream(filename);
-            RDFDataMgr.write(out, model, Lang.TURTLE);
+            String baseURI = this.propertiesReader.getPropertyValue("ontology.base.prefix");
+
+            RDFWriter.source(model)
+                    .base(baseURI)
+                    .set(RIOT.symTurtleOmitBase, false)
+                    .set(RIOT.symTurtleDirectiveStyle, "at")
+                    .lang(Lang.TTL)
+                    .output(out);
 
             System.out.println("RDF graph saved.");
         } catch (IOException e) {

@@ -36,6 +36,6 @@ public class FormeChimique extends BaseEntity implements ResourceEntity {
 
     @Override
     public String getResourceName() {
-        return StringUtils.stripAccents(this.simpleName + "_" + this.libelle).toLowerCase().replace(' ', '_');
+        return StringUtils.stripAccents(this.simpleName + "_" + this.libelle).toLowerCase().replace(' ', '_').replaceAll("&", "et");
     } 
 }

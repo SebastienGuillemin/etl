@@ -1,9 +1,10 @@
 sql:
-  query: SELECT e.* FROM echantillon e LEFT JOIN scelle sc on e.id_scelle = sc.id LEFT JOIN saisine s on s.id = sc.id_saisine where e.id_composition is not null and e.id in (9274, 6466, 13647, 11249, 7631, 13849, 12803, 4491, 7996, 7358, 10431, 4382, 4423, 836, 5527, 6257, 6197, 7886, 12466, 4828, 4967, 856, 622, 28, 13482, 969, 1747, 1254, 7633, 1258, 11251, 10021, 1537, 13488, 5449, 10574, 7399, 14131, 9278, 9766, 113, 10008, 4844, 3631, 1222, 5228, 8734, 1534, 49, 8428, 9196, 10706, 12577, 1533, 2470, 13156, 4148, 4408, 7356, 968, 2378, 4940, 6618, 8596, 5889, 6195, 11179, 11379, 13481, 13485, 2379, 2147, 5230, 8750, 846, 444, 7888, 4381, 3610, 8847, 7689, 7884, 9664, 4948, 13486, 10554, 12011, 7362, 12528, 10429, 4843, 10423, 5945, 12760, 10780, 3343, 9568, 6334, 10553, 12233)
+  query: SELECT e.* FROM echantillon e where e.id_composition is not null
 
 ontology:
   base:
+    prefix: http://www.stups.fr/ontologies/2023/stups/#
     name: STUPS.ttl
   save:
-    name: evaluation_STUPS_ontology.ttl
+    name: populated_STUPS.ttl
     estProcheChimiquementDe: false
