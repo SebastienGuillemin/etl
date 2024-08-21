@@ -44,9 +44,13 @@ public class RDFRepository {
         Property estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
         Property estProcheChimiquementDe = null;
 
+        boolean loadEstProchetDe = this.propertiesReader
+                .getPropertyValueBoolean("ontology.save.estprocheDe");
         boolean loadEstProcheChimiquementDe = this.propertiesReader
                 .getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
-        System.out.println("Load estProcheChimiquementDe : " + loadEstProcheChimiquementDe);
+                
+        System.out.println("Load loadEstProchetDe : " + loadEstProchetDe);
+        System.out.println("Load estProcheChimiquementDe : " + loadEstProcheChimiquementDe + "\n");
 
         if (loadEstProcheChimiquementDe)
             estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
@@ -54,13 +58,13 @@ public class RDFRepository {
         for (Echantillon echantillon : echantillons) {
             echantillonResource = echantillon.getResource(this.model);
 
-            for (Resource neighbor : echantillon.getNeighborsResources(this.model))
-                echantillonResource.addProperty(estProcheDe, neighbor);
+            if (loadEstProchetDe)
+                for (Resource neighbor : echantillon.getNeighborsResources(this.model))
+                    echantillonResource.addProperty(estProcheDe, neighbor);
 
-            if (loadEstProcheChimiquementDe) {
+            if (loadEstProcheChimiquementDe)
                 for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model))
                     echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
-            }
 
             this.model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }
