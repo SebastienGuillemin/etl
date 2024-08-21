@@ -11,6 +11,12 @@ import com.sebastienguillemin.stups.util.PropertiesReader;
 public class EchantillonRepository {
     // private static final String END_DATE = "2022-02-28";
 
+    private PropertiesReader propertiesReader;
+
+    public EchantillonRepository() {
+        this.propertiesReader = PropertiesReader.getInstance();
+    }
+
     public List<Echantillon> loadData(Session session) {
         return this.loadData(session, -1);
     }
@@ -28,7 +34,7 @@ public class EchantillonRepository {
         // FROM to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) > 0 and
         // e.id_composition is not null", END_DATE, dayCount, END_DATE);
 
-        String queryString = PropertiesReader.getInstance().getPropertyValue("sql.query");
+        String queryString = this.propertiesReader.getPropertyValue("sql.query");
         System.out.println(queryString);
 
         Query<Echantillon> query = session.createNativeQuery(queryString, Echantillon.class);

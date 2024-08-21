@@ -2,7 +2,6 @@ package com.sebastienguillemin.stups.util;
 
 import java.io.InputStream;
 import java.util.Map;
-import java.util.Optional;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -18,6 +17,7 @@ public class PropertiesReader {
 
     private Map<String, Object> properties;
 
+    @SuppressWarnings("unchecked")
     public String getPropertyValue(String propertyName) {
         if (this.properties == null)
             this.loadProperties();
@@ -43,6 +43,10 @@ public class PropertiesReader {
         }
 
         return value;
+    }
+
+    public boolean getPropertyValueBoolean(String propertyName) {
+        return Boolean.valueOf(this.getPropertyValue(propertyName));
     }
 
     private void loadProperties() {
