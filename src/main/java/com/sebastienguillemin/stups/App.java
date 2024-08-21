@@ -8,6 +8,7 @@ import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
 import com.sebastienguillemin.stups.repository.EchantillonRepository;
 import com.sebastienguillemin.stups.repository.RDFRepository;
 import com.sebastienguillemin.stups.session.SessionProvider;
+import com.sebastienguillemin.stups.util.PropertiesReader;
 
 /**
  * Hello world!
@@ -26,8 +27,10 @@ public class App {
 
         List<Echantillon> echantillons = repository.loadData(session, dayCount);
         rdfRepository.populate(echantillons);
-        // rdfRepository.saveOntology("kb" + "_" + dayCount + ".ttl");
-        rdfRepository.saveOntology("STUPS.ttl");
+        
+        PropertiesReader propertiesReader = PropertiesReader.getInstance();
+
+        rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.name"));
 
         session.getTransaction().commit();
         session.close();
