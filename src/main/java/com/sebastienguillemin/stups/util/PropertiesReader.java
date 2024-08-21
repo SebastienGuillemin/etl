@@ -1,5 +1,6 @@
 package com.sebastienguillemin.stups.util;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import org.yaml.snakeyaml.Yaml;
 public class PropertiesReader {
     private static PropertiesReader propertiesReader;
 
-    public static PropertiesReader getInstance() {
+    public synchronized static PropertiesReader getInstance() {
         if (propertiesReader == null)
             propertiesReader = new PropertiesReader();
 
@@ -17,11 +18,17 @@ public class PropertiesReader {
 
     private Map<String, Object> properties;
 
+    private PropertiesReader() {
+        try {
+            this.loadProperties();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public String getPropertyValue(String propertyName) {
-        if (this.properties == null)
-            this.loadProperties();
-
         String parts[] = propertyName.split("\\.");
 
         String value = "";
@@ -49,10 +56,18 @@ public class PropertiesReader {
         return Boolean.valueOf(this.getPropertyValue(propertyName));
     }
 
-    private void loadProperties() {
+    public int getPropertyValueInteger(String propertyName) {
+        return Integer.valueOf(this.getPropertyValue(propertyName));
+    }
+
+    private void loadProperties() throws IOException {
+        System.out.println("Loading properties.");
+        
         Yaml yaml = new Yaml();
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("properties.yml");
-        this.properties = yaml.load(inputStream);
+        try (InputStream in = this.getClass().getClassLoader().getResourceAsStream("properties.yml")) {
+            System.out.println(in);
+            this.properties = yaml.load(in);
+        }
         
         System.out.println("Properties loaded.");
     }
