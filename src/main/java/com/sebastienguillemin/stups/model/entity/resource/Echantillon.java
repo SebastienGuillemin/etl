@@ -75,7 +75,7 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         return resources;
     }
 
-    public Object getProperty(String propertyName) {
+    public String getProperty(String propertyName) {
         Propriete property = null;
         
         for (Description description  : this.composition.getDescriptions()) {
@@ -85,11 +85,11 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
                 if (description.getValeur() != null)
                     return description.getValeur();
                 else if (description.getValeurPropriete() != null)
-                    return description.getValeurPropriete();
-                else return null;
+                    return description.getValeurPropriete().getLibelle();
+                else return "";
         }
 
-        return null;
+        return "";
     }
 
     @Override
@@ -105,6 +105,7 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
         Property provientDe = model.createProperty(RDFRepository.PREFIX + "provientDe");
+        Property forme = model.createProperty(RDFRepository.PREFIX + "forme");
         
         // Add ID
         resource.addLiteral(idProperty, this.id + "");
@@ -133,6 +134,9 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
 
         // Add scelle resource
         resource.addProperty(provientDe, this.scelle.getResource(model));
+
+        // Add forme resource
+        resource.addProperty(forme, this.getProperty("forme"));
 
         // Add comment
         String commentaire = this.composition.getCommentaire();
