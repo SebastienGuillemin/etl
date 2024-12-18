@@ -7,12 +7,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
-@ToString
 public class Description extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_composition")
@@ -24,6 +22,12 @@ public class Description extends BaseEntity {
     
     @ManyToOne
     @JoinColumn(name = "id_valeur_propriete")
-    private ValeurPropriete valeurPropriete;    // For tabular values.
-    private String valeur;  // For free values.
+    private ValeurPropriete valeurPropriete;    // For tabular values (i.e, value from table "valeur_propriete").
+    private String valeur;  // For free values (i.e., value from table "description").
+
+
+    @Override
+    public String toString() {
+        return "Id composition : " + this .composition.getId() + ", " + this.propriete.getLibelle() + " = " + ((this.valeurPropriete != null) ? this.valeurPropriete.getLibelle() : this.valeur);
+    }
 }

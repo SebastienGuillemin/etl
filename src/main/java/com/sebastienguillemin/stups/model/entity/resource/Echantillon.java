@@ -136,7 +136,9 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         resource.addProperty(provientDe, this.scelle.getResource(model));
 
         // Add forme resource
-        resource.addProperty(forme, this.getProperty("forme"));
+        String formeValue = this.getProperty("forme");
+        if (formeValue != null && !formeValue.equals(""))
+            resource.addProperty(forme, this.getProperty("forme"));
 
         // Add comment
         String commentaire = this.composition.getCommentaire();
@@ -149,22 +151,30 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         Property descriptionProperty;
         String propertyName, value;
         for (Description description : this.composition.getDescriptions()) {
+            value = null;
+
             propertyName = description.getPropriete().getLibelle();
             descriptionProperty = model.createProperty(RDFRepository.PREFIX + description.getPropriete().getLibelle());
 
-            if ((value = description.getValeur()) == null && description.getValeurPropriete() != null)
-                value = description.getValeurPropriete().getLibelle();
+            // Tabular data
+            if (description.getValeurPropriete() != null)
+                resource.addLiteral(descriptionProperty, description.getValeurPropriete().getLibelle());
                 
-            if (value != null) {
-                if (Propriete.BOOLEAN_PROPERTIES.contains(propertyName))
+            // Free data
+            else if (description.getValeur() != null && !description.getValeur().equals("")) {
+                value = description.getValeur();
+                
+                if (Propriete.BOOLEAN_PROPERTIES.contains(propertyName)) {
                     if (value.equalsIgnoreCase("non") || value.equalsIgnoreCase("false") || value.equalsIgnoreCase("0"))
                         resource.addLiteral(descriptionProperty, false);
 
                     else if (value.equalsIgnoreCase("oui") || value.equalsIgnoreCase("true") || value.equalsIgnoreCase("1"))
                         resource.addLiteral(descriptionProperty, true);
-                
-                else if (Propriete.FLOAT_PROPERTIES.contains(propertyName))
-                    resource.addLiteral(descriptionProperty, value.replace(',', '.'));
+                }
+
+                else if (Propriete.FLOAT_PROPERTIES.contains(propertyName)) {
+                    resource.addLiteral(descriptionProperty, Float.parseFloat(value.replace(',', '.')));
+                }
                 
                 else
                     resource.addLiteral(descriptionProperty, value);
