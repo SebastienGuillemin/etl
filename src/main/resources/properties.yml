@@ -1,11 +1,11 @@
 sql:
-  query: SELECT e.* FROM echantillon e where e.id_composition is not null order by created_at  desc limit 1000
+  query: select distinct e.* FROM echantillon e inner join principe_actif pa on pa.id_composition = e.id_composition inner join substance s on pa.id_substance = s.id inner join "type" t on t.id = s.id_categorie WHERE e.id_composition is not null and t.code = 'cannabis' order by e.created_at desc limit 1000
 
 ontology:
   base:
     prefix: http://www.stups.fr/ontologies/2023/stups/#
     name: STUPS.ttl
   save:
-    name: populated_STUPS.ttl
+    name: populated_STUPS_cannabis.ttl
     estProcheChimiquementDe: false
     estProcheDe: false
