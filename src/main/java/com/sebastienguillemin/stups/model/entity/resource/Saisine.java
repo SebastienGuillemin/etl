@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.datatypes.xsd.XSDDateTime;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
@@ -43,30 +44,25 @@ public class Saisine extends BaseEntity implements ResourceEntity {
         Property id = model.createProperty(RDFRepository.PREFIX + "id");
         resource.addProperty(id, this.id + "");
 
-        if (this.dateReception != null) {
-            try {
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
-                cal.setTime(sdf.parse(this.dateReception));
-    
-                Property dateReception = model.createProperty(RDFRepository.PREFIX + "date");
-                resource.addLiteral(dateReception, new XSDDateTime(cal));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        Property dateProperty = model.createProperty(RDFRepository.PREFIX + "date");
+        try {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
 
-        if (this.dateSaisine != null) {
-            try {
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
+            if (this.dateSaisine != null)
                 cal.setTime(sdf.parse(this.dateSaisine));
-    
-                Property dateSaisine = model.createProperty(RDFRepository.PREFIX + "date");
-                resource.addLiteral(dateSaisine, new XSDDateTime(cal));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            else if (this.dateReception != null)
+                cal.setTime(sdf.parse(this.dateReception));
+
+            // Use this to avoid automatic '-2 hours' performed by XSDDateTime constructor
+            if (cal.get(Calendar.HOUR_OF_DAY) < 2)
+                cal.set(Calendar.HOUR_OF_DAY, 2);
+
+            XSDDateTime xsdDateTime = new XSDDateTime(cal);
+            xsdDateTime.narrowType(XSDDatatype.XSDdate);
+            resource.addLiteral(dateProperty, xsdDateTime);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Saisine"));

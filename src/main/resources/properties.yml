@@ -1,5 +1,5 @@
 sql:
-  query: select e.* FROM echantillon e inner join principe_actif pa on pa.id_composition = e.id_composition inner join substance s on pa.id_substance = s.id inner join "type" t on t.id = s.id_categorie WHERE e.id_composition is not null and t.code = 'cannabis' and extract('year' from e.created_at) = '2022' and extract('month' from e.created_at) in  ('02', '03', '04', '05', '06', '07') limit 100
+  query: select e.* from echantillon e inner join count_produit_coupage_par_echantillon pc_per_e on e.id = pc_per_e.echantillon_id where count_pc <= 2
 
 ontology:
   base:
@@ -7,5 +7,5 @@ ontology:
     name: STUPS.ttl
   save:
     name: populated_STUPS_cannabis.ttl
-    estProcheChimiquementDe: false
-    estProcheDe: false
+    estProcheChimiquementDe: True
+    estProcheDe: True
