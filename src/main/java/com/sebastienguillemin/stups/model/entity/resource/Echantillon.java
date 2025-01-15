@@ -47,10 +47,10 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         for (LotEchantillon lot : this.composition.getLotsTete()) {
             if (lot.getTypeLien().getLibelle().equals("Macroscopique") || lot.getTypeLien().getLibelle().equals("Composition atypique")) {
                 for (Echantillon echantillon : lot.getComposition1().getEchantillons())
-                resources.add(echantillon.getResource(model));
+                    resources.add(echantillon.getResource(model));
 
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                resources.add(echantillon.getResource(model));
+                    resources.add(echantillon.getResource(model));
             }
         }
 

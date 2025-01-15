@@ -65,10 +65,9 @@ public class PropertiesReader {
         
         Yaml yaml = new Yaml();
         try (InputStream in = this.getClass().getClassLoader().getResourceAsStream("properties.yml")) {
-            System.out.println(in);
             this.properties = yaml.load(in);
         }
-        
+        System.out.println(this.properties);
         System.out.println("Properties loaded.");
     }
 }

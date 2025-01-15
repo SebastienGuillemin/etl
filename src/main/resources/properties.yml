@@ -7,5 +7,5 @@ ontology:
     name: STUPS.ttl
   save:
     name: populated_STUPS_cannabis.ttl
-    estProcheChimiquementDe: True
-    estProcheDe: True
+    estProcheChimiquementDe: "false"
+    estProcheDe: "true"

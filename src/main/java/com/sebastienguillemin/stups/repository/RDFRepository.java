@@ -41,16 +41,17 @@ public class RDFRepository {
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
         Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
-        Property estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
+        Property estProcheDe = null;
         Property estProcheChimiquementDe = null;
 
-        boolean loadEstProchetDe = this.propertiesReader
-                .getPropertyValueBoolean("ontology.save.estprocheDe");
-        boolean loadEstProcheChimiquementDe = this.propertiesReader
-                .getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
+        boolean loadEstProchetDe = this.propertiesReader.getPropertyValueBoolean("ontology.save.estProcheDe");
+        boolean loadEstProcheChimiquementDe = this.propertiesReader.getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
                 
         System.out.println("Load loadEstProchetDe : " + loadEstProchetDe);
         System.out.println("Load estProcheChimiquementDe : " + loadEstProcheChimiquementDe + "\n");
+
+        if (loadEstProchetDe)
+            estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
 
         if (loadEstProcheChimiquementDe)
             estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
