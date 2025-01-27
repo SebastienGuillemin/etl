@@ -1,5 +1,5 @@
 sql:
-  query: select distinct e.* from echantillon e inner join count_principe_actif_par_echantillon cpape on cpape.echantillion_id = e.id inner join count_produit_coupage_par_echantillon cpcpe on cpcpe.echantillon_id = cpape.echantillion_id where cpape.count_pa = 1 and cpcpe.count_pc <= 2
+  query: select e.* from echantillon e inner join composition c  on c.id = e.id_composition inner join principe_actif pa on pa.id_composition = c.id inner join substance s on pa.id_substance = s.id inner join "type" t on s.id_categorie = t.id where t.libelle = 'Cannabis'
 
 ontology:
   base:

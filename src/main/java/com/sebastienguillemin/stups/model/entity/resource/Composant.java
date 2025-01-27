@@ -34,18 +34,24 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
     protected boolean trace;
 
     public float getDosage() {
-        // TODO : que faire si pas de dosage et pas de en trace ?
-        return (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0.0f : 0.0f;
+        return (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0.0f : -1.0f;
     }
 
     protected Resource getPartielResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
-        Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
-        Property dosage = model.createProperty(RDFRepository.PREFIX + "dosage");
 
+        Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
         resource.addProperty(aSubstance, this.substance.getResource(model));
-        resource.addLiteral(dosage, this.getDosage());
-        
+
+        // Consider property dosage only if not a Cannabis sample
+        if (!this.substance.getType().getLibelle().equals("Cannabis")) {
+            float dosageLiteral = this.getDosage();
+            if (dosageLiteral != -1.0f) {
+                Property dosage = model.createProperty(RDFRepository.PREFIX + "dosage");
+                resource.addLiteral(dosage, dosageLiteral);
+            }
+        }
+
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Composant"));
 
         return resource;
