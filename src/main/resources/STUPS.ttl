@@ -4,6 +4,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.stups.fr/ontologies/2023/stups/#> .
+
+<http://www.stups.fr/ontologies/2023/stups/> rdf:type owl:Ontology ;
+                                              owl:versionIRI <http://www.stups.fr/ontologies/2023/stups/6.0.0> .
 
 #################################################################
 #    Annotation properties
@@ -13,7 +17,7 @@
 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/pic
+###  http://www.stups.fr/ontologies/2023/stups/#pic
 :pic rdf:type owl:AnnotationProperty .
 
 
@@ -21,7 +25,7 @@
 #    Object Properties
 #################################################################
 
-###  http://www.stups.fr/ontologies/2023/stups/aAspectExterne
+###  http://www.stups.fr/ontologies/2023/stups/#aAspectExterne
 :aAspectExterne rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estAspectExterneDe ;
@@ -30,7 +34,7 @@
                 rdfs:range :Aspect .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aAspectInterne
+###  http://www.stups.fr/ontologies/2023/stups/#aAspectInterne
 :aAspectInterne rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estAspectInterneDe ;
@@ -39,14 +43,14 @@
                 rdfs:range :Aspect .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aDepartement
+###  http://www.stups.fr/ontologies/2023/stups/#aDepartement
 :aDepartement rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               owl:inverseOf :estDansRegion ;
               rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aEchantillon
+###  http://www.stups.fr/ontologies/2023/stups/#aEchantillon
 :aEchantillon rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               owl:inverseOf :provientDe ;
@@ -55,7 +59,7 @@
               rdfs:range :Echantillon .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aFormeChimique
+###  http://www.stups.fr/ontologies/2023/stups/#aFormeChimique
 :aFormeChimique rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estFormeChimiqueDe ;
@@ -64,7 +68,7 @@
                 rdfs:range :FormeChimique .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aPaysDestination
+###  http://www.stups.fr/ontologies/2023/stups/#aPaysDestination
 :aPaysDestination rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   owl:inverseOf :estPaysDestinationDe ;
@@ -73,7 +77,7 @@
                   rdfs:range :Pays .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aPic
+###  http://www.stups.fr/ontologies/2023/stups/#aPic
 :aPic rdf:type owl:ObjectProperty ;
       rdfs:subPropertyOf owl:topObjectProperty ;
       owl:inverseOf :estPicDe ;
@@ -82,7 +86,7 @@
       rdfs:range :Pic .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aPrincipeActif
+###  http://www.stups.fr/ontologies/2023/stups/#aPrincipeActif
 :aPrincipeActif rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 owl:inverseOf :estPrincipeActifDe ;
@@ -92,7 +96,7 @@
                 rdfs:range :PrincipeActif .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aProduitCoupage
+###  http://www.stups.fr/ontologies/2023/stups/#aProduitCoupage
 :aProduitCoupage rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estProduitCoupageDe ;
@@ -101,7 +105,7 @@
                  rdfs:range :ProduitCoupage .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aProfilChimique
+###  http://www.stups.fr/ontologies/2023/stups/#aProfilChimique
 :aProfilChimique rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estProfilChimiqueDe ;
@@ -111,14 +115,14 @@
                  rdfs:range :ProfilChimique .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aRegion
+###  http://www.stups.fr/ontologies/2023/stups/#aRegion
 :aRegion rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf owl:topObjectProperty ;
          owl:inverseOf :estDansPays ;
          rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aScelle
+###  http://www.stups.fr/ontologies/2023/stups/#aScelle
 :aScelle rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf owl:topObjectProperty ;
          owl:inverseOf :estDansSaisine ;
@@ -127,7 +131,7 @@
          rdfs:range :Scelle .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aServiceCapteur
+###  http://www.stups.fr/ontologies/2023/stups/#aServiceCapteur
 :aServiceCapteur rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  owl:inverseOf :estServiceCapteurDe ;
@@ -136,7 +140,7 @@
                  rdfs:range :ServiceCapteur .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aServiceRequerant
+###  http://www.stups.fr/ontologies/2023/stups/#aServiceRequerant
 :aServiceRequerant rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    owl:inverseOf :estServiceRequerantDe ;
@@ -145,7 +149,7 @@
                    rdfs:range :ServiceRequerant .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aSubstance
+###  http://www.stups.fr/ontologies/2023/stups/#aSubstance
 :aSubstance rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             owl:inverseOf :estSubstanceDe ;
@@ -153,56 +157,56 @@
             rdfs:range :Substance .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aUnite
+###  http://www.stups.fr/ontologies/2023/stups/#aUnite
 :aUnite rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
         owl:inverseOf :estUniteDe .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/aVille
+###  http://www.stups.fr/ontologies/2023/stups/#aVille
 :aVille rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
         owl:inverseOf :estDansDepartement ;
         rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estAspectExterneDe
+###  http://www.stups.fr/ontologies/2023/stups/#estAspectExterneDe
 :estAspectExterneDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estAspectInterneDe
+###  http://www.stups.fr/ontologies/2023/stups/#estAspectInterneDe
 :estAspectInterneDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estDansDepartement
+###  http://www.stups.fr/ontologies/2023/stups/#estDansDepartement
 :estDansDepartement rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estDansPays
+###  http://www.stups.fr/ontologies/2023/stups/#estDansPays
 :estDansPays rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
              rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estDansRegion
+###  http://www.stups.fr/ontologies/2023/stups/#estDansRegion
 :estDansRegion rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty ;
                rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estDansSaisine
+###  http://www.stups.fr/ontologies/2023/stups/#estDansSaisine
 :estDansSaisine rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
                 rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estEloigneDe
+###  http://www.stups.fr/ontologies/2023/stups/#estEloigneDe
 :estEloigneDe rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               rdf:type owl:SymmetricProperty ;
@@ -210,56 +214,56 @@
               rdfs:range :Echantillon .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estFaitA
+###  http://www.stups.fr/ontologies/2023/stups/#estFaitA
 :estFaitA rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
           owl:inverseOf :estLieuSaisineDe ;
           rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estFormeChimiqueDe
+###  http://www.stups.fr/ontologies/2023/stups/#estFormeChimiqueDe
 :estFormeChimiqueDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estLieA
+###  http://www.stups.fr/ontologies/2023/stups/#estLieA
 :estLieA rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf owl:topObjectProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estLieuSaisineDe
+###  http://www.stups.fr/ontologies/2023/stups/#estLieuSaisineDe
 :estLieuSaisineDe rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estLotInterneDe
+###  http://www.stups.fr/ontologies/2023/stups/#estLotInterneDe
 :estLotInterneDe rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  rdf:type owl:IrreflexiveProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estPaysDestinationDe
+###  http://www.stups.fr/ontologies/2023/stups/#estPaysDestinationDe
 :estPaysDestinationDe rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
                       rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estPicDe
+###  http://www.stups.fr/ontologies/2023/stups/#estPicDe
 :estPicDe rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
           rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estPrincipeActifDe
+###  http://www.stups.fr/ontologies/2023/stups/#estPrincipeActifDe
 :estPrincipeActifDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:FunctionalProperty ,
                              owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estProcheChimiquementDe
+###  http://www.stups.fr/ontologies/2023/stups/#estProcheChimiquementDe
 :estProcheChimiquementDe rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf owl:topObjectProperty ;
                          rdf:type owl:SymmetricProperty ,
@@ -269,7 +273,7 @@
                          rdfs:range :Echantillon .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estProcheDe
+###  http://www.stups.fr/ontologies/2023/stups/#estProcheDe
 :estProcheDe rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
              rdf:type owl:SymmetricProperty ,
@@ -279,67 +283,67 @@
              rdfs:range :Echantillon .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estProduitCoupageDe
+###  http://www.stups.fr/ontologies/2023/stups/#estProduitCoupageDe
 :estProduitCoupageDe rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
                      rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estProfilChimiqueDe
+###  http://www.stups.fr/ontologies/2023/stups/#estProfilChimiqueDe
 :estProfilChimiqueDe rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
                      rdf:type owl:FunctionalProperty ,
                               owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estRepresenteePar
+###  http://www.stups.fr/ontologies/2023/stups/#estRepresenteePar
 :estRepresenteePar rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf owl:topObjectProperty ;
                    owl:inverseOf :representeSubstance ;
                    rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estServiceCapteurDe
+###  http://www.stups.fr/ontologies/2023/stups/#estServiceCapteurDe
 :estServiceCapteurDe rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
                      rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estServiceRequerantDe
+###  http://www.stups.fr/ontologies/2023/stups/#estServiceRequerantDe
 :estServiceRequerantDe rdf:type owl:ObjectProperty ;
                        rdfs:subPropertyOf owl:topObjectProperty ;
                        rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estSitueA
+###  http://www.stups.fr/ontologies/2023/stups/#estSitueA
 :estSitueA rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
            rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estSubstanceDe
+###  http://www.stups.fr/ontologies/2023/stups/#estSubstanceDe
 :estSubstanceDe rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estUniteDe
+###  http://www.stups.fr/ontologies/2023/stups/#estUniteDe
 :estUniteDe rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/estVilleService
+###  http://www.stups.fr/ontologies/2023/stups/#estVilleService
 :estVilleService rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  rdf:type owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/provientDe
+###  http://www.stups.fr/ontologies/2023/stups/#provientDe
 :provientDe rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/representeSubstance
+###  http://www.stups.fr/ontologies/2023/stups/#representeSubstance
 :representeSubstance rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty .
 
@@ -348,30 +352,47 @@
 #    Data properties
 #################################################################
 
-###  http://www.stups.fr/ontologies/2023/stups/abime
+###  http://www.co-ode.org/ontologies/ont.owl#tauxCBD
+<http://www.co-ode.org/ontologies/ont.owl#tauxCBD> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain :Echantillon .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#tauxCBN
+<http://www.co-ode.org/ontologies/ont.owl#tauxCBN> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain :Echantillon ;
+                                                   rdfs:range xsd:float .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#tauxTHC
+<http://www.co-ode.org/ontologies/ont.owl#tauxTHC> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain :Echantillon ;
+                                                   rdfs:range xsd:float .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#abime
 :abime rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
        rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/airPic
+###  http://www.stups.fr/ontologies/2023/stups/#airPic
 :airPic rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:range xsd:decimal .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/caracteristiqueMacroscopique
+###  http://www.stups.fr/ontologies/2023/stups/#caracteristiqueMacroscopique
 :caracteristiqueMacroscopique rdf:type owl:DatatypeProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/commentaire
+###  http://www.stups.fr/ontologies/2023/stups/#commentaire
 :commentaire rdf:type owl:DatatypeProperty ,
                       owl:FunctionalProperty ;
              rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/couleur
+###  http://www.stups.fr/ontologies/2023/stups/#couleur
 :couleur rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
          rdfs:range [ rdf:type rdfs:Datatype ;
@@ -427,7 +448,7 @@
                     ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/couleurInterieure
+###  http://www.stups.fr/ontologies/2023/stups/#couleurInterieure
 :couleurInterieure rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf :caracteristiqueMacroscopique ;
                    rdfs:range [ rdf:type rdfs:Datatype ;
@@ -483,46 +504,46 @@
                               ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/date
+###  http://www.stups.fr/ontologies/2023/stups/#date
 :date rdf:type owl:DatatypeProperty ,
                owl:FunctionalProperty ;
       rdfs:range xsd:dateTime .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/description
+###  http://www.stups.fr/ontologies/2023/stups/#description
 :description rdf:type owl:DatatypeProperty ,
                       owl:FunctionalProperty ;
              rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/diametre
+###  http://www.stups.fr/ontologies/2023/stups/#diametre
 :diametre rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
           rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/dosage
+###  http://www.stups.fr/ontologies/2023/stups/#dosage
 :dosage rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
         rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/empreinte
+###  http://www.stups.fr/ontologies/2023/stups/#empreinte
 :empreinte rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :caracteristiqueMacroscopique ;
            rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/epaisseur
+###  http://www.stups.fr/ontologies/2023/stups/#epaisseur
 :epaisseur rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf :caracteristiqueMacroscopique ;
            rdf:type owl:FunctionalProperty ;
            rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/forme
+###  http://www.stups.fr/ontologies/2023/stups/#forme
 :forme rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
        rdf:type owl:FunctionalProperty ;
@@ -549,27 +570,27 @@
                   ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/hauteur
+###  http://www.stups.fr/ontologies/2023/stups/#hauteur
 :hauteur rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
          rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/id
+###  http://www.stups.fr/ontologies/2023/stups/#id
 :id rdf:type owl:DatatypeProperty ,
              owl:FunctionalProperty ;
     rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/largeur
+###  http://www.stups.fr/ontologies/2023/stups/#largeur
 :largeur rdf:type owl:DatatypeProperty ;
          rdfs:subPropertyOf :caracteristiqueMacroscopique ;
          rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/libelleAspect
+###  http://www.stups.fr/ontologies/2023/stups/#libelleAspect
 :libelleAspect rdf:type owl:DatatypeProperty ,
                         owl:FunctionalProperty ;
                rdfs:range [ rdf:type rdfs:Datatype ;
@@ -619,7 +640,7 @@
                           ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/libelleFormeChimique
+###  http://www.stups.fr/ontologies/2023/stups/#libelleFormeChimique
 :libelleFormeChimique rdf:type owl:DatatypeProperty ,
                                owl:FunctionalProperty ;
                       rdfs:range [ rdf:type rdfs:Datatype ;
@@ -648,78 +669,78 @@
                                  ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/libelleService
+###  http://www.stups.fr/ontologies/2023/stups/#libelleService
 :libelleService rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
                 rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/logo
+###  http://www.stups.fr/ontologies/2023/stups/#logo
 :logo rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf owl:topDataProperty ;
       rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:boolean .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/longueur
+###  http://www.stups.fr/ontologies/2023/stups/#longueur
 :longueur rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
           rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/masse
+###  http://www.stups.fr/ontologies/2023/stups/#masse
 :masse rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
        rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/nomLogo
+###  http://www.stups.fr/ontologies/2023/stups/#nomLogo
 :nomLogo rdf:type owl:DatatypeProperty ,
                   owl:FunctionalProperty ;
          rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/nomService
+###  http://www.stups.fr/ontologies/2023/stups/#nomService
 :nomService rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
             rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/nomSubstance
+###  http://www.stups.fr/ontologies/2023/stups/#nomSubstance
 :nomSubstance rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
               rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/numeroEchantillon
+###  http://www.stups.fr/ontologies/2023/stups/#numeroEchantillon
 :numeroEchantillon rdf:type owl:DatatypeProperty ,
                             owl:FunctionalProperty ;
                    rdfs:domain :Echantillon ;
                    rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/numeroLot
+###  http://www.stups.fr/ontologies/2023/stups/#numeroLot
 :numeroLot rdf:type owl:DatatypeProperty ,
                     owl:FunctionalProperty ;
            rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/numeroScelle
+###  http://www.stups.fr/ontologies/2023/stups/#numeroScelle
 :numeroScelle rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
               rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ovule
+###  http://www.stups.fr/ontologies/2023/stups/#ovule
 :ovule rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf :caracteristiqueMacroscopique ;
        rdf:type owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/presentation
+###  http://www.stups.fr/ontologies/2023/stups/#presentation
 :presentation rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf :caracteristiqueMacroscopique ;
               rdf:type owl:FunctionalProperty ;
@@ -767,13 +788,13 @@
                          ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/quantite
+###  http://www.stups.fr/ontologies/2023/stups/#quantite
 :quantite rdf:type owl:DatatypeProperty ,
                    owl:FunctionalProperty ;
           rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/secabiliteRecto
+###  http://www.stups.fr/ontologies/2023/stups/#secabiliteRecto
 :secabiliteRecto rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :caracteristiqueMacroscopique ;
                  rdf:type owl:FunctionalProperty ;
@@ -794,7 +815,7 @@
                             ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/secabiliteVerso
+###  http://www.stups.fr/ontologies/2023/stups/#secabiliteVerso
 :secabiliteVerso rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :caracteristiqueMacroscopique ;
                  rdf:type owl:FunctionalProperty ;
@@ -815,26 +836,26 @@
                             ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/taux
+###  http://www.stups.fr/ontologies/2023/stups/#taux
 :taux rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf :caracteristiqueMacroscopique ;
       rdf:type owl:FunctionalProperty ;
       rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/tempsRetention
+###  http://www.stups.fr/ontologies/2023/stups/#tempsRetention
 :tempsRetention rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
                 rdfs:range xsd:decimal .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/trace
+###  http://www.stups.fr/ontologies/2023/stups/#trace
 :trace rdf:type owl:DatatypeProperty ,
                 owl:FunctionalProperty ;
        rdfs:range xsd:boolean .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/typeDrogue
+###  http://www.stups.fr/ontologies/2023/stups/#typeDrogue
 :typeDrogue rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
             rdfs:range [ rdf:type rdfs:Datatype ;
@@ -857,7 +878,7 @@
                        ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/unite
+###  http://www.stups.fr/ontologies/2023/stups/#unite
 :unite rdf:type owl:DatatypeProperty ,
                 owl:FunctionalProperty ;
        rdfs:range [ rdf:type rdfs:Datatype ;
@@ -883,14 +904,14 @@
                   ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/visqueux
+###  http://www.stups.fr/ontologies/2023/stups/#visqueux
 :visqueux rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf :caracteristiqueMacroscopique ;
           rdf:type owl:FunctionalProperty ;
           rdfs:range xsd:boolean .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/volume
+###  http://www.stups.fr/ontologies/2023/stups/#volume
 :volume rdf:type owl:DatatypeProperty ;
         rdfs:subPropertyOf :caracteristiqueMacroscopique ;
         rdf:type owl:FunctionalProperty ;
@@ -901,7 +922,7 @@
 #    Classes
 #################################################################
 
-###  http://www.stups.fr/ontologies/2023/stups/Aspect
+###  http://www.stups.fr/ontologies/2023/stups/#Aspect
 :Aspect rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Class ;
                               owl:unionOf ( [ rdf:type owl:Restriction ;
@@ -917,7 +938,7 @@
         rdfs:comment "Un aspect permet de d’écrire l’aspect interne ou l’aspect externe d’un échantillon." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Composant
+###  http://www.stups.fr/ontologies/2023/stups/#Composant
 :Composant rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Restriction ;
                                  owl:onProperty :aSubstance ;
@@ -927,7 +948,7 @@
            rdfs:comment "Un composant est utilisé pour décrire ce qui compose un échantillon. Il en existe deux types : les principes actifs et les produits de coupages. Un composant est lié à une substance et éventuellement a un dosage (exprimé en pourcentage massique)." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Departement
+###  http://www.stups.fr/ontologies/2023/stups/#Departement
 :Departement rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                           owl:onProperty :aVille ;
@@ -944,7 +965,7 @@
              rdfs:comment "Un département est dans une région et a une ou plusieurs villes." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Echantillon
+###  http://www.stups.fr/ontologies/2023/stups/#Echantillon
 :Echantillon rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                           owl:onProperty :aProduitCoupage ;
@@ -1004,7 +1025,7 @@
 Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique.""" .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/FormeChimique
+###  http://www.stups.fr/ontologies/2023/stups/#FormeChimique
 :FormeChimique rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
                                      owl:onProperty :estFormeChimiqueDe ;
@@ -1013,7 +1034,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                rdfs:comment "Une forme chimique (Base, HCL, Base et HCL, Sulfate, Chlorhydrate, Phosphate ou Indéterminée) est associée à un principe actif pour décrire sa forme chimique." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Pays
+###  http://www.stups.fr/ontologies/2023/stups/#Pays
 :Pays rdf:type owl:Class ;
       owl:equivalentClass [ rdf:type owl:Restriction ;
                             owl:onProperty :aRegion ;
@@ -1022,7 +1043,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
       rdfs:comment "Un pays a une ou plusieurs régions" .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Pic
+###  http://www.stups.fr/ontologies/2023/stups/#Pic
 :Pic rdf:type owl:Class ;
      owl:equivalentClass [ rdf:type owl:Restriction ;
                            owl:onProperty :representeSubstance ;
@@ -1032,7 +1053,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
      rdfs:comment "Un pic d’un profil chimique caractérise un composé chimique (molécule) présent dans l’échantillon. Chaque pic est caractérisé par un temps de rétention et une aire, correspondant à la quantité du composé cible dans l’échantillon." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/PrincipeActif
+###  http://www.stups.fr/ontologies/2023/stups/#PrincipeActif
 :PrincipeActif rdf:type owl:Class ;
                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                             owl:onProperty :aFormeChimique ;
@@ -1052,7 +1073,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                rdfs:comment "Un principe actif est la principale substance d’un échantillon. Tout principe actif a une forme chimique." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ProduitCoupage
+###  http://www.stups.fr/ontologies/2023/stups/#ProduitCoupage
 :ProduitCoupage rdf:type owl:Class ;
                 owl:equivalentClass [ rdf:type owl:Restriction ;
                                       owl:onProperty :estProduitCoupageDe ;
@@ -1063,7 +1084,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                 rdfs:comment "Un produit de coupage est une substance composant un échantillon. Ce produit de coupage est en plus petite quantité que le principe actif." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ProfilChimique
+###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimique
 :ProfilChimique rdf:type owl:Class ;
                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                              owl:onProperty :aPic ;
@@ -1080,20 +1101,20 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                 rdfs:comment "Un profil chimique est associé à un échantillon dans le but de faire du profilage (i.e. rapprocher automatique des échantillons selon leur profil et leurs caractéristiques). Un profil chimique représente chromatogramme constitué d’un ensemble de pics  permettent d’identifier la présence ou composés chimiques cible." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ProfilChimiqueCocaine
+###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimiqueCocaine
 :ProfilChimiqueCocaine rdf:type owl:Class ;
                        rdfs:subClassOf :ProfilChimique ;
                        owl:disjointWith :ProfilChimiqueHeroine ;
                        rdfs:comment "Un profil de cocaïne a 18 pics, correspondant à des solvants résiduels ayant servi dans la fabrication de la cocaïne, sont recherchés. Ils ne sont pas toujours tous présents, cela dépend du procédé de fabrication   (extraction)." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ProfilChimiqueHeroine
+###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimiqueHeroine
 :ProfilChimiqueHeroine rdf:type owl:Class ;
                        rdfs:subClassOf :ProfilChimique ;
                        rdfs:comment "Pour l’héroïne, 6 pics correspondant à des impuretés   et dépendent du procédé de fabrication (synthèse). Elles sont toujours présentes mais les quantités peuvent être différentes." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Region
+###  http://www.stups.fr/ontologies/2023/stups/#Region
 :Region rdf:type owl:Class ;
         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                      owl:onProperty :aDepartement ;
@@ -1110,7 +1131,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
         rdfs:comment "Une région a un ou plusieurs département est dans un un pays." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Saisine
+###  http://www.stups.fr/ontologies/2023/stups/#Saisine
 :Saisine rdf:type owl:Class ;
          owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                       owl:onProperty :aScelle ;
@@ -1144,7 +1165,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
          rdfs:comment "La saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de drogue. La fiche (i.e. l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés" .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Scelle
+###  http://www.stups.fr/ontologies/2023/stups/#Scelle
 :Scelle rdf:type owl:Class ;
         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                      owl:onProperty :aEchantillon ;
@@ -1163,7 +1184,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
         rdfs:comment "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs échantillons des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice.  Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Service
+###  http://www.stups.fr/ontologies/2023/stups/#Service
 :Service rdf:type owl:Class ;
          owl:equivalentClass [ rdf:type owl:Restriction ;
                                owl:onProperty :estSitueA ;
@@ -1173,7 +1194,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
          rdfs:comment "Il existe deux types de services : les services requérants et les services capteurs. Tous les services sont identifiés par un nom. De plus un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone etc.)." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ServiceCapteur
+###  http://www.stups.fr/ontologies/2023/stups/#ServiceCapteur
 :ServiceCapteur rdf:type owl:Class ;
                 owl:equivalentClass [ rdf:type owl:Restriction ;
                                       owl:onProperty :estServiceCapteurDe ;
@@ -1184,7 +1205,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                 rdfs:comment "Un service capteur est le service qui réalise la saisie de drogue." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/ServiceRequerant
+###  http://www.stups.fr/ontologies/2023/stups/#ServiceRequerant
 :ServiceRequerant rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
                                         owl:onProperty :estServiceRequerantDe ;
@@ -1194,7 +1215,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                   rdfs:comment "Un service requérant est le service qui requiert l’analyse d’une saisie de drogue (i.e. celui à l’origine de la saisine)." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Substance
+###  http://www.stups.fr/ontologies/2023/stups/#Substance
 :Substance rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Class ;
                                  owl:unionOf ( [ rdf:type owl:Restriction ;
@@ -1210,7 +1231,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
            rdfs:comment "Le concept de substance est le même que celui de la chimie. Ici, il est utilisé pour représenter la substance à laquelle sont reliés les composants d’un échantillon (Principe actif et Produit de coupage) ainsi que les pics d’un profil. Une substance à un nom." .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/Ville
+###  http://www.stups.fr/ontologies/2023/stups/#Ville
 :Ville rdf:type owl:Class ;
        owl:equivalentClass [ rdf:type owl:Restriction ;
                              owl:onProperty :estDansDepartement ;
