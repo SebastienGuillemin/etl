@@ -73,10 +73,10 @@ public class PrincipeActif extends Composant {
     }
 
     private float getTauxCBD() {
-        return (this.tauxCBD != null) ? Float.valueOf(this.tauxCBD) : (this.traceCBD != null && Boolean.valueOf(this.traceCBD)) ? 0.0f : -1.0f;
+        return (this.tauxCBD != null) ? Float.valueOf(this.tauxCBD) : (this.traceCBD != null && this.traceCBD.equals("t")) ? 0.0f : -1.0f;
     }
 
     private float getTauxCBN() {
-        return (this.tauxCBN != null) ? Float.valueOf(this.tauxCBN) : (this.traceCBN != null && Boolean.valueOf(this.traceCBN)) ? 0.0f : -1.0f;
+        return (this.tauxCBN != null) ? Float.valueOf(this.tauxCBN) : (this.traceCBN != null && this.traceCBN.equals("t")) ? 0.0f : -1.0f;
     }
 }

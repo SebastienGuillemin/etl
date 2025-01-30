@@ -57,6 +57,9 @@ public class RDFRepository {
             estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
 
         for (Echantillon echantillon : echantillons) {
+            if (BlackList.inBlackList(echantillon.getId()))
+                continue;
+
             echantillonResource = echantillon.getResource(this.model);
 
             if (loadEstProchetDe)
