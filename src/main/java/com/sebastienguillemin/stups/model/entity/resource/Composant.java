@@ -1,5 +1,7 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import jakarta.persistence.Transient;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -19,7 +21,13 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
+/**
+ * TODO : reset "resource" when an attribute is updated
+ */
 public abstract class Composant extends BaseEntity implements ResourceEntity {
+    public final static float DETECTION_LIMIT = 0.1f;
+    public final static float MISSING_RATE_IMPUTATION_VALUE = DETECTION_LIMIT / 2.0f;
+
     @ManyToOne
     @JoinColumn(name = "id_composition")
     protected Composition composition;
@@ -33,8 +41,11 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
 
     protected boolean trace;
 
+    @Transient
+    protected Resource resource;
+
     public float getDosage() {
-        return (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0.0f : -1.0f;
+        return (this.dosage != null) ? Float.valueOf(this.dosage) : (this.trace) ? 0.0f : MISSING_RATE_IMPUTATION_VALUE;
     }
 
     protected Resource getPartielResource(Model model) {

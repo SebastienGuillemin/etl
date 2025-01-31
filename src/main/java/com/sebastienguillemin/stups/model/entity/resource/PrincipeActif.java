@@ -22,40 +22,59 @@ import lombok.ToString;
 @Table(name = "principe_actif")
 @ToString
 public class PrincipeActif extends Composant {
-
     @ManyToOne
     @JoinColumn(name = "id_forme_chimique")
     private FormeChimique formeChimique;
+
+    @Column(name = "is_cbd")
+    private boolean isCBD;
 
     @Column(name = "taux_cbd")
     private String tauxCBD;
 
     @Column(name = "trace_cbd")
-    private String traceCBD;
+    private boolean traceCBD;
+
+    @Column(name = "is_cbn")
+    private boolean isCBN;
 
     @Column(name = "taux_cbn")
     private String tauxCBN;
 
     @Column(name = "trace_cbn")
-    private String traceCBN;
+    private boolean traceCBN;
+
+    public void setIsCBD(String value) {
+        this.isCBD = value.equals("t");
+    }
+
+    public void traceCBD(String value) {
+        this.traceCBD = value.equals("t");
+    }
+
+    public void setIsCBN(String value) {
+        this.isCBN = value.equals("t");
+    }
+
+    public void traceCBN(String value) {
+        this.traceCBN = value.equals("t");
+    }
 
     @Override
     public Resource getResource(Model model) {
-        Resource resource = super.getPartielResource(model);
+        if (this.resource != null)
+            return this.resource;
+
+        this.resource = super.getPartielResource(model);
 
         // If a Cannabis sample
         if (this.substance.getType().getLibelle().equals("Cannabis")) {
-            float tauxCBDLiteral = this.getTauxCBD();
-            if (tauxCBDLiteral != -1.0f) {
-                Property tauxCBD = model.createProperty(RDFRepository.PREFIX + "tauxCBD");
-                resource.addLiteral(tauxCBD, tauxCBDLiteral);
-            }
+            Property tauxCBD = model.createProperty(RDFRepository.PREFIX + "tauxCBD");
+            resource.addLiteral(tauxCBD, this.getTauxCBD());
 
-            float tauxCBNLiteral = this.getTauxCBN();
-            if (tauxCBNLiteral != -1.0f) {
-                Property tauxCBN = model.createProperty(RDFRepository.PREFIX + "tauxCBN");
-                resource.addLiteral(tauxCBN, tauxCBNLiteral);
-            }
+            Property tauxCBN = model.createProperty(RDFRepository.PREFIX + "tauxCBN");
+            resource.addLiteral(tauxCBN, this.getTauxCBN());
+            
 
             float tauxTHCLiteral = this.getDosage();
             if (this.substance.getLibelle().equals("Delta9-Tétrahydrocannabinol (THC)") && tauxTHCLiteral != -1.0f) {
@@ -73,10 +92,16 @@ public class PrincipeActif extends Composant {
     }
 
     private float getTauxCBD() {
-        return (this.tauxCBD != null) ? Float.valueOf(this.tauxCBD) : (this.traceCBD != null && this.traceCBD.equals("t")) ? 0.0f : -1.0f;
+        if (!this.isCBD)
+            return Composant.MISSING_RATE_IMPUTATION_VALUE;
+        
+        return (this.tauxCBD != null) ? Float.valueOf(this.tauxCBD) : (this.traceCBD) ? 0.0f : Composant.MISSING_RATE_IMPUTATION_VALUE;
     }
 
     private float getTauxCBN() {
-        return (this.tauxCBN != null) ? Float.valueOf(this.tauxCBN) : (this.traceCBN != null && this.traceCBN.equals("t")) ? 0.0f : -1.0f;
+        if (!this.isCBN)
+            return Composant.MISSING_RATE_IMPUTATION_VALUE;
+
+        return (this.tauxCBN != null) ? Float.valueOf(this.tauxCBN) : (this.traceCBN) ? 0.0f : Composant.MISSING_RATE_IMPUTATION_VALUE;
     }
 }
