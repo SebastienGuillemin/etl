@@ -25,7 +25,7 @@ import lombok.Setter;
  * TODO : reset "resource" when an attribute is updated
  */
 public abstract class Composant extends BaseEntity implements ResourceEntity {
-    public final static float DETECTION_LIMIT = 0.1f;
+    public final static float DETECTION_LIMIT = 0.03f;
     public final static float MISSING_RATE_IMPUTATION_VALUE = DETECTION_LIMIT / 2.0f;
 
     @ManyToOne
