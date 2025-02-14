@@ -67,22 +67,6 @@ public class PrincipeActif extends Composant {
 
         this.resource = super.getPartielResource(model);
 
-        // If a Cannabis sample
-        if (this.substance.getType().getLibelle().equals("Cannabis")) {
-            Property tauxCBD = model.createProperty(RDFRepository.PREFIX + "tauxCBD");
-            resource.addLiteral(tauxCBD, this.getTauxCBD());
-
-            Property tauxCBN = model.createProperty(RDFRepository.PREFIX + "tauxCBN");
-            resource.addLiteral(tauxCBN, this.getTauxCBN());
-            
-
-            float tauxTHCLiteral = this.getDosage();
-            if (this.substance.getLibelle().equals("Delta9-Tétrahydrocannabinol (THC)") && tauxTHCLiteral != -1.0f) {
-                Property tauxTHC = model.createProperty(RDFRepository.PREFIX + "tauxTHC");
-                resource.addLiteral(tauxTHC, tauxTHCLiteral);
-            }
-        }
-
         Property aFormeChimique = model.createProperty(RDFRepository.PREFIX + "aFormeChimique");
 
         resource.addProperty(aFormeChimique, this.formeChimique.getResource(model));
@@ -91,14 +75,14 @@ public class PrincipeActif extends Composant {
         return resource;
     }
 
-    private float getTauxCBD() {
+    public float getTauxCBD() {
         if (!this.isCBD)
             return Composant.MISSING_RATE_IMPUTATION_VALUE;
         
         return (this.tauxCBD != null) ? Float.valueOf(this.tauxCBD) : (this.traceCBD) ? 0.0f : Composant.MISSING_RATE_IMPUTATION_VALUE;
     }
 
-    private float getTauxCBN() {
+    public float getTauxCBN() {
         if (!this.isCBN)
             return Composant.MISSING_RATE_IMPUTATION_VALUE;
 

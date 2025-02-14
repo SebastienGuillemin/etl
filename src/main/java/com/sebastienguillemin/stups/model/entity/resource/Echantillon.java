@@ -105,7 +105,6 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         // Creating (or retrieving if alrezady created) properties
         Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
         Property typeDrogue = model.createProperty(RDFRepository.PREFIX + "typeDrogue");
-        Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
         Property aProduitCoupage = model.createProperty(RDFRepository.PREFIX + "aProduitCoupage");
         Property aAspectExterne = model.createProperty(RDFRepository.PREFIX + "aAspectExterne");
         Property numeroEchantillon = model.createProperty(RDFRepository.PREFIX + "numeroEchantillon");
@@ -117,8 +116,8 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         
         // Add drug type and active principal resources
         for (PrincipeActif principeActif : this.composition.getPrincipeActifs()) {
+            this.addPrincipeActifRessource(resource, model, principeActif);
             resource.addProperty(typeDrogue, principeActif.getSubstance().getType().getLibelle());
-            resource.addProperty(aPrincipeActif, principeActif.getResource(model));
         }
 
         // Add cutting product resources
@@ -190,5 +189,25 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         resource.addProperty(RDF.type, model.getResource(RDFRepository.PREFIX + "Echantillon"));
 
         return resource;
+    }
+
+    private void addPrincipeActifRessource(Resource resource, Model model, PrincipeActif principeActif) {
+        // If a Cannabis sample
+        if (principeActif.getSubstance().getType().getLibelle().equals("Cannabis")) {
+            Property tauxCBD = model.createProperty(RDFRepository.PREFIX + "tauxCBD");
+            resource.addLiteral(tauxCBD, principeActif.getTauxCBD());
+
+            Property tauxCBN = model.createProperty(RDFRepository.PREFIX + "tauxCBN");
+            resource.addLiteral(tauxCBN, principeActif.getTauxCBN());
+            
+
+            float tauxTHCLiteral = principeActif.getDosage();
+            if (principeActif.getSubstance().getLibelle().equals("Delta9-Tétrahydrocannabinol (THC)") && tauxTHCLiteral != -1.0f) {
+                Property tauxTHC = model.createProperty(RDFRepository.PREFIX + "tauxTHC");
+                resource.addLiteral(tauxTHC, tauxTHCLiteral);
+            }
+        }
+        Property aPrincipeActif = model.createProperty(RDFRepository.PREFIX + "aPrincipeActif");
+        resource.addProperty(aPrincipeActif, principeActif.getResource(model));
     }
 }

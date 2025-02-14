@@ -4,7 +4,7 @@ mvn clean install
 
 if [ "$#" -eq 1 ]
 then
-    mvn exec:java -Dexec.args="$1"
+    mvn exec:java -Dexec.args="$1" -f ./pom.xml
 else
-    mvn exec:java
+    mvn exec:java -f ./pom.xml
 fi

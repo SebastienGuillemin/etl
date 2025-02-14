@@ -6,6 +6,6 @@ ontology:
     prefix: http://www.stups.fr/ontologies/2023/stups/#
     name: STUPS.ttl
   save:
-    name: populated_STUPS_cannabis.ttl
+    name: populated_STUPS.ttl
     estProcheChimiquementDe: "false"
     estProcheDe: "true"
