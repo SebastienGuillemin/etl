@@ -52,7 +52,7 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
                         resources.add(echantillon.getResource(model));
 
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.id != this.id)
+                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.getId() != this.id)
                         resources.add(echantillon.getResource(model));
             }
         }

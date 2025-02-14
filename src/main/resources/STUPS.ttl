@@ -352,21 +352,22 @@
 #    Data properties
 #################################################################
 
-###  http://www.co-ode.org/ontologies/ont.owl#tauxCBD
-<http://www.co-ode.org/ontologies/ont.owl#tauxCBD> rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon .
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
+:tauxCBD rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Echantillon ;
+        rdfs:range xsd:float .
 
 
-###  http://www.co-ode.org/ontologies/ont.owl#tauxCBN
-<http://www.co-ode.org/ontologies/ont.owl#tauxCBN> rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon ;
-                                                   rdfs:range xsd:float .
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
+:tauxCBN rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Echantillon ;
+        rdfs:range xsd:float .
 
 
-###  http://www.co-ode.org/ontologies/ont.owl#tauxTHC
-<http://www.co-ode.org/ontologies/ont.owl#tauxTHC> rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon ;
-                                                   rdfs:range xsd:float .
+###  http://www.stups.fr/ontologies/2023/stups/#tauxTHC
+:tauxTHC rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Echantillon ;
+        rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#abime
