@@ -1,5 +1,5 @@
 sql:
-  query: select e.* from echantillon e inner join composition c  on c.id = e.id_composition inner join principe_actif pa on pa.id_composition = c.id inner join substance s on pa.id_substance = s.id inner join "type" t on s.id_categorie = t.id where t.libelle = 'Cannabis'
+  query: select e.* from echantillon e inner join composition c on c.id = e.id_composition left join description d on d.id_composition = c.id left join propriete p on p.id = d.id_propriete left join valeur_propriete vp on vp.id = d.id_valeur_propriete inner join scelle sc on e.id_scelle = sc.id inner join saisine sa on sc.id_saisine = sa.id inner join principe_actif pa on pa.id_composition = c.id inner join substance s on pa.id_substance = s.id inner join "type" t on s.id_categorie = t.id where t.libelle = 'Cannabis'
 
 ontology:
   base:

@@ -282,6 +282,13 @@
              rdfs:domain :Echantillon ;
              rdfs:range :Echantillon .
 
+###  http://www.stups.fr/ontologies/2023/stups/#estPotentiellementProcheDe
+:estPotentiellementProcheDe rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:SymmetricProperty ;
+             rdfs:domain :Echantillon ;
+             rdfs:range :Echantillon .
+
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estProduitCoupageDe
 :estProduitCoupageDe rdf:type owl:ObjectProperty ;
@@ -352,22 +359,21 @@
 #    Data properties
 #################################################################
 
-###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
 :tauxCBD rdf:type owl:DatatypeProperty ;
-        rdfs:domain :Echantillon ;
-        rdfs:range xsd:float .
+                                                   rdfs:domain :Echantillon .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
 :tauxCBN rdf:type owl:DatatypeProperty ;
-        rdfs:domain :Echantillon ;
-        rdfs:range xsd:float .
+                                                   rdfs:domain :Echantillon ;
+                                                   rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#tauxTHC
+###  http://www.stups.fr/ontologies/2023/stups/#tauxTHC
 :tauxTHC rdf:type owl:DatatypeProperty ;
-        rdfs:domain :Echantillon ;
-        rdfs:range xsd:float .
+                                                   rdfs:domain :Echantillon ;
+                                                   rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#abime
