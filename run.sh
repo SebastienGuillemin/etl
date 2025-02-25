@@ -1,5 +1,4 @@
 #!/bin/sh
-
 mvn clean install
 
 if [ "$#" -eq 1 ]

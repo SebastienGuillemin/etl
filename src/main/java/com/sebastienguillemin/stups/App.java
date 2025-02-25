@@ -17,8 +17,11 @@ import com.sebastienguillemin.stups.util.PropertiesReader;
 public class App {
     public static void main(String[] args) {
         int dayCount = 1000;
-        if (args.length > 0)
-            dayCount = Integer.parseInt(args[0]);
+        boolean STUPSevaluation = false;
+        if (args.length == 1 && args[0].equals("evaluation")) {
+            System.out.println("[ETL] STUPS evaluation mode.");
+            STUPSevaluation = true;
+        }
             
         PropertiesReader propertiesReader = PropertiesReader.getInstance();
         EchantillonRepository repository = new EchantillonRepository();
@@ -26,11 +29,14 @@ public class App {
 
         Session session = SessionProvider.getSession();
 
-        List<Echantillon> echantillons = repository.loadData(session, dayCount);
+        List<Echantillon> echantillons = repository.loadData(session, dayCount, STUPSevaluation);
         rdfRepository.populate(echantillons);
         
 
-        rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.save.name"));
+        if(STUPSevaluation)
+            rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.save.evaluation_name"));
+        else
+            rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.save.name"));
 
         session.getTransaction().commit();
         session.close();

@@ -18,10 +18,10 @@ public class EchantillonRepository {
     }
 
     public List<Echantillon> loadData(Session session) {
-        return this.loadData(session, -1);
+        return this.loadData(session, -1, false);
     }
 
-    public List<Echantillon> loadData(Session session, int dayCount) {
+    public List<Echantillon> loadData(Session session, int dayCount, boolean STUPSevaluation) {
         if (session == null)
             return null;
 
@@ -34,7 +34,12 @@ public class EchantillonRepository {
         // FROM to_timestamp('%s', 'YYYY-MM-DD') - s.date_saisie) > 0 and
         // e.id_composition is not null", END_DATE, dayCount, END_DATE);
 
-        String queryString = this.propertiesReader.getPropertyValue("sql.query");
+        String queryString;
+        if (STUPSevaluation)
+            queryString = this.propertiesReader.getPropertyValue("sql.evlauation_query");
+        else
+            queryString = this.propertiesReader.getPropertyValue("sql.query");
+
         System.out.println(queryString);
 
         Query<Echantillon> query = session.createNativeQuery(queryString, Echantillon.class);
