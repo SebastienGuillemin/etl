@@ -44,9 +44,9 @@ public class EchantillonRepository {
 
         Query<Echantillon> query = session.createNativeQuery(queryString, Echantillon.class);
 
-        List<Echantillon> echantillons = query.list();
-        System.out.println(echantillons.size() + " echantillon(s) loaded.");
+        List<Echantillon> rows = query.list();
+        System.out.println(rows.size() + " row(s) loaded.");
 
-        return echantillons;
+        return rows;
     }
 }
