@@ -14,6 +14,7 @@ import org.apache.jena.riot.RDFWriter;
 import org.apache.jena.riot.RIOT;
 
 import com.sebastienguillemin.stups.model.entity.resource.Echantillon;
+import com.sebastienguillemin.stups.repository.filtering.EchantillonFilter;
 import com.sebastienguillemin.stups.util.PropertiesReader;
 
 public class RDFRepository {
@@ -26,10 +27,12 @@ public class RDFRepository {
 
     private Model model;
     private PropertiesReader propertiesReader;
+    private EchantillonFilter echantillonFilter;
 
     public RDFRepository(String baseOntologyFile) {
         this.model = ModelFactory.createDefaultModel();
         this.propertiesReader = PropertiesReader.getInstance();
+        this.echantillonFilter = new EchantillonFilter(false);
 
         this.readFile(baseOntologyFile);
     }
@@ -38,7 +41,7 @@ public class RDFRepository {
         this.model.read(filename, "TTL");
     }
 
-    public void populate(List<Echantillon> echantillons) {
+    public void populate(List<Echantillon> echantillons, boolean STUPSevaluation) {
         Resource echantillonResource;
         Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
         Property estProcheDe = null;
@@ -57,17 +60,18 @@ public class RDFRepository {
             estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
 
         for (Echantillon echantillon : echantillons) {
-            if (BlackList.inBlackList(echantillon.getId()))
+            if (!echantillonFilter.filter(echantillon.getId())) {
                 continue;
+            }
 
             echantillonResource = echantillon.getResource(this.model);
 
             if (loadEstProchetDe)
-                for (Resource neighbor : echantillon.getNeighborsResources(this.model))
+                for (Resource neighbor : echantillon.getNeighborsResources(this.model, this.echantillonFilter))
                     echantillonResource.addProperty(estProcheDe, neighbor);
 
             if (loadEstProcheChimiquementDe)
-                for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model))
+                for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model, this.echantillonFilter))
                     echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
 
             this.model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
@@ -76,6 +80,7 @@ public class RDFRepository {
 
     public void saveOntology(String filename) {
         try {
+            System.out.println(filename);
             OutputStream out = new FileOutputStream(filename);
             String baseURI = this.propertiesReader.getPropertyValue("ontology.base.prefix");
 

@@ -18,6 +18,7 @@ public class App {
     public static void main(String[] args) {
         int dayCount = 1000;
         boolean STUPSevaluation = false;
+
         if (args.length == 1 && args[0].equals("evaluation")) {
             System.out.println("[ETL] STUPS evaluation mode.");
             STUPSevaluation = true;
@@ -30,8 +31,7 @@ public class App {
         Session session = SessionProvider.getSession();
 
         List<Echantillon> echantillons = repository.loadData(session, dayCount, STUPSevaluation);
-        rdfRepository.populate(echantillons);
-        
+        rdfRepository.populate(echantillons, STUPSevaluation);
 
         if(STUPSevaluation)
             rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.save.evaluation_name"));

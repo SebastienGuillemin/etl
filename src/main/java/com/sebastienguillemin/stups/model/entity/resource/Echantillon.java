@@ -13,8 +13,8 @@ import com.sebastienguillemin.stups.model.entity.base.Composition;
 import com.sebastienguillemin.stups.model.entity.base.Description;
 import com.sebastienguillemin.stups.model.entity.base.LotEchantillon;
 import com.sebastienguillemin.stups.model.entity.base.Propriete;
-import com.sebastienguillemin.stups.repository.BlackList;
 import com.sebastienguillemin.stups.repository.RDFRepository;
+import com.sebastienguillemin.stups.repository.filtering.EchantillonFilter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,17 +42,17 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
     @JoinColumn(name = "id_composition")
     private Composition composition;
 
-    public List<Resource> getNeighborsResources(Model model) {
+    public List<Resource> getNeighborsResources(Model model, EchantillonFilter echantillonFilter) {
         List<Resource> resources = new ArrayList<>();
 
         for (LotEchantillon lot : this.composition.getLotsTete()) {
             if (lot.getTypeLien().getLibelle().equals("Macroscopique") || lot.getTypeLien().getLibelle().equals("Composition atypique")) {
                 for (Echantillon echantillon : lot.getComposition1().getEchantillons())
-                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.getId() != this.id)
+                    if (echantillonFilter.filter(echantillon.getId()) && echantillon.getId() != this.id)
                         resources.add(echantillon.getResource(model));
 
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.getId() != this.id)
+                    if (echantillonFilter.filter(echantillon.getId()) && echantillon.getId() != this.id)
                         resources.add(echantillon.getResource(model));
             }
         }
@@ -61,18 +61,18 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
     }
 
 
-    public List<Resource> getChemicalNeighborsResources(Model model) {
+    public List<Resource> getChemicalNeighborsResources(Model model, EchantillonFilter echantillonFilter) {
         List<Resource> resources = new ArrayList<>();
 
         for (LotEchantillon lot : this.composition.getLotsTete()) {
             if (lot.getTypeLien().getLibelle().equals("Profilage")) {
                 
                 for (Echantillon echantillon : lot.getComposition1().getEchantillons())
-                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.id != this.id)
+                    if (echantillonFilter.filter(echantillon.getId()) && echantillon.id != this.id)
                         resources.add(echantillon.getResource(model));
 
                 for (Echantillon echantillon : lot.getComposition2().getEchantillons())
-                    if (!BlackList.inBlackList(echantillon.getId()) && echantillon.id != this.id)
+                    if (echantillonFilter.filter(echantillon.getId()) && echantillon.id != this.id)
                         resources.add(echantillon.getResource(model));
             }
         }

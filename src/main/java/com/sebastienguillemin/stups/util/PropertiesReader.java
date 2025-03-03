@@ -2,6 +2,8 @@ package com.sebastienguillemin.stups.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
@@ -58,6 +60,32 @@ public class PropertiesReader {
 
     public int getPropertyValueInteger(String propertyName) {
         return Integer.valueOf(this.getPropertyValue(propertyName));
+    }
+
+    public List<Integer> getWhiteList() {
+        List<Integer> whiteList  = new ArrayList<>();
+
+        String[] ids = this.getPropertyValue("evaluation.white_list").split(", ");
+
+        for (String id : ids) {
+            whiteList.add(Integer.parseInt(id.trim()));
+        }
+
+        return whiteList;
+    }
+
+    public List<Integer> getBlackList() {
+        List<Integer> whiteList  = new ArrayList<>();
+
+        String[] ids = this.getPropertyValue("evaluation.black_list").split(", ");
+
+        for (String id : ids) {
+            if (id.equals(""))
+                continue;
+            whiteList.add(Integer.parseInt(id.trim()));
+        }
+
+        return whiteList;
     }
 
     private void loadProperties() throws IOException {
