@@ -26,12 +26,12 @@ public class App {
             
         PropertiesReader propertiesReader = PropertiesReader.getInstance();
         EchantillonRepository repository = new EchantillonRepository();
-        RDFRepository rdfRepository = new RDFRepository(propertiesReader.getPropertyValue("ontology.base.name"));
+        RDFRepository rdfRepository = new RDFRepository(propertiesReader.getPropertyValue("ontology.base.name"), STUPSevaluation);
 
         Session session = SessionProvider.getSession();
 
         List<Echantillon> echantillons = repository.loadData(session, dayCount, STUPSevaluation);
-        rdfRepository.populate(echantillons, STUPSevaluation);
+        rdfRepository.populate(echantillons);
 
         if(STUPSevaluation)
             rdfRepository.saveOntology(propertiesReader.getPropertyValue("ontology.save.evaluation_name"));

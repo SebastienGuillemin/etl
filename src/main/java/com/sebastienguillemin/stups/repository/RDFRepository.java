@@ -28,11 +28,13 @@ public class RDFRepository {
     private Model model;
     private PropertiesReader propertiesReader;
     private EchantillonFilter echantillonFilter;
+    private boolean STUPSevaluation;
 
-    public RDFRepository(String baseOntologyFile) {
+    public RDFRepository(String baseOntologyFile, boolean STUPSevaluation) {
         this.model = ModelFactory.createDefaultModel();
         this.propertiesReader = PropertiesReader.getInstance();
-        this.echantillonFilter = new EchantillonFilter(false);
+        this.echantillonFilter = new EchantillonFilter(STUPSevaluation);
+        this.STUPSevaluation = STUPSevaluation;
 
         this.readFile(baseOntologyFile);
     }
@@ -41,7 +43,7 @@ public class RDFRepository {
         this.model.read(filename, "TTL");
     }
 
-    public void populate(List<Echantillon> echantillons, boolean STUPSevaluation) {
+    public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
         Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
         Property estProcheDe = null;
@@ -66,11 +68,11 @@ public class RDFRepository {
 
             echantillonResource = echantillon.getResource(this.model);
 
-            if (loadEstProchetDe)
+            if (loadEstProchetDe && !this.STUPSevaluation)
                 for (Resource neighbor : echantillon.getNeighborsResources(this.model, this.echantillonFilter))
                     echantillonResource.addProperty(estProcheDe, neighbor);
 
-            if (loadEstProcheChimiquementDe)
+            if (loadEstProcheChimiquementDe && !this.STUPSevaluation)
                 for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model, this.echantillonFilter))
                     echantillonResource.addProperty(estProcheChimiquementDe, neighbor);
 

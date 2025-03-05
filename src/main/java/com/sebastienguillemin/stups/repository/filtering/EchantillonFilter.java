@@ -11,8 +11,8 @@ public class EchantillonFilter {
     public EchantillonFilter(boolean STUPSevaluation) {
         PropertiesReader propertiesReader = PropertiesReader.getInstance();
         
-        this.whiteList = propertiesReader.getWhiteList();
-        this.blackList = propertiesReader.getBlackList();
+        this.whiteList = propertiesReader.getWhiteList(STUPSevaluation);
+        this.blackList = propertiesReader.getBlackList(STUPSevaluation);
 
         System.out.println("\nEchantillon filter initialised:");
         System.out.println("White list : " + this.whiteList);

@@ -62,22 +62,32 @@ public class PropertiesReader {
         return Integer.valueOf(this.getPropertyValue(propertyName));
     }
 
-    public List<Integer> getWhiteList() {
+    public List<Integer> getWhiteList(boolean STUPSevaluation) {
         List<Integer> whiteList  = new ArrayList<>();
 
-        String[] ids = this.getPropertyValue("evaluation.white_list").split(", ");
+        String[] ids;
+        if (STUPSevaluation)
+            ids = this.getPropertyValue("white_list.evaluation").split(", ");
+        else    
+            ids = this.getPropertyValue("white_list.prod").split(", ");
 
         for (String id : ids) {
+            if (id.equals(""))
+                continue;
             whiteList.add(Integer.parseInt(id.trim()));
         }
 
         return whiteList;
     }
 
-    public List<Integer> getBlackList() {
+    public List<Integer> getBlackList(boolean STUPSevaluation) {
         List<Integer> whiteList  = new ArrayList<>();
 
-        String[] ids = this.getPropertyValue("evaluation.black_list").split(", ");
+        String[] ids;
+        if (STUPSevaluation)
+            ids = this.getPropertyValue("black_list.evaluation").split(", ");
+        else    
+            ids = this.getPropertyValue("black_list.prod").split(", ");
 
         for (String id : ids) {
             if (id.equals(""))
