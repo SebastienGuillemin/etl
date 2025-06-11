@@ -46,17 +46,17 @@ public class RDFRepository {
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
         Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
-        Property estProcheDe = null;
+        Property estLieA = null;
         Property estProcheChimiquementDe = null;
 
-        boolean loadEstProchetDe = this.propertiesReader.getPropertyValueBoolean("ontology.save.estProcheDe");
+        boolean loadEstLieA = this.propertiesReader.getPropertyValueBoolean("ontology.save.estLieA");
         boolean loadEstProcheChimiquementDe = this.propertiesReader.getPropertyValueBoolean("ontology.save.estProcheChimiquementDe");
                 
-        System.out.println("Load loadEstProchetDe : " + loadEstProchetDe);
+        System.out.println("Load loadEstLieA : " + loadEstLieA);
         System.out.println("Load estProcheChimiquementDe : " + loadEstProcheChimiquementDe + "\n");
 
-        if (loadEstProchetDe)
-            estProcheDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheDe");
+        if (loadEstLieA)
+            estLieA = this.model.createProperty(RDFRepository.PREFIX + "estLieA");
 
         if (loadEstProcheChimiquementDe)
             estProcheChimiquementDe = this.model.createProperty(RDFRepository.PREFIX + "estProcheChimiquementDe");
@@ -68,9 +68,9 @@ public class RDFRepository {
 
             echantillonResource = echantillon.getResource(this.model);
 
-            if (loadEstProchetDe && !this.STUPSevaluation)
+            if (loadEstLieA && !this.STUPSevaluation)
                 for (Resource neighbor : echantillon.getNeighborsResources(this.model, this.echantillonFilter))
-                    echantillonResource.addProperty(estProcheDe, neighbor);
+                    echantillonResource.addProperty(estLieA, neighbor);
 
             if (loadEstProcheChimiquementDe && !this.STUPSevaluation)
                 for (Resource neighbor : echantillon.getChemicalNeighborsResources(this.model, this.echantillonFilter))

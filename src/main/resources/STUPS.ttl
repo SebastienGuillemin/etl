@@ -1,24 +1,98 @@
 @prefix : <http://www.stups.fr/ontologies/2023/stups/#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
 @base <http://www.stups.fr/ontologies/2023/stups/#> .
 
 <http://www.stups.fr/ontologies/2023/stups/> rdf:type owl:Ontology ;
-                                              owl:versionIRI <http://www.stups.fr/ontologies/2023/stups/6.0.0> .
+                                              owl:versionIRI <http://www.stups.fr/ontologies/2023/stups/6.1.0> ;
+                                              dct:accessRights "Open access" ;
+                                              dct:contributor <https://www.police-nationale.interieur.gouv.fr/nous-decouvrir/notre-organisation/organisation/service-national-de-police-scientifique-snps> ;
+                                              dct:creator <https://orcid.org/0009-0002-8177-2629> ;
+                                              dct:description "This ontology describes the knowledge of French scientific experts used in illicit drug analysis." ;
+                                              dct:hasVersion "6.1.0" ;
+                                              dct:issued "2025-06-06"^^xsd:date ;
+                                              dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+                                              dct:references <http://dbpedia.org/resource/Forensic_science> ,
+                                                             dct: ,
+                                                             <https://raw.githubusercontent.com/SebastienGuillemin/StupsOntology/master/STUPS.ttl> ,
+                                                             <https://schema.org/> ,
+                                                             <https://www.police-nationale.interieur.gouv.fr/nous-decouvrir/notre-organisation/organisation/service-national-de-police-scientifique-snps> ,
+                                                             <https://www.w3.org/TR/owl2-overview/> ,
+                                                             <https://www.w3.org/TR/vocab-dcat-2/> ;
+                                              dct:rights "Use restricted to research purposes" ;
+                                              dct:title "STUPS ontology" ;
+                                              schema:codeRepository <https://github.com/SebastienGuillemin/StupsOntology> ;
+                                              dcat:accessURL <https://raw.githubusercontent.com/SebastienGuillemin/StupsOntology/master/STUPS.ttl> ;
+                                              dcat:mediaType "text/turtle" .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
-###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
-<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/terms/accessRights
+dct:accessRights rdf:type owl:AnnotationProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#pic
-:pic rdf:type owl:AnnotationProperty .
+###  http://purl.org/dc/terms/contributor
+dct:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/hasVersion
+dct:hasVersion rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+dct:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/references
+dct:references rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+dct:rights rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/codeRepository
+schema:codeRepository rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/dcat#accessURL
+dcat:accessURL rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/dcat#mediaType
+dcat:mediaType rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
 
 
 #################################################################
@@ -256,6 +330,14 @@
           rdf:type owl:FunctionalProperty .
 
 
+###  http://www.stups.fr/ontologies/2023/stups/#estPotentiellementProcheDe
+:estPotentiellementProcheDe rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdf:type owl:SymmetricProperty ;
+                            rdfs:domain :Echantillon ;
+                            rdfs:range :Echantillon .
+
+
 ###  http://www.stups.fr/ontologies/2023/stups/#estPrincipeActifDe
 :estPrincipeActifDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
@@ -271,23 +353,6 @@
                                   owl:IrreflexiveProperty ;
                          rdfs:domain :Echantillon ;
                          rdfs:range :Echantillon .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#estProcheDe
-:estProcheDe rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf owl:topObjectProperty ;
-             rdf:type owl:SymmetricProperty ,
-                      owl:TransitiveProperty ,
-                      owl:IrreflexiveProperty ;
-             rdfs:domain :Echantillon ;
-             rdfs:range :Echantillon .
-
-###  http://www.stups.fr/ontologies/2023/stups/#estPotentiellementProcheDe
-:estPotentiellementProcheDe rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf owl:topObjectProperty ;
-             rdf:type owl:SymmetricProperty ;
-             rdfs:domain :Echantillon ;
-             rdfs:range :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estProduitCoupageDe
@@ -358,23 +423,6 @@
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
-:tauxCBD rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
-:tauxCBN rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon ;
-                                                   rdfs:range xsd:float .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#tauxTHC
-:tauxTHC rdf:type owl:DatatypeProperty ;
-                                                   rdfs:domain :Echantillon ;
-                                                   rdfs:range xsd:float .
-
 
 ###  http://www.stups.fr/ontologies/2023/stups/#abime
 :abime rdf:type owl:DatatypeProperty ;
@@ -850,6 +898,23 @@
       rdfs:range xsd:float .
 
 
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
+:tauxCBD rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Echantillon .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
+:tauxCBN rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Echantillon ;
+         rdfs:range xsd:float .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#tauxTHC
+:tauxTHC rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Echantillon ;
+         rdfs:range xsd:float .
+
+
 ###  http://www.stups.fr/ontologies/2023/stups/#tempsRetention
 :tempsRetention rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
@@ -979,7 +1044,7 @@
                                                           owl:someValuesFrom :ProduitCoupage
                                                         ]
                                                         [ rdf:type owl:Restriction ;
-                                                          owl:onProperty :estProcheDe ;
+                                                          owl:onProperty :estLieA ;
                                                           owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
                                                           owl:onClass :Echantillon
                                                         ]

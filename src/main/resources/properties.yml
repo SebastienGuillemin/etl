@@ -19,4 +19,4 @@ ontology:
         name: populated_STUPS.ttl
         evaluation_name: evaluation_STUPS.ttl
         estProcheChimiquementDe: "false"
-        estProcheDe: "true"
+        estLieA: "true"
