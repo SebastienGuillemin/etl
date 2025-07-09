@@ -99,22 +99,25 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://www.stups.fr/ontologies/2023/stups/#aAspect
+:aAspect rdf:type owl:ObjectProperty ;
+         owl:inverseOf :estAspectDe ;
+         rdfs:domain :Echantillon ;
+         rdfs:range :Aspect .
+
+
 ###  http://www.stups.fr/ontologies/2023/stups/#aAspectExterne
 :aAspectExterne rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:subPropertyOf :aAspect ;
                 owl:inverseOf :estAspectExterneDe ;
-                rdf:type owl:FunctionalProperty ;
-                rdfs:domain :Echantillon ;
-                rdfs:range :Aspect .
+                rdf:type owl:FunctionalProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#aAspectInterne
 :aAspectInterne rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:subPropertyOf :aAspect ;
                 owl:inverseOf :estAspectInterneDe ;
-                rdf:type owl:FunctionalProperty ;
-                rdfs:domain :Echantillon ;
-                rdfs:range :Aspect .
+                rdf:type owl:FunctionalProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#aDepartement
@@ -244,15 +247,19 @@ xsd:date rdf:type rdfs:Datatype .
         rdf:type owl:InverseFunctionalProperty .
 
 
+###  http://www.stups.fr/ontologies/2023/stups/#estAspectDe
+:estAspectDe rdf:type owl:ObjectProperty .
+
+
 ###  http://www.stups.fr/ontologies/2023/stups/#estAspectExterneDe
 :estAspectExterneDe rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:subPropertyOf :estAspectDe ;
                     rdf:type owl:InverseFunctionalProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estAspectInterneDe
 :estAspectInterneDe rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:subPropertyOf :estAspectDe ;
                     rdf:type owl:InverseFunctionalProperty .
 
 
@@ -280,14 +287,6 @@ xsd:date rdf:type rdfs:Datatype .
                 rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#estEloigneDe
-:estEloigneDe rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
-              rdf:type owl:SymmetricProperty ;
-              rdfs:domain :Echantillon ;
-              rdfs:range :Echantillon .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#estFaitA
 :estFaitA rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
@@ -303,19 +302,15 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estLieA
 :estLieA rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf owl:topObjectProperty .
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdf:type owl:SymmetricProperty ,
+                  owl:TransitiveProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estLieuSaisineDe
 :estLieuSaisineDe rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdf:type owl:InverseFunctionalProperty .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#estLotInterneDe
-:estLotInterneDe rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdf:type owl:IrreflexiveProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estPaysDestinationDe
@@ -330,29 +325,11 @@ xsd:date rdf:type rdfs:Datatype .
           rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#estPotentiellementProcheDe
-:estPotentiellementProcheDe rdf:type owl:ObjectProperty ;
-                            rdfs:subPropertyOf owl:topObjectProperty ;
-                            rdf:type owl:SymmetricProperty ;
-                            rdfs:domain :Echantillon ;
-                            rdfs:range :Echantillon .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#estPrincipeActifDe
 :estPrincipeActifDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
                     rdf:type owl:FunctionalProperty ,
                              owl:InverseFunctionalProperty .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#estProcheChimiquementDe
-:estProcheChimiquementDe rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf owl:topObjectProperty ;
-                         rdf:type owl:SymmetricProperty ,
-                                  owl:TransitiveProperty ,
-                                  owl:IrreflexiveProperty ;
-                         rdfs:domain :Echantillon ;
-                         rdfs:range :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estProduitCoupageDe
@@ -695,35 +672,6 @@ xsd:date rdf:type rdfs:Datatype .
                           ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#libelleFormeChimique
-:libelleFormeChimique rdf:type owl:DatatypeProperty ,
-                               owl:FunctionalProperty ;
-                      rdfs:range [ rdf:type rdfs:Datatype ;
-                                   owl:oneOf [ rdf:type rdf:List ;
-                                               rdf:first "Base" ;
-                                               rdf:rest [ rdf:type rdf:List ;
-                                                          rdf:first "Base & HCl" ;
-                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                     rdf:first "Chlorhydrate" ;
-                                                                     rdf:rest [ rdf:type rdf:List ;
-                                                                                rdf:first "HCL" ;
-                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                           rdf:first "Indéterminée" ;
-                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                      rdf:first "Phosphate" ;
-                                                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                                                 rdf:first "Sulfate" ;
-                                                                                                                 rdf:rest rdf:nil
-                                                                                                               ]
-                                                                                                    ]
-                                                                                         ]
-                                                                              ]
-                                                                   ]
-                                                        ]
-                                             ]
-                                 ] .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#libelleService
 :libelleService rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
@@ -996,18 +944,12 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Aspect
 :Aspect rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Class ;
-                              owl:unionOf ( [ rdf:type owl:Restriction ;
-                                              owl:onProperty :estAspectExterneDe ;
-                                              owl:someValuesFrom :Echantillon
-                                            ]
-                                            [ rdf:type owl:Restriction ;
-                                              owl:onProperty :estAspectInterneDe ;
-                                              owl:someValuesFrom :Echantillon
-                                            ]
-                                          )
+        owl:equivalentClass [ rdf:type owl:Restriction ;
+                              owl:onProperty :estAspectDe ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Echantillon
                             ] ;
-        rdfs:comment "Un aspect permet de d’écrire l’aspect interne ou l’aspect externe d’un échantillon." .
+        rdfs:comment "Un aspect décrit l’aspect interne ou externe d’un échantillon." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Composant
@@ -1017,7 +959,7 @@ xsd:date rdf:type rdfs:Datatype .
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :Substance
                                ] ;
-           rdfs:comment "Un composant est utilisé pour décrire ce qui compose un échantillon. Il en existe deux types : les principes actifs et les produits de coupages. Un composant est lié à une substance et éventuellement a un dosage (exprimé en pourcentage massique)." .
+           rdfs:comment "Un composant d'un échantillon est soit un principe actif soit un produit de coupage. Un composant est lié à une substance et éventuellement à un dosage (exprimé en pourcentage massique)." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Departement
@@ -1074,6 +1016,10 @@ xsd:date rdf:type rdfs:Datatype .
                                                           owl:onClass :ProfilChimique
                                                         ]
                                                         [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :caracteristiqueMacroscopique ;
+                                                          owl:someValuesFrom rdfs:Literal
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
                                                           owl:onProperty :id ;
                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                           owl:onDataRange xsd:string
@@ -1081,7 +1027,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :numeroEchantillon ;
                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                          owl:onDataRange xsd:string
+                                                          owl:onDataRange xsd:float
                                                         ]
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :typeDrogue ;
@@ -1093,17 +1039,22 @@ xsd:date rdf:type rdfs:Datatype .
                                  ] ;
              owl:hasKey ( :id
                         ) ;
-             rdfs:comment """Un échantillon de drogue est extrait à partir d’un prélèvement d’un scellé. Un échantillon est caractérisé par un numéro d’échantillon et son type de drogue ('cannabis', 'cocaïne', 'divers' ou 'amphétamine et dérivés'). Un échantillon a des caractéristiques macroscopiques (aspect internes et externes, couleurs etc.), un principe actif et des produits de coupage. Les experts peuvent aussi donner des commentaires sur l’échantillon. De plus, un échantillon peut être regroupé avec d’autres échantillon dans un lot.
-Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique.""" .
+             rdfs:comment "Un échantillon de stupéfiant appartient à un scellé. Un échantillon est caractérisé par un numéro d’échantillon (une chaîne de caractères), son type de drogue ('cannabis', 'cocaïne', 'divers' ou 'amphétamine et dérivés'), des caractéristiques macroscopiques, un aspect externe, potentiellement un aspect interne, un principe actif et des produits de coupage. Les experts peuvent aussi donner des commentaires sur l’échantillon. De plus, un échantillon peut être lié à d'autres échantillons. Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est réalisée, chaque échantillon est associé à un profil chimique." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#FormeChimique
 :FormeChimique rdf:type owl:Class ;
-               owl:equivalentClass [ rdf:type owl:Restriction ;
-                                     owl:onProperty :estFormeChimiqueDe ;
-                                     owl:someValuesFrom :PrincipeActif
+               owl:equivalentClass [ rdf:type owl:Class ;
+                                     owl:oneOf ( :Base
+                                                 :BaseEtHCL
+                                                 :Chlorhydrate
+                                                 :HCL
+                                                 :Indeterminee
+                                                 :Phosphate
+                                                 :Sulfate
+                                               )
                                    ] ;
-               rdfs:comment "Une forme chimique (Base, HCL, Base et HCL, Sulfate, Chlorhydrate, Phosphate ou Indéterminée) est associée à un principe actif pour décrire sa forme chimique." .
+               rdfs:comment "Une forme chimique est associée à un principe actif pour décrire sa forme chimique. Les formes chimiques considérées dans l'ontologie STUPS sont : Base, HCL, Base et HCL, Sulfate, Chlorhydrate, Phosphate ou Indéterminée." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Pays
@@ -1112,7 +1063,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                             owl:onProperty :aRegion ;
                             owl:someValuesFrom :Region
                           ] ;
-      rdfs:comment "Un pays a une ou plusieurs régions" .
+      rdfs:comment "Un pays a une ou plusieurs régions." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Pic
@@ -1127,7 +1078,8 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#PrincipeActif
 :PrincipeActif rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+               owl:equivalentClass [ owl:intersectionOf ( :Composant
+                                                          [ rdf:type owl:Restriction ;
                                                             owl:onProperty :aFormeChimique ;
                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                             owl:onClass :FormeChimique
@@ -1140,7 +1092,6 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                                         ) ;
                                      rdf:type owl:Class
                                    ] ;
-               rdfs:subClassOf :Composant ;
                owl:disjointWith :ProduitCoupage ;
                rdfs:comment "Un principe actif est la principale substance d’un échantillon. Tout principe actif a une forme chimique." .
 
@@ -1153,37 +1104,51 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                       owl:onClass :Echantillon
                                     ] ;
                 rdfs:subClassOf :Composant ;
-                rdfs:comment "Un produit de coupage est une substance composant un échantillon. Ce produit de coupage est en plus petite quantité que le principe actif." .
+                rdfs:comment "Un produit de coupage est une substance composant un échantillon." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimique
 :ProfilChimique rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                             owl:onProperty :aPic ;
-                                                             owl:someValuesFrom :Pic
-                                                           ]
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty :estProfilChimiqueDe ;
-                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                             owl:onClass :Echantillon
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
-                                    ] ;
-                rdfs:comment "Un profil chimique est associé à un échantillon dans le but de faire du profilage (i.e. rapprocher automatique des échantillons selon leur profil et leurs caractéristiques). Un profil chimique représente chromatogramme constitué d’un ensemble de pics  permettent d’identifier la présence ou composés chimiques cible." .
+                rdfs:comment "Un profil chimique est associé à un échantillon dans le but de faire du profilage chimique. Un profil chimique représente un chromatogramme constitué d’un ensemble de pics permettant d’identifier la présence de composés chimiques cibles." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimiqueCocaine
 :ProfilChimiqueCocaine rdf:type owl:Class ;
-                       rdfs:subClassOf :ProfilChimique ;
+                       owl:equivalentClass [ owl:intersectionOf ( :ProfilChimique
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :aPic ;
+                                                                    owl:qualifiedCardinality "18"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Pic
+                                                                  ]
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :estProfilChimiqueDe ;
+                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Echantillon
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
                        owl:disjointWith :ProfilChimiqueHeroine ;
-                       rdfs:comment "Un profil de cocaïne a 18 pics, correspondant à des solvants résiduels ayant servi dans la fabrication de la cocaïne, sont recherchés. Ils ne sont pas toujours tous présents, cela dépend du procédé de fabrication   (extraction)." .
+                       rdfs:comment "Un profil de cocaïne a 18 pics correspondant à des solvants résiduels ayant servi dans la fabrication de la cocaïne. Ils ne sont pas toujours tous présents, cela dépend du procédé de fabrication." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimiqueHeroine
 :ProfilChimiqueHeroine rdf:type owl:Class ;
-                       rdfs:subClassOf :ProfilChimique ;
-                       rdfs:comment "Pour l’héroïne, 6 pics correspondant à des impuretés   et dépendent du procédé de fabrication (synthèse). Elles sont toujours présentes mais les quantités peuvent être différentes." .
+                       owl:equivalentClass [ owl:intersectionOf ( :ProfilChimique
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :aPic ;
+                                                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Pic
+                                                                  ]
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :estProfilChimiqueDe ;
+                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Echantillon
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:comment "Un profil d'héroïne a 6 pics correspondant à des impuretés dépendant du procédé de fabrication (synthèse). Elles sont toujours présentes mais les quantités peuvent être différentes." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Region
@@ -1200,7 +1165,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                                  ) ;
                               rdf:type owl:Class
                             ] ;
-        rdfs:comment "Une région a un ou plusieurs département est dans un un pays." .
+        rdfs:comment "Une région a un ou plusieurs départements et est dans un pays." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Saisine
@@ -1234,7 +1199,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                              ] ;
          owl:hasKey ( :id
                     ) ;
-         rdfs:comment "La saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de drogue. La fiche (i.e. l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés" .
+         rdfs:comment "Une saisine est un terme juridique utilisé en matière de procédure. Elle désigne l'action qu'accomplit un requérant lorsqu'il demande l'analyse d'une saisie de stupéfiant. La fiche (i.e. l’ensemble des informations) d’une saisine d’un produit supposé illicite contient un service capteur, un service requérant, la ville où la saisine a été faite et le pays de destination du produit. Ces renseignements peuvent être complets ou partiels. De plus, une saisie contient un ensemble de scellés." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Scelle
@@ -1253,7 +1218,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                             ] ;
         owl:hasKey ( :id
                    ) ;
-        rdfs:comment "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs échantillons des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice.  Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." .
+        rdfs:comment "Les scellés sont contenus dans une saisine. Chaque scellé contient un ou plusieurs échantillons des produits à identifier et est identifié par un numéro unique. Un scellé est une mesure ordonnée, afin de conserver les pièces à conviction à la disposition de la justice. Il peut désigner également le fait d'apposer un cachet de cire sur une pièce à conviction." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Service
@@ -1263,7 +1228,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                owl:onClass :Ville
                              ] ;
-         rdfs:comment "Il existe deux types de services : les services requérants et les services capteurs. Tous les services sont identifiés par un nom. De plus un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone etc.)." .
+         rdfs:comment "Il existe deux types de services : les services requérants et les services capteurs. Tous les services sont identifiés par un nom. De plus, un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone, etc.)." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ServiceCapteur
@@ -1274,7 +1239,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                     ] ;
                 rdfs:subClassOf :Service ;
                 owl:disjointWith :ServiceRequerant ;
-                rdfs:comment "Un service capteur est le service qui réalise la saisie de drogue." .
+                rdfs:comment "Un service capteur est le service qui réalise la saisie de stupéfiant." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ServiceRequerant
@@ -1284,7 +1249,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                         owl:someValuesFrom :Saisine
                                       ] ;
                   rdfs:subClassOf :Service ;
-                  rdfs:comment "Un service requérant est le service qui requiert l’analyse d’une saisie de drogue (i.e. celui à l’origine de la saisine)." .
+                  rdfs:comment "Un service requérant est le service qui requiert l’analyse d’une saisie de stupéfiants (i.e. celui à l’origine de la saisine)." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Substance
@@ -1300,7 +1265,7 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
                                                ]
                                              )
                                ] ;
-           rdfs:comment "Le concept de substance est le même que celui de la chimie. Ici, il est utilisé pour représenter la substance à laquelle sont reliés les composants d’un échantillon (Principe actif et Produit de coupage) ainsi que les pics d’un profil. Une substance à un nom." .
+           rdfs:comment "Le concept de substance est le même que celui de la chimie. Ici, il est utilisé pour représenter la substance à laquelle sont reliés les composants d’un échantillon (principe actif et produit de coupage) ainsi que les pics d’un profil chimique. Une substance a un nom." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Ville
@@ -1313,4 +1278,43 @@ Dans le cas des stupéfiants sur lesquels une analyse de profilage chimique est 
        rdfs:comment "Un ville est dans un département." .
 
 
-###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.stups.fr/ontologies/2023/stups/#Base
+:Base rdf:type owl:NamedIndividual ,
+               :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#BaseEtHCL
+:BaseEtHCL rdf:type owl:NamedIndividual ,
+                    :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#Chlorhydrate
+:Chlorhydrate rdf:type owl:NamedIndividual ,
+                       :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#HCL
+:HCL rdf:type owl:NamedIndividual ,
+              :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#Indeterminee
+:Indeterminee rdf:type owl:NamedIndividual ,
+                       :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#Phosphate
+:Phosphate rdf:type owl:NamedIndividual ,
+                    :FormeChimique .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/#Sulfate
+:Sulfate rdf:type owl:NamedIndividual ,
+                  :FormeChimique .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
