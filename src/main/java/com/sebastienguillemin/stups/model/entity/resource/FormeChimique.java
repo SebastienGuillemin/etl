@@ -2,11 +2,8 @@ package com.sebastienguillemin.stups.model.entity.resource;
 
 import java.util.Hashtable;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.vocabulary.RDF;
 
 import com.sebastienguillemin.stups.model.BaseEntity;
 import com.sebastienguillemin.stups.repository.RDFRepository;
