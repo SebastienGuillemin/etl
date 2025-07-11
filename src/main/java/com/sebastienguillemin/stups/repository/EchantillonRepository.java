@@ -18,10 +18,10 @@ public class EchantillonRepository {
     }
 
     public List<Echantillon> loadData(Session session) {
-        return this.loadData(session, -1, false);
+        return this.loadData(session, -1, false, -1);
     }
 
-    public List<Echantillon> loadData(Session session, int dayCount, boolean STUPSevaluation) {
+    public List<Echantillon> loadData(Session session, int dayCount, boolean STUPSevaluation, int limite) {
         if (session == null)
             return null;
 
@@ -29,10 +29,12 @@ public class EchantillonRepository {
         System.out.println("Loading data from PostgreSQL.");
 
         String queryString;
-        if (STUPSevaluation)
-            queryString = this.propertiesReader.getPropertyValue("sql.evaluation_query");
-        else
+        if (STUPSevaluation && limite == -1) // Qualitative evaluation
+            queryString = this.propertiesReader.getPropertyValue("sql.qualitative_evaluation_query");
+        else     // Quantitative evaluation
             queryString = this.propertiesReader.getPropertyValue("sql.query");
+            if (limite != -1)
+                queryString += " limit " + limite;
 
         System.out.println(queryString);
 
