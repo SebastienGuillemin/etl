@@ -1,5 +1,6 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -41,8 +42,8 @@ public class Saisine extends BaseEntity implements ResourceEntity {
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
         
-        Property id = model.createProperty(RDFRepository.PREFIX + "id");
-        resource.addProperty(id, this.id + "");
+        Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
+        resource.addLiteral(idProperty, BigInteger.valueOf(this.id));
 
         Property dateProperty = model.createProperty(RDFRepository.PREFIX + "date");
         try {

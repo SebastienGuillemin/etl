@@ -614,7 +614,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#id
 :id rdf:type owl:DatatypeProperty ,
              owl:FunctionalProperty ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:integer .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#largeur
@@ -1024,12 +1024,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :id ;
                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                          owl:onDataRange xsd:string
+                                                          owl:onDataRange xsd:integer
                                                         ]
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :numeroEchantillon ;
                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                          owl:onDataRange xsd:float
+                                                          owl:onDataRange xsd:string
                                                         ]
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :typeDrogue ;
@@ -1196,6 +1196,11 @@ xsd:date rdf:type rdfs:Datatype .
                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                       owl:onClass :Ville
                                                     ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :id ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:integer
+                                                    ]
                                                   ) ;
                                rdf:type owl:Class
                              ] ;
@@ -1214,6 +1219,11 @@ xsd:date rdf:type rdfs:Datatype .
                                                      owl:onProperty :estDansSaisine ;
                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                      owl:onClass :Saisine
+                                                   ]
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :id ;
+                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                     owl:onDataRange xsd:integer
                                                    ]
                                                  ) ;
                               rdf:type owl:Class

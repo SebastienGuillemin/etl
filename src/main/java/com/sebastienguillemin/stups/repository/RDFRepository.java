@@ -45,7 +45,6 @@ public class RDFRepository {
 
     public void populate(List<Echantillon> echantillons) {
         Resource echantillonResource;
-        Property idEchantillon = this.model.createProperty(RDFRepository.PREFIX + "id");
         Property estLieA = null;
 
         boolean loadEstLieA = this.propertiesReader.getPropertyValueBoolean("ontology.save.estLieA");
@@ -65,8 +64,6 @@ public class RDFRepository {
             if (loadEstLieA && !this.STUPSevaluation)
                 for (Resource neighbor : echantillon.getNeighborsResources(this.model, this.echantillonFilter))
                     echantillonResource.addProperty(estLieA, neighbor);
-
-            this.model.add(echantillonResource, idEchantillon, echantillon.getId() + "");
         }
     }
 

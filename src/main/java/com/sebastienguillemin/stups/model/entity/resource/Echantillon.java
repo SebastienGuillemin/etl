@@ -1,5 +1,6 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +113,7 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
         Property forme = model.createProperty(RDFRepository.PREFIX + "forme");
         
         // Add ID
-        resource.addLiteral(idProperty, this.id + "");
+        resource.addLiteral(idProperty, BigInteger.valueOf(this.id));
         
         // Add drug type and active principal resources
         for (PrincipeActif principeActif : this.composition.getPrincipeActifs()) {

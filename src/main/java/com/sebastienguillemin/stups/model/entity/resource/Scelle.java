@@ -1,5 +1,7 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import java.math.BigInteger;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -28,8 +30,8 @@ public class Scelle extends BaseEntity implements ResourceEntity {
     public Resource getResource(Model model) {
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
 
-        Property property = model.createProperty(RDFRepository.PREFIX + "id");
-        resource.addProperty(property, this.id + "");
+        Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
+        resource.addLiteral(idProperty, BigInteger.valueOf(this.id));
 
         Property estDansSaisine = model.createProperty(RDFRepository.PREFIX + "estDansSaisine");
         resource.addProperty(estDansSaisine, this.saisine.getResource(model));
