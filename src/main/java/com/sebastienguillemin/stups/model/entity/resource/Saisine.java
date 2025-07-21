@@ -3,6 +3,7 @@ package com.sebastienguillemin.stups.model.entity.resource;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.apache.jena.datatypes.xsd.XSDDatatype;
@@ -28,6 +29,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Saisine extends BaseEntity implements ResourceEntity {
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
+
     @Column(name = "date_reception")
     private String dateReception;
 
@@ -40,7 +43,13 @@ public class Saisine extends BaseEntity implements ResourceEntity {
 
     @Override
     public Resource getResource(Model model) {
+        // Creating sample resource
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (Saisine.allEntitiesResources.containsKey(resourceName))
+            return Saisine.allEntitiesResources.get(resourceName);
+        
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Saisine.allEntitiesResources.put(resourceName, resource);
         
         Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
         resource.addLiteral(idProperty, BigInteger.valueOf(this.id));

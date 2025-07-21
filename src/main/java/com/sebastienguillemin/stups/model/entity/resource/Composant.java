@@ -2,6 +2,8 @@ package com.sebastienguillemin.stups.model.entity.resource;
 
 import jakarta.persistence.Transient;
 
+import java.util.HashMap;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
@@ -28,6 +30,9 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
     public final static float DETECTION_LIMIT = 0.03f;
     public final static float MISSING_RATE_IMPUTATION_VALUE = DETECTION_LIMIT / 2.0f;
 
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
+
+
     @ManyToOne
     @JoinColumn(name = "id_composition")
     protected Composition composition;
@@ -49,7 +54,13 @@ public abstract class Composant extends BaseEntity implements ResourceEntity {
     }
 
     protected Resource getPartielResource(Model model) {
+        // Creating sample resource
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (Composant.allEntitiesResources.containsKey(resourceName))
+            return Composant.allEntitiesResources.get(resourceName);
+        
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Composant.allEntitiesResources.put(resourceName, resource);
 
         Property aSubstance = model.createProperty(RDFRepository.PREFIX + "aSubstance");
         resource.addProperty(aSubstance, this.substance.getResource(model));

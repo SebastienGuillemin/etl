@@ -2,6 +2,7 @@ package com.sebastienguillemin.stups.model.entity.resource;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.jena.rdf.model.Model;
@@ -32,6 +33,8 @@ import lombok.ToString;
 @Table(name = "echantillon")
 @ToString
 public class Echantillon extends BaseEntity implements ResourceEntity {
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
+
     @Column(name = "num_echantillon")
     private String num;
 
@@ -101,7 +104,12 @@ public class Echantillon extends BaseEntity implements ResourceEntity {
     @Override
     public Resource getResource(Model model) {
         // Creating sample resource
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (Echantillon.allEntitiesResources.containsKey(resourceName))
+            return Echantillon.allEntitiesResources.get(resourceName);
+        
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Echantillon.allEntitiesResources.put(resourceName, resource);
 
         // Creating (or retrieving if alrezady created) properties
         Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");

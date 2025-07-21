@@ -1,6 +1,7 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
@@ -22,13 +23,20 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Scelle extends BaseEntity implements ResourceEntity {
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
+
     @ManyToOne
     @JoinColumn(name = "id_saisine")
     public Saisine saisine;
 
     @Override
     public Resource getResource(Model model) {
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (Scelle.allEntitiesResources.containsKey(resourceName))
+            return Scelle.allEntitiesResources.get(resourceName);
+        
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Scelle.allEntitiesResources.put(resourceName, resource);
 
         Property idProperty = model.createProperty(RDFRepository.PREFIX + "id");
         resource.addLiteral(idProperty, BigInteger.valueOf(this.id));

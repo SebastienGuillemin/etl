@@ -1,6 +1,6 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -10,7 +10,6 @@ import com.sebastienguillemin.stups.repository.RDFRepository;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,19 +20,19 @@ import lombok.ToString;
 @Table(name = "forme_chimique")
 @ToString
 public class FormeChimique extends BaseEntity implements ResourceEntity {
-    @Transient
-    private static Hashtable<String, Resource> individuals = new Hashtable<>(); // Libellé forme chimique -> individu ({Base , BaseEtHCL , Chlorhydrate , HCL , Indeterminee , Phosphate , Sulfate})
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
 
     private String libelle;
 
     @Override
     public Resource getResource(Model model) {
-        if (!FormeChimique.individuals.containsKey(this.getResourceName())) {
-            System.out.println("Create new Forme Chimique individual: " + this.libelle);
-            FormeChimique.individuals.put(this.getResourceName(), model.createResource(RDFRepository.PREFIX + this.getResourceName()));
-        }
-
-        return FormeChimique.individuals.get(this.getResourceName());
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (FormeChimique.allEntitiesResources.containsKey(resourceName))
+            return FormeChimique.allEntitiesResources.get(resourceName);
+        
+        Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        FormeChimique.allEntitiesResources.put(resourceName, resource);
+        return resource;
     }
 
     @Override

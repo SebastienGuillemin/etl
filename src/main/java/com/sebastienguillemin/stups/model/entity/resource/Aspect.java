@@ -1,5 +1,7 @@
 package com.sebastienguillemin.stups.model.entity.resource;
 
+import java.util.HashMap;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
@@ -19,10 +21,20 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Aspect extends BaseEntity implements ResourceEntity {
+    public static final HashMap<String, Resource> allEntitiesResources = new HashMap<>();
+
     public String libelle;
     @Override
     public Resource getResource(Model model) {
+        // Creating sample resource
+        String resourceName = RDFRepository.PREFIX + this.getResourceName();
+        if (Aspect.allEntitiesResources.containsKey(resourceName))
+            return Aspect.allEntitiesResources.get(resourceName);
+        
         Resource resource = model.createResource(RDFRepository.PREFIX + this.getResourceName());
+        Aspect.allEntitiesResources.put(resourceName, resource);
+
+        Aspect.allEntitiesResources.put(resourceName, resource);
         Property libelleAspect = model.createProperty(RDFRepository.PREFIX + "libelleAspect");
 
         resource.addProperty(libelleAspect, this.libelle);
