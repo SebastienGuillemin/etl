@@ -99,6 +99,39 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://www.stups.fr/ontologies/2023/stups/aPaysDestination
+:aPaysDestination rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :estPaysDestinationDe ;
+                  rdfs:domain :Saisine ;
+                  rdfs:range :Pays .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/aVilleSaisine
+:aVilleSaisine rdf:type owl:ObjectProperty ;
+               owl:inverseOf :estVilleSaisine ;
+               rdfs:domain :Saisine ;
+               rdfs:range :Ville .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/estPaysDestinationDe
+:estPaysDestinationDe rdf:type owl:ObjectProperty .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/estRepresenteePar
+:estRepresenteePar rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :represente .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/estVilleSaisine
+:estVilleSaisine rdf:type owl:ObjectProperty .
+
+
+###  http://www.stups.fr/ontologies/2023/stups/represente
+:represente rdf:type owl:ObjectProperty ;
+            rdfs:domain :Pic ;
+            rdfs:range :Substance .
+
+
 ###  http://www.stups.fr/ontologies/2023/stups/#aAspect
 :aAspect rdf:type owl:ObjectProperty ;
          owl:inverseOf :estAspectDe ;
@@ -124,7 +157,9 @@ xsd:date rdf:type rdfs:Datatype .
 :aDepartement rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               owl:inverseOf :estDansRegion ;
-              rdf:type owl:InverseFunctionalProperty .
+              rdf:type owl:InverseFunctionalProperty ;
+              rdfs:domain :Region ;
+              rdfs:range :Departement .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#aEchantillon
@@ -196,7 +231,9 @@ xsd:date rdf:type rdfs:Datatype .
 :aRegion rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf owl:topObjectProperty ;
          owl:inverseOf :estDansPays ;
-         rdf:type owl:InverseFunctionalProperty .
+         rdf:type owl:InverseFunctionalProperty ;
+         rdfs:domain :Pays ;
+         rdfs:range :Region .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#aScelle
@@ -234,17 +271,13 @@ xsd:date rdf:type rdfs:Datatype .
             rdfs:range :Substance .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#aUnite
-:aUnite rdf:type owl:ObjectProperty ;
-        rdfs:subPropertyOf owl:topObjectProperty ;
-        owl:inverseOf :estUniteDe .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#aVille
 :aVille rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf owl:topObjectProperty ;
         owl:inverseOf :estDansDepartement ;
-        rdf:type owl:InverseFunctionalProperty .
+        rdf:type owl:InverseFunctionalProperty ;
+        rdfs:domain :Departement ;
+        rdfs:range :Ville .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estAspectDe
@@ -287,13 +320,6 @@ xsd:date rdf:type rdfs:Datatype .
                 rdf:type owl:FunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#estFaitA
-:estFaitA rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
-          owl:inverseOf :estLieuSaisineDe ;
-          rdf:type owl:FunctionalProperty .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#estFormeChimiqueDe
 :estFormeChimiqueDe rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf owl:topObjectProperty ;
@@ -307,12 +333,6 @@ xsd:date rdf:type rdfs:Datatype .
                   owl:TransitiveProperty ;
          rdfs:domain :Echantillon ;
          rdfs:range :Echantillon .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#estLieuSaisineDe
-:estLieuSaisineDe rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty ;
-                  rdf:type owl:InverseFunctionalProperty .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#estPaysDestinationDe
@@ -347,13 +367,6 @@ xsd:date rdf:type rdfs:Datatype .
                               owl:InverseFunctionalProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#estRepresenteePar
-:estRepresenteePar rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf owl:topObjectProperty ;
-                   owl:inverseOf :representeSubstance ;
-                   rdf:type owl:InverseFunctionalProperty .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#estServiceCapteurDe
 :estServiceCapteurDe rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf owl:topObjectProperty ;
@@ -369,6 +382,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#estSitueA
 :estSitueA rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :estSitueA ,
+                         :estVilleService ;
            rdf:type owl:FunctionalProperty .
 
 
@@ -377,26 +392,18 @@ xsd:date rdf:type rdfs:Datatype .
                 rdfs:subPropertyOf owl:topObjectProperty .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#estUniteDe
-:estUniteDe rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf owl:topObjectProperty .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#estVilleService
 :estVilleService rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdf:type owl:InverseFunctionalProperty .
+                 rdf:type owl:InverseFunctionalProperty ;
+                 rdfs:domain :Ville ;
+                 rdfs:range :Service .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#provientDe
 :provientDe rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             rdf:type owl:FunctionalProperty .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#representeSubstance
-:representeSubstance rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf owl:topObjectProperty .
 
 
 #################################################################
@@ -413,16 +420,19 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#airPic
 :airPic rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
-        rdfs:range xsd:decimal .
+        rdfs:domain :Pic ;
+        rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#caracteristiqueMacroscopique
-:caracteristiqueMacroscopique rdf:type owl:DatatypeProperty .
+:caracteristiqueMacroscopique rdf:type owl:DatatypeProperty ;
+                              rdfs:domain :Echantillon .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#commentaire
 :commentaire rdf:type owl:DatatypeProperty ,
                       owl:FunctionalProperty ;
+             rdfs:domain :Echantillon ;
              rdfs:range xsd:string .
 
 
@@ -541,13 +551,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#date
 :date rdf:type owl:DatatypeProperty ,
                owl:FunctionalProperty ;
+      rdfs:domain :Saisine ;
       rdfs:range xsd:dateTime .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#description
-:description rdf:type owl:DatatypeProperty ,
-                      owl:FunctionalProperty ;
-             rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#diametre
@@ -560,6 +565,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#dosage
 :dosage rdf:type owl:DatatypeProperty ,
                  owl:FunctionalProperty ;
+        rdfs:domain :Composant ;
         rdfs:range xsd:float .
 
 
@@ -624,59 +630,10 @@ xsd:date rdf:type rdfs:Datatype .
          rdfs:range xsd:float .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#libelleAspect
-:libelleAspect rdf:type owl:DatatypeProperty ,
-                        owl:FunctionalProperty ;
-               rdfs:range [ rdf:type rdfs:Datatype ;
-                            owl:oneOf [ rdf:type rdf:List ;
-                                        rdf:first "Billes" ;
-                                        rdf:rest [ rdf:type rdf:List ;
-                                                   rdf:first "Cailloux" ;
-                                                   rdf:rest [ rdf:type rdf:List ;
-                                                              rdf:first "Comprimés" ;
-                                                              rdf:rest [ rdf:type rdf:List ;
-                                                                         rdf:first "Cristaux" ;
-                                                                         rdf:rest [ rdf:type rdf:List ;
-                                                                                    rdf:first "Gélules" ;
-                                                                                    rdf:rest [ rdf:type rdf:List ;
-                                                                                               rdf:first "Huiles" ;
-                                                                                               rdf:rest [ rdf:type rdf:List ;
-                                                                                                          rdf:first "Liquides" ;
-                                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                                     rdf:first "Non renseignés" ;
-                                                                                                                     rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                rdf:first "Poudres" ;
-                                                                                                                                rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                           rdf:first "Pâtes" ;
-                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                      rdf:first "Résines" ;
-                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                 rdf:first "Substances Dissimulées" ;
-                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                            rdf:first "Timbres" ;
-                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                       rdf:first "Végétaux" ;
-                                                                                                                                                                                       rdf:rest rdf:nil
-                                                                                                                                                                                     ]
-                                                                                                                                                                          ]
-                                                                                                                                                               ]
-                                                                                                                                                    ]
-                                                                                                                                         ]
-                                                                                                                              ]
-                                                                                                                   ]
-                                                                                                        ]
-                                                                                             ]
-                                                                                  ]
-                                                                       ]
-                                                            ]
-                                                 ]
-                                      ]
-                          ] .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#libelleService
 :libelleService rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
+                rdfs:domain :Service ;
                 rdfs:range xsd:string .
 
 
@@ -684,6 +641,7 @@ xsd:date rdf:type rdfs:Datatype .
 :logo rdf:type owl:DatatypeProperty ;
       rdfs:subPropertyOf owl:topDataProperty ;
       rdf:type owl:FunctionalProperty ;
+      rdfs:domain :Echantillon ;
       rdfs:range xsd:boolean .
 
 
@@ -710,12 +668,14 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#nomService
 :nomService rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
+            rdfs:domain :Service ;
             rdfs:range xsd:string .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#nomSubstance
 :nomSubstance rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
+              rdfs:domain :Substance ;
               rdfs:range xsd:string .
 
 
@@ -726,15 +686,10 @@ xsd:date rdf:type rdfs:Datatype .
                    rdfs:range xsd:string .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#numeroLot
-:numeroLot rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
-           rdfs:range xsd:string .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#numeroScelle
 :numeroScelle rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
+              rdfs:domain :Scelle ;
               rdfs:range xsd:string .
 
 
@@ -793,12 +748,6 @@ xsd:date rdf:type rdfs:Datatype .
                          ] .
 
 
-###  http://www.stups.fr/ontologies/2023/stups/#quantite
-:quantite rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
-          rdfs:range xsd:float .
-
-
 ###  http://www.stups.fr/ontologies/2023/stups/#secabiliteRecto
 :secabiliteRecto rdf:type owl:DatatypeProperty ;
                  rdfs:subPropertyOf :caracteristiqueMacroscopique ;
@@ -850,7 +799,8 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#tauxCBD
 :tauxCBD rdf:type owl:DatatypeProperty ;
-         rdfs:domain :Echantillon .
+         rdfs:domain :Echantillon ;
+         rdfs:range xsd:float .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#tauxCBN
@@ -868,18 +818,14 @@ xsd:date rdf:type rdfs:Datatype .
 ###  http://www.stups.fr/ontologies/2023/stups/#tempsRetention
 :tempsRetention rdf:type owl:DatatypeProperty ,
                          owl:FunctionalProperty ;
+                rdfs:domain :Pic ;
                 rdfs:range xsd:decimal .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#trace
-:trace rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
-       rdfs:range xsd:boolean .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#typeDrogue
 :typeDrogue rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
+            rdfs:domain :Echantillon ;
             rdfs:range [ rdf:type rdfs:Datatype ;
                          owl:oneOf [ rdf:type rdf:List ;
                                      rdf:first "Amphétamine et dérivés" ;
@@ -898,32 +844,6 @@ xsd:date rdf:type rdfs:Datatype .
                                               ]
                                    ]
                        ] .
-
-
-###  http://www.stups.fr/ontologies/2023/stups/#unite
-:unite rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
-       rdfs:range [ rdf:type rdfs:Datatype ;
-                    owl:oneOf [ rdf:type rdf:List ;
-                                rdf:first "%" ;
-                                rdf:rest [ rdf:type rdf:List ;
-                                           rdf:first "g/L" ;
-                                           rdf:rest [ rdf:type rdf:List ;
-                                                      rdf:first "g/kg" ;
-                                                      rdf:rest [ rdf:type rdf:List ;
-                                                                 rdf:first "µg/g" ;
-                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                            rdf:first "µg/mL" ;
-                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                       rdf:first "µg/timbre" ;
-                                                                                       rdf:rest rdf:nil
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ]
-                              ]
-                  ] .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#visqueux
@@ -956,10 +876,18 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Composant
 :Composant rdf:type owl:Class ;
-           owl:equivalentClass [ rdf:type owl:Restriction ;
-                                 owl:onProperty :aSubstance ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :Substance
+           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :aSubstance ;
+                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                        owl:onClass :Substance
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :dosage ;
+                                                        owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                        owl:onDataRange xsd:float
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
                                ] ;
            rdfs:comment "Un composant d'un échantillon est soit un principe actif soit un produit de coupage. Un composant est lié à une substance et éventuellement à un dosage (exprimé en pourcentage massique)." .
 
@@ -1070,18 +998,35 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Pic
 :Pic rdf:type owl:Class ;
-     owl:equivalentClass [ rdf:type owl:Restriction ;
-                           owl:onProperty :representeSubstance ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onClass :Substance
+     owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                  owl:onProperty :represente ;
+                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                  owl:onClass :Substance
+                                                ]
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty :estPicDe ;
+                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                  owl:onClass :ProfilChimique
+                                                ]
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty :airPic ;
+                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                  owl:onDataRange xsd:float
+                                                ]
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty :tempsRetention ;
+                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                  owl:onDataRange xsd:float
+                                                ]
+                                              ) ;
+                           rdf:type owl:Class
                          ] ;
      rdfs:comment "Un pic d’un profil chimique caractérise un composé chimique (molécule) présent dans l’échantillon. Chaque pic est caractérisé par un temps de rétention et une aire, correspondant à la quantité du composé cible dans l’échantillon." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#PrincipeActif
 :PrincipeActif rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :Composant
-                                                          [ rdf:type owl:Restriction ;
+               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                             owl:onProperty :aFormeChimique ;
                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                             owl:onClass :FormeChimique
@@ -1094,6 +1039,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                         ) ;
                                      rdf:type owl:Class
                                    ] ;
+               rdfs:subClassOf :Composant ;
                owl:disjointWith :ProduitCoupage ;
                rdfs:comment "Un principe actif est la principale substance d’un échantillon. Tout principe actif a une forme chimique." .
 
@@ -1111,6 +1057,19 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ProfilChimique
 :ProfilChimique rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :aPic ;
+                                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :Pic
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :estProfilChimiqueDe ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :Echantillon
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
                 rdfs:comment "Un profil chimique est associé à un échantillon dans le but de faire du profilage chimique. Un profil chimique représente un chromatogramme constitué d’un ensemble de pics permettant d’identifier la présence de composés chimiques cibles." .
 
 
@@ -1118,14 +1077,14 @@ xsd:date rdf:type rdfs:Datatype .
 :ProfilChimiqueCocaine rdf:type owl:Class ;
                        owl:equivalentClass [ owl:intersectionOf ( :ProfilChimique
                                                                   [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty :aPic ;
-                                                                    owl:qualifiedCardinality "18"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass :Pic
-                                                                  ]
-                                                                  [ rdf:type owl:Restriction ;
                                                                     owl:onProperty :estProfilChimiqueDe ;
                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onClass :Echantillon
+                                                                  ]
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :aPic ;
+                                                                    owl:maxQualifiedCardinality "18"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Pic
                                                                   ]
                                                                 ) ;
                                              rdf:type owl:Class
@@ -1138,14 +1097,14 @@ xsd:date rdf:type rdfs:Datatype .
 :ProfilChimiqueHeroine rdf:type owl:Class ;
                        owl:equivalentClass [ owl:intersectionOf ( :ProfilChimique
                                                                   [ rdf:type owl:Restriction ;
-                                                                    owl:onProperty :aPic ;
-                                                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                                                    owl:onClass :Pic
-                                                                  ]
-                                                                  [ rdf:type owl:Restriction ;
                                                                     owl:onProperty :estProfilChimiqueDe ;
                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                     owl:onClass :Echantillon
+                                                                  ]
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :aPic ;
+                                                                    owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass :Pic
                                                                   ]
                                                                 ) ;
                                              rdf:type owl:Class
@@ -1177,29 +1136,29 @@ xsd:date rdf:type rdfs:Datatype .
                                                       owl:someValuesFrom :Scelle
                                                     ]
                                                     [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :aVilleSaisine ;
+                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass :Ville
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
                                                       owl:onProperty :aPaysDestination ;
-                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                       owl:onClass :Pays
                                                     ]
                                                     [ rdf:type owl:Restriction ;
                                                       owl:onProperty :aServiceCapteur ;
-                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                       owl:onClass :ServiceCapteur
                                                     ]
                                                     [ rdf:type owl:Restriction ;
                                                       owl:onProperty :aServiceRequerant ;
-                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                       owl:onClass :ServiceRequerant
                                                     ]
                                                     [ rdf:type owl:Restriction ;
-                                                      owl:onProperty :estFaitA ;
+                                                      owl:onProperty :date ;
                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                      owl:onClass :Ville
-                                                    ]
-                                                    [ rdf:type owl:Restriction ;
-                                                      owl:onProperty :id ;
-                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                      owl:onDataRange xsd:integer
+                                                      owl:onDataRange xsd:dateTime
                                                     ]
                                                   ) ;
                                rdf:type owl:Class
@@ -1235,22 +1194,52 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Service
 :Service rdf:type owl:Class ;
-         owl:equivalentClass [ rdf:type owl:Restriction ;
-                               owl:onProperty :estSitueA ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass :Ville
+         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :estSitueA ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass :Ville
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :nomService ;
+                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                      owl:onDataRange xsd:string
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
                              ] ;
          rdfs:comment "Il existe deux types de services : les services requérants et les services capteurs. Tous les services sont identifiés par un nom. De plus, un service est localisé dans une ville et peut être associé à un certain nombre d’informations administratives (numéro de téléphone, etc.)." .
 
 
 ###  http://www.stups.fr/ontologies/2023/stups/#ServiceCapteur
 :ServiceCapteur rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Restriction ;
+                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :aScelle ;
+                                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :Scelle
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :aServiceCapteur ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :ServiceCapteur
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :aServiceRequerant ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass :ServiceRequerant
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :date ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onDataRange xsd:date
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
                                       owl:onProperty :estServiceCapteurDe ;
                                       owl:someValuesFrom :Saisine
                                     ] ;
                 rdfs:subClassOf :Service ;
-                owl:disjointWith :ServiceRequerant ;
                 rdfs:comment "Un service capteur est le service qui réalise la saisie de stupéfiant." .
 
 
@@ -1266,16 +1255,23 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.stups.fr/ontologies/2023/stups/#Substance
 :Substance rdf:type owl:Class ;
-           owl:equivalentClass [ rdf:type owl:Class ;
-                                 owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :estRepresenteePar ;
-                                                 owl:someValuesFrom :Pic
-                                               ]
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :estSubstanceDe ;
-                                                 owl:someValuesFrom :Composant
-                                               ]
-                                             )
+           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :estRepresenteePar ;
+                                                        owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                        owl:onClass :Pic
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :estSubstanceDe ;
+                                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                        owl:onClass :Composant
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :nomSubstance ;
+                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                        owl:onDataRange xsd:string
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
                                ] ;
            rdfs:comment "Le concept de substance est le même que celui de la chimie. Ici, il est utilisé pour représenter la substance à laquelle sont reliés les composants d’un échantillon (principe actif et produit de coupage) ainsi que les pics d’un profil chimique. Une substance a un nom." .
 
